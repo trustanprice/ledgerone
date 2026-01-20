@@ -95,7 +95,6 @@ SUM(
   END
 )
 
-
 Balances are never stored directly.
 
 ---
@@ -120,11 +119,29 @@ ledgerone/
 │ └── processed/ # Ledger & analytics outputs
 ├── src/
 │ └── generate_data.py
+│ └── ledger_validation.py
+│ └── run_pipeline.py
 ├── sql/
 │ └── ledger.sql
-├── notebooks/ # Optional exploration
+│ └── fact_transactions.sql
+│ └── monthly_revenue.sql
+│ └── daily_account_balances.sql
+├── notebooks/
+│ └── 01_event_sanity_checks.ipynb
 ├── README.md
 └── requirements.txt
+
+---
+
+## How to Run
+
+1. Create a virtual environment and install dependencies.
+2. Generate synthetic data:
+   - `python src/generate_data.py`
+3. Build the warehouse:
+   - `python src/run_pipeline.py`
+4. Validate ledger integrity:
+   - `python src/ledger_validation.py`
 
 ---
 
