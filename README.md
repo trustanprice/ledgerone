@@ -89,11 +89,12 @@ Each ledger entry represents a single financial posting.
 Account balances are derived using:
 
 SUM(
-CASE
-WHEN posting_type = 'CREDIT' THEN amount
-ELSE -amount
-END
+  CASE
+    WHEN posting_type = 'CREDIT' THEN amount
+    ELSE -amount
+  END
 )
+
 
 Balances are never stored directly.
 
