@@ -1,63 +1,209 @@
-# E-commerce BI Warehouse & Dashboards (DuckDB + dbt + Metabase)
-
-Status: **Work in progress / coming soon**. This repository documents the design and end-to-end approach now; code and dashboards are being added incrementally.
-
-This project turns the Olist Brazilian E-commerce dataset into a production-style BI stack with tested transformations, documented metrics, and exec/ops dashboards. It is designed to demonstrate business intelligence engineering beyond visualization: data modeling, SQL transformations, data quality, automation, and maintainable analytics.
+# LedgerOne  
+### A Synthetic FinTech E-Commerce & Ledger Analytics Platform
 
 ---
 
-## Objectives
+## Overview
 
-1. Build a local, reproducible analytics warehouse.
-2. Model a star schema and define unambiguous KPIs.
-3. Author dbt transformations with tests and lineage.
-4. Add data quality gates and a scheduled build.
-5. Publish executive and operational dashboards.
-6. Highlight analytical SQL: cohort retention, LTV, and anomaly detection.
+**LedgerOne** is an end-to-end fintech analytics project that simulates how modern financial platforms generate, store, and analyze transactional data. The system is built around a **ledger-first architecture**, where all financial activity is represented as immutable events and balances are derived from those events rather than stored directly.
+
+This project is designed to mirror how fintech companies operate internally, from transaction pipelines and accounting logic to analytics-ready data warehousing and business intelligence.
+
+---
+
+## Project Goals
+
+The primary goals of LedgerOne are to:
+
+- Understand how fintech platforms model money movement  
+- Build a correct, append-only financial ledger  
+- Practice event-driven data engineering  
+- Design an analytics-ready warehouse  
+- Develop intuition for finance, accounting, and fintech metrics  
+- Create a portfolio-ready project that reflects real corporate systems  
+
+---
+
+## Core Principles
+
+LedgerOne follows several non-negotiable financial system principles:
+
+- **Immutability**: Financial events are never edited or deleted  
+- **Append-Only Ledger**: All financial truth lives in ledger entries  
+- **Derived Balances**: Account balances are calculated, not stored  
+- **Explicit Direction**: All money movement is recorded as a CREDIT or DEBIT  
+- **Event-Driven Design**: User actions produce financial events that flow through the system  
+
+---
+
+## Financial Event Model
+
+All financial activity in LedgerOne begins as an event.
+
+### Supported Event Types (MVP)
+
+- `DEPOSIT` – Money entering a cash account  
+- `PURCHASE` – User spending on a product or subscription  
+- `FEE` – Platform fees charged to a user  
+- `REFUND` – Reversal of a prior purchase  
+- `INVEST` – Movement of cash into an investment account (future phase)  
+
+### Event Schema (Raw)
+
+| Column | Description |
+|------|------------|
+| event_id | Unique identifier |
+| event_ts | Timestamp of the event |
+| user_id | User associated with the event |
+| account_id | Account impacted |
+| event_type | Type of financial event |
+| direction | CREDIT or DEBIT |
+| amount | Positive numeric amount |
+| currency | ISO currency code |
+| reference_id | Links related events (refunds, fees) |
+
+Raw events are treated as the **source of truth** and are never modified.
+
+---
+
+## Ledger Architecture
+
+Raw events are transformed into a canonical ledger table.
+
+### Ledger Entries
+
+Each ledger entry represents a single financial posting.
+
+| Column | Description |
+|------|------------|
+| ledger_entry_id | Unique identifier |
+| event_id | Source event |
+| event_ts | Timestamp |
+| user_id | User |
+| account_id | Account |
+| posting_type | CREDIT or DEBIT |
+| amount | Numeric value |
+
+### Balance Calculation
+
+Account balances are derived using:
+
+SUM(
+CASE
+WHEN posting_type = 'CREDIT' THEN amount
+ELSE -amount
+END
+)
+
+Balances are never stored directly.
+
+---
+
+## Data Flow
+
+The system follows a clear, production-style data flow:
+
+1. Synthetic user actions generate raw financial events  
+2. Events are written to the raw data layer  
+3. Events are transformed into ledger entries  
+4. Ledger entries feed analytics-ready fact tables  
+5. Metrics and dashboards are built on top of the warehouse  
+
+---
+
+## Project Structure
+
+ledgerone/
+├── data/
+│ ├── raw/ # Immutable raw events
+│ └── processed/ # Ledger & analytics outputs
+├── src/
+│ └── generate_data.py
+├── sql/
+│ └── ledger.sql
+├── notebooks/ # Optional exploration
+├── README.md
+└── requirements.txt
 
 ---
 
 ## Tech Stack
 
-- **DuckDB** — local columnar analytics database (fast, zero configuration).
-- **dbt-duckdb** — SQL transformations, tests, documentation, lineage.
-- **Great Expectations** — data quality checks independent of schema tests.
-- **Metabase** — open-source BI for dashboards and ad hoc exploration.
-- **GitHub Actions** — daily pipeline for build, test, and validation.
+- **Python** – Synthetic data generation  
+- **DuckDB** – Analytical warehouse  
+- **SQL** – Ledger and analytics logic  
+- **Parquet** – Columnar storage format  
+- **VS Code** – Development environment  
+- **Git/GitHub** – Version control  
+
+This stack prioritizes simplicity, performance, and realism.
 
 ---
 
-## Data
+## Metrics & Analytics (Planned)
 
-**Brazilian E-Commerce Public Dataset by Olist (Kaggle)**
+LedgerOne is designed to support common fintech metrics such as:
 
-Tables used:
-
-- `olist_orders_dataset.csv`
-- `olist_order_items_dataset.csv`
-- `olist_order_payments_dataset.csv`
-- `olist_order_reviews_dataset.csv`
-- `olist_customers_dataset.csv`
-- `olist_sellers_dataset.csv`
-- `olist_products_dataset.csv`
-- `olist_geolocation_dataset.csv`
-- `product_category_name_translation.csv`
-
-Download from Kaggle UI, or via CLI:
-
-```bash
-pip install kaggle
-mkdir -p data_raw
-kaggle datasets download -d olistbr/brazilian-ecommerce -p data_raw
-unzip -o data_raw/brazilian-ecommerce.zip -d data_raw
-```
+- Net deposits  
+- Gross vs net revenue  
+- Fee revenue  
+- Active users  
+- Average account balance  
+- Churn proxies  
+- Portfolio value (future phase)  
 
 ---
 
-## Contact
+## Validation & Data Integrity
 
-Trustan Gabriel Price
-trustanprice@gmail.com
- | LinkedIn: https://www.linkedin.com/in/trustan-price-69bb17269/
- | GitHub: https://github.com/trustanprice
+Ledger correctness is validated through:
 
+- Balance consistency checks  
+- Refund reversals  
+- Revenue reconciliation  
+- Account-level rollups  
+
+Incorrect balances indicate upstream data or logic errors and are treated as critical failures.
+
+---
+
+## Roadmap
+
+### Phase 1 (Current)
+- Synthetic event generation  
+- Ledger construction  
+- Balance validation  
+
+### Phase 2
+- Analytics warehouse modeling  
+- Fact and dimension tables  
+- Core financial metrics  
+
+### Phase 3
+- Business intelligence dashboards  
+- Executive and finance reporting  
+
+### Phase 4 (Optional)
+- Investment portfolio simulation  
+- Market data integration  
+- Risk and volatility analytics  
+
+---
+
+## Why Synthetic Data?
+
+Real fintech transaction data is proprietary and unavailable publicly. LedgerOne uses **synthetic but realistic data** to accurately reflect how production systems behave while avoiding privacy and compliance issues.
+
+This approach mirrors how fintech teams prototype, test, and validate systems internally.
+
+---
+
+## Author
+
+Built by **Trustan Price** as a portfolio-grade fintech analytics project focused on financial systems, data engineering, and business intelligence.
+
+---
+
+## Disclaimer
+
+LedgerOne is a simulated system for educational and portfolio purposes only. It does not represent real financial accounts or transactions.
