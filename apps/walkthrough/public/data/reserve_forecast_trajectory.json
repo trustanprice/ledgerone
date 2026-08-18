@@ -1,0 +1,83 @@
+{
+  "horizon_months": 12,
+  "points": [
+    {
+      "horizon_month": 0,
+      "expected_loss_amount": 0.0,
+      "outstanding_balance": 6678954.64,
+      "reserve_rate": 0.0
+    },
+    {
+      "horizon_month": 1,
+      "expected_loss_amount": 14849.68,
+      "outstanding_balance": 6678954.64,
+      "reserve_rate": 0.0022
+    },
+    {
+      "horizon_month": 2,
+      "expected_loss_amount": 30317.74,
+      "outstanding_balance": 6678954.64,
+      "reserve_rate": 0.0045
+    },
+    {
+      "horizon_month": 3,
+      "expected_loss_amount": 44098.6,
+      "outstanding_balance": 6678954.64,
+      "reserve_rate": 0.0066
+    },
+    {
+      "horizon_month": 4,
+      "expected_loss_amount": 59386.31,
+      "outstanding_balance": 6678954.64,
+      "reserve_rate": 0.0089
+    },
+    {
+      "horizon_month": 5,
+      "expected_loss_amount": 75491.05,
+      "outstanding_balance": 6678954.64,
+      "reserve_rate": 0.0113
+    },
+    {
+      "horizon_month": 6,
+      "expected_loss_amount": 92270.99,
+      "outstanding_balance": 6678954.64,
+      "reserve_rate": 0.0138
+    },
+    {
+      "horizon_month": 7,
+      "expected_loss_amount": 109484.76,
+      "outstanding_balance": 6678954.64,
+      "reserve_rate": 0.0164
+    },
+    {
+      "horizon_month": 8,
+      "expected_loss_amount": 126987.35,
+      "outstanding_balance": 6678954.64,
+      "reserve_rate": 0.019
+    },
+    {
+      "horizon_month": 9,
+      "expected_loss_amount": 144671.78,
+      "outstanding_balance": 6678954.64,
+      "reserve_rate": 0.0217
+    },
+    {
+      "horizon_month": 10,
+      "expected_loss_amount": 162465.81,
+      "outstanding_balance": 6678954.64,
+      "reserve_rate": 0.0243
+    },
+    {
+      "horizon_month": 11,
+      "expected_loss_amount": 180319.45,
+      "outstanding_balance": 6678954.64,
+      "reserve_rate": 0.027
+    },
+    {
+      "horizon_month": 12,
+      "expected_loss_amount": 198198.46,
+      "outstanding_balance": 6678954.64,
+      "reserve_rate": 0.0297
+    }
+  ]
+}

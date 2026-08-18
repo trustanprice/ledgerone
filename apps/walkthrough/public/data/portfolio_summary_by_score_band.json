@@ -1,0 +1,42 @@
+[
+  {
+    "origination_score_band": "Near Prime",
+    "account_count": 1239,
+    "outstanding_balance": 1112145.2,
+    "currently_delinquent_accounts": 36.0,
+    "current_delinquency_rate": 0.0291,
+    "charged_off_accounts": 66.0,
+    "lifetime_charge_off_rate": 0.0533,
+    "avg_apr": 25.47
+  },
+  {
+    "origination_score_band": "Prime",
+    "account_count": 1454,
+    "outstanding_balance": 2904978.68,
+    "currently_delinquent_accounts": 28.0,
+    "current_delinquency_rate": 0.0193,
+    "charged_off_accounts": 49.0,
+    "lifetime_charge_off_rate": 0.0337,
+    "avg_apr": 22.03
+  },
+  {
+    "origination_score_band": "Subprime",
+    "account_count": 858,
+    "outstanding_balance": 339860.82,
+    "currently_delinquent_accounts": 34.0,
+    "current_delinquency_rate": 0.0396,
+    "charged_off_accounts": 82.0,
+    "lifetime_charge_off_rate": 0.0956,
+    "avg_apr": 27.94
+  },
+  {
+    "origination_score_band": "Super Prime",
+    "account_count": 590,
+    "outstanding_balance": 2602652.04,
+    "currently_delinquent_accounts": 5.0,
+    "current_delinquency_rate": 0.0085,
+    "charged_off_accounts": 12.0,
+    "lifetime_charge_off_rate": 0.0203,
+    "avg_apr": 17.57
+  }
+]

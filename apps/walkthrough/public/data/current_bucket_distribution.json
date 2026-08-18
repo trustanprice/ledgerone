@@ -1,0 +1,22 @@
+[
+  {
+    "bucket": "Current",
+    "account_count": 3829,
+    "outstanding_balance": 6544920.78
+  },
+  {
+    "bucket": "30-59 DPD",
+    "account_count": 51,
+    "outstanding_balance": 60469.06
+  },
+  {
+    "bucket": "60-89 DPD",
+    "account_count": 34,
+    "outstanding_balance": 48554.81
+  },
+  {
+    "bucket": "90-119 DPD",
+    "account_count": 18,
+    "outstanding_balance": 25009.99
+  }
+]

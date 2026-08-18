@@ -1,0 +1,83 @@
+{
+  "from_bucket_order": [
+    "Current",
+    "30-59 DPD",
+    "60-89 DPD",
+    "90-119 DPD"
+  ],
+  "to_bucket_order": [
+    "Current",
+    "30-59 DPD",
+    "60-89 DPD",
+    "90-119 DPD",
+    "120+/Charged-Off"
+  ],
+  "cells": [
+    {
+      "from_bucket": "30-59 DPD",
+      "to_bucket": "30-59 DPD",
+      "account_count": 243.0,
+      "pct": 0.202
+    },
+    {
+      "from_bucket": "30-59 DPD",
+      "to_bucket": "60-89 DPD",
+      "account_count": 469.0,
+      "pct": 0.3899
+    },
+    {
+      "from_bucket": "30-59 DPD",
+      "to_bucket": "Current",
+      "account_count": 491.0,
+      "pct": 0.4081
+    },
+    {
+      "from_bucket": "60-89 DPD",
+      "to_bucket": "30-59 DPD",
+      "account_count": 208.0,
+      "pct": 0.301
+    },
+    {
+      "from_bucket": "60-89 DPD",
+      "to_bucket": "60-89 DPD",
+      "account_count": 180.0,
+      "pct": 0.2605
+    },
+    {
+      "from_bucket": "60-89 DPD",
+      "to_bucket": "90-119 DPD",
+      "account_count": 303.0,
+      "pct": 0.4385
+    },
+    {
+      "from_bucket": "90-119 DPD",
+      "to_bucket": "120+/Charged-Off",
+      "account_count": 209.0,
+      "pct": 0.5938
+    },
+    {
+      "from_bucket": "90-119 DPD",
+      "to_bucket": "60-89 DPD",
+      "account_count": 76.0,
+      "pct": 0.2159
+    },
+    {
+      "from_bucket": "90-119 DPD",
+      "to_bucket": "90-119 DPD",
+      "account_count": 67.0,
+      "pct": 0.1903
+    },
+    {
+      "from_bucket": "Current",
+      "to_bucket": "30-59 DPD",
+      "account_count": 803.0,
+      "pct": 0.0085
+    },
+    {
+      "from_bucket": "Current",
+      "to_bucket": "Current",
+      "account_count": 93546.0,
+      "pct": 0.9915
+    }
+  ]
+}

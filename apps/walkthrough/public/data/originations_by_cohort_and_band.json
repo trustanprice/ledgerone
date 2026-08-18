@@ -1,0 +1,242 @@
+[
+  {
+    "origination_quarter": "2022-01-01",
+    "score_band": "Near Prime",
+    "account_count": 89
+  },
+  {
+    "origination_quarter": "2022-01-01",
+    "score_band": "Prime",
+    "account_count": 117
+  },
+  {
+    "origination_quarter": "2022-01-01",
+    "score_band": "Subprime",
+    "account_count": 92
+  },
+  {
+    "origination_quarter": "2022-01-01",
+    "score_band": "Super Prime",
+    "account_count": 54
+  },
+  {
+    "origination_quarter": "2022-04-01",
+    "score_band": "Near Prime",
+    "account_count": 94
+  },
+  {
+    "origination_quarter": "2022-04-01",
+    "score_band": "Prime",
+    "account_count": 106
+  },
+  {
+    "origination_quarter": "2022-04-01",
+    "score_band": "Subprime",
+    "account_count": 73
+  },
+  {
+    "origination_quarter": "2022-04-01",
+    "score_band": "Super Prime",
+    "account_count": 54
+  },
+  {
+    "origination_quarter": "2022-07-01",
+    "score_band": "Near Prime",
+    "account_count": 106
+  },
+  {
+    "origination_quarter": "2022-07-01",
+    "score_band": "Prime",
+    "account_count": 140
+  },
+  {
+    "origination_quarter": "2022-07-01",
+    "score_band": "Subprime",
+    "account_count": 88
+  },
+  {
+    "origination_quarter": "2022-07-01",
+    "score_band": "Super Prime",
+    "account_count": 58
+  },
+  {
+    "origination_quarter": "2022-10-01",
+    "score_band": "Near Prime",
+    "account_count": 119
+  },
+  {
+    "origination_quarter": "2022-10-01",
+    "score_band": "Prime",
+    "account_count": 147
+  },
+  {
+    "origination_quarter": "2022-10-01",
+    "score_band": "Subprime",
+    "account_count": 72
+  },
+  {
+    "origination_quarter": "2022-10-01",
+    "score_band": "Super Prime",
+    "account_count": 50
+  },
+  {
+    "origination_quarter": "2023-01-01",
+    "score_band": "Near Prime",
+    "account_count": 118
+  },
+  {
+    "origination_quarter": "2023-01-01",
+    "score_band": "Prime",
+    "account_count": 134
+  },
+  {
+    "origination_quarter": "2023-01-01",
+    "score_band": "Subprime",
+    "account_count": 63
+  },
+  {
+    "origination_quarter": "2023-01-01",
+    "score_band": "Super Prime",
+    "account_count": 49
+  },
+  {
+    "origination_quarter": "2023-04-01",
+    "score_band": "Near Prime",
+    "account_count": 90
+  },
+  {
+    "origination_quarter": "2023-04-01",
+    "score_band": "Prime",
+    "account_count": 128
+  },
+  {
+    "origination_quarter": "2023-04-01",
+    "score_band": "Subprime",
+    "account_count": 66
+  },
+  {
+    "origination_quarter": "2023-04-01",
+    "score_band": "Super Prime",
+    "account_count": 38
+  },
+  {
+    "origination_quarter": "2023-07-01",
+    "score_band": "Near Prime",
+    "account_count": 132
+  },
+  {
+    "origination_quarter": "2023-07-01",
+    "score_band": "Prime",
+    "account_count": 138
+  },
+  {
+    "origination_quarter": "2023-07-01",
+    "score_band": "Subprime",
+    "account_count": 85
+  },
+  {
+    "origination_quarter": "2023-07-01",
+    "score_band": "Super Prime",
+    "account_count": 56
+  },
+  {
+    "origination_quarter": "2023-10-01",
+    "score_band": "Near Prime",
+    "account_count": 86
+  },
+  {
+    "origination_quarter": "2023-10-01",
+    "score_band": "Prime",
+    "account_count": 97
+  },
+  {
+    "origination_quarter": "2023-10-01",
+    "score_band": "Subprime",
+    "account_count": 55
+  },
+  {
+    "origination_quarter": "2023-10-01",
+    "score_band": "Super Prime",
+    "account_count": 39
+  },
+  {
+    "origination_quarter": "2024-01-01",
+    "score_band": "Near Prime",
+    "account_count": 82
+  },
+  {
+    "origination_quarter": "2024-01-01",
+    "score_band": "Prime",
+    "account_count": 99
+  },
+  {
+    "origination_quarter": "2024-01-01",
+    "score_band": "Subprime",
+    "account_count": 69
+  },
+  {
+    "origination_quarter": "2024-01-01",
+    "score_band": "Super Prime",
+    "account_count": 35
+  },
+  {
+    "origination_quarter": "2024-04-01",
+    "score_band": "Near Prime",
+    "account_count": 108
+  },
+  {
+    "origination_quarter": "2024-04-01",
+    "score_band": "Prime",
+    "account_count": 114
+  },
+  {
+    "origination_quarter": "2024-04-01",
+    "score_band": "Subprime",
+    "account_count": 60
+  },
+  {
+    "origination_quarter": "2024-04-01",
+    "score_band": "Super Prime",
+    "account_count": 62
+  },
+  {
+    "origination_quarter": "2024-07-01",
+    "score_band": "Near Prime",
+    "account_count": 115
+  },
+  {
+    "origination_quarter": "2024-07-01",
+    "score_band": "Prime",
+    "account_count": 137
+  },
+  {
+    "origination_quarter": "2024-07-01",
+    "score_band": "Subprime",
+    "account_count": 73
+  },
+  {
+    "origination_quarter": "2024-07-01",
+    "score_band": "Super Prime",
+    "account_count": 51
+  },
+  {
+    "origination_quarter": "2024-10-01",
+    "score_band": "Near Prime",
+    "account_count": 100
+  },
+  {
+    "origination_quarter": "2024-10-01",
+    "score_band": "Prime",
+    "account_count": 97
+  },
+  {
+    "origination_quarter": "2024-10-01",
+    "score_band": "Subprime",
+    "account_count": 62
+  },
+  {
+    "origination_quarter": "2024-10-01",
+    "score_band": "Super Prime",
+    "account_count": 44
+  }
+]

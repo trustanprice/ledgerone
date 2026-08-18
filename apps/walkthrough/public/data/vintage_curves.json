@@ -1,0 +1,2756 @@
+[
+  {
+    "origination_quarter": "2022-01-01",
+    "months_on_book": 0,
+    "cohort_accounts": 352,
+    "cumulative_30plus_rate": 0.0,
+    "cumulative_60plus_rate": 0.0,
+    "cumulative_90plus_rate": 0.0,
+    "cumulative_charge_off_rate": 0.0
+  },
+  {
+    "origination_quarter": "2022-01-01",
+    "months_on_book": 1,
+    "cohort_accounts": 352,
+    "cumulative_30plus_rate": 0.0085,
+    "cumulative_60plus_rate": 0.0,
+    "cumulative_90plus_rate": 0.0,
+    "cumulative_charge_off_rate": 0.0
+  },
+  {
+    "origination_quarter": "2022-01-01",
+    "months_on_book": 2,
+    "cohort_accounts": 352,
+    "cumulative_30plus_rate": 0.0114,
+    "cumulative_60plus_rate": 0.0,
+    "cumulative_90plus_rate": 0.0,
+    "cumulative_charge_off_rate": 0.0
+  },
+  {
+    "origination_quarter": "2022-01-01",
+    "months_on_book": 3,
+    "cohort_accounts": 352,
+    "cumulative_30plus_rate": 0.017,
+    "cumulative_60plus_rate": 0.0,
+    "cumulative_90plus_rate": 0.0,
+    "cumulative_charge_off_rate": 0.0
+  },
+  {
+    "origination_quarter": "2022-01-01",
+    "months_on_book": 4,
+    "cohort_accounts": 352,
+    "cumulative_30plus_rate": 0.0341,
+    "cumulative_60plus_rate": 0.0057,
+    "cumulative_90plus_rate": 0.0,
+    "cumulative_charge_off_rate": 0.0
+  },
+  {
+    "origination_quarter": "2022-01-01",
+    "months_on_book": 5,
+    "cohort_accounts": 352,
+    "cumulative_30plus_rate": 0.0455,
+    "cumulative_60plus_rate": 0.0114,
+    "cumulative_90plus_rate": 0.0,
+    "cumulative_charge_off_rate": 0.0
+  },
+  {
+    "origination_quarter": "2022-01-01",
+    "months_on_book": 6,
+    "cohort_accounts": 352,
+    "cumulative_30plus_rate": 0.0455,
+    "cumulative_60plus_rate": 0.0142,
+    "cumulative_90plus_rate": 0.0057,
+    "cumulative_charge_off_rate": 0.0
+  },
+  {
+    "origination_quarter": "2022-01-01",
+    "months_on_book": 7,
+    "cohort_accounts": 352,
+    "cumulative_30plus_rate": 0.0483,
+    "cumulative_60plus_rate": 0.017,
+    "cumulative_90plus_rate": 0.0085,
+    "cumulative_charge_off_rate": 0.0028
+  },
+  {
+    "origination_quarter": "2022-01-01",
+    "months_on_book": 8,
+    "cohort_accounts": 352,
+    "cumulative_30plus_rate": 0.0568,
+    "cumulative_60plus_rate": 0.0227,
+    "cumulative_90plus_rate": 0.0114,
+    "cumulative_charge_off_rate": 0.0057
+  },
+  {
+    "origination_quarter": "2022-01-01",
+    "months_on_book": 9,
+    "cohort_accounts": 352,
+    "cumulative_30plus_rate": 0.071,
+    "cumulative_60plus_rate": 0.0256,
+    "cumulative_90plus_rate": 0.017,
+    "cumulative_charge_off_rate": 0.0085
+  },
+  {
+    "origination_quarter": "2022-01-01",
+    "months_on_book": 10,
+    "cohort_accounts": 352,
+    "cumulative_30plus_rate": 0.0767,
+    "cumulative_60plus_rate": 0.0256,
+    "cumulative_90plus_rate": 0.0199,
+    "cumulative_charge_off_rate": 0.0142
+  },
+  {
+    "origination_quarter": "2022-01-01",
+    "months_on_book": 11,
+    "cohort_accounts": 352,
+    "cumulative_30plus_rate": 0.0824,
+    "cumulative_60plus_rate": 0.0256,
+    "cumulative_90plus_rate": 0.0199,
+    "cumulative_charge_off_rate": 0.0142
+  },
+  {
+    "origination_quarter": "2022-01-01",
+    "months_on_book": 12,
+    "cohort_accounts": 352,
+    "cumulative_30plus_rate": 0.0824,
+    "cumulative_60plus_rate": 0.0256,
+    "cumulative_90plus_rate": 0.0199,
+    "cumulative_charge_off_rate": 0.0142
+  },
+  {
+    "origination_quarter": "2022-01-01",
+    "months_on_book": 13,
+    "cohort_accounts": 352,
+    "cumulative_30plus_rate": 0.0881,
+    "cumulative_60plus_rate": 0.0256,
+    "cumulative_90plus_rate": 0.0199,
+    "cumulative_charge_off_rate": 0.0142
+  },
+  {
+    "origination_quarter": "2022-01-01",
+    "months_on_book": 14,
+    "cohort_accounts": 352,
+    "cumulative_30plus_rate": 0.0881,
+    "cumulative_60plus_rate": 0.0284,
+    "cumulative_90plus_rate": 0.0199,
+    "cumulative_charge_off_rate": 0.017
+  },
+  {
+    "origination_quarter": "2022-01-01",
+    "months_on_book": 15,
+    "cohort_accounts": 352,
+    "cumulative_30plus_rate": 0.0994,
+    "cumulative_60plus_rate": 0.0284,
+    "cumulative_90plus_rate": 0.0199,
+    "cumulative_charge_off_rate": 0.017
+  },
+  {
+    "origination_quarter": "2022-01-01",
+    "months_on_book": 16,
+    "cohort_accounts": 352,
+    "cumulative_30plus_rate": 0.1023,
+    "cumulative_60plus_rate": 0.0369,
+    "cumulative_90plus_rate": 0.0227,
+    "cumulative_charge_off_rate": 0.017
+  },
+  {
+    "origination_quarter": "2022-01-01",
+    "months_on_book": 17,
+    "cohort_accounts": 352,
+    "cumulative_30plus_rate": 0.1165,
+    "cumulative_60plus_rate": 0.0398,
+    "cumulative_90plus_rate": 0.0284,
+    "cumulative_charge_off_rate": 0.0199
+  },
+  {
+    "origination_quarter": "2022-01-01",
+    "months_on_book": 18,
+    "cohort_accounts": 352,
+    "cumulative_30plus_rate": 0.1222,
+    "cumulative_60plus_rate": 0.0455,
+    "cumulative_90plus_rate": 0.0313,
+    "cumulative_charge_off_rate": 0.0227
+  },
+  {
+    "origination_quarter": "2022-01-01",
+    "months_on_book": 19,
+    "cohort_accounts": 352,
+    "cumulative_30plus_rate": 0.1307,
+    "cumulative_60plus_rate": 0.0483,
+    "cumulative_90plus_rate": 0.0313,
+    "cumulative_charge_off_rate": 0.0256
+  },
+  {
+    "origination_quarter": "2022-01-01",
+    "months_on_book": 20,
+    "cohort_accounts": 352,
+    "cumulative_30plus_rate": 0.1335,
+    "cumulative_60plus_rate": 0.0483,
+    "cumulative_90plus_rate": 0.0341,
+    "cumulative_charge_off_rate": 0.0284
+  },
+  {
+    "origination_quarter": "2022-01-01",
+    "months_on_book": 21,
+    "cohort_accounts": 352,
+    "cumulative_30plus_rate": 0.142,
+    "cumulative_60plus_rate": 0.0511,
+    "cumulative_90plus_rate": 0.0341,
+    "cumulative_charge_off_rate": 0.0313
+  },
+  {
+    "origination_quarter": "2022-01-01",
+    "months_on_book": 22,
+    "cohort_accounts": 352,
+    "cumulative_30plus_rate": 0.1506,
+    "cumulative_60plus_rate": 0.0568,
+    "cumulative_90plus_rate": 0.0341,
+    "cumulative_charge_off_rate": 0.0313
+  },
+  {
+    "origination_quarter": "2022-01-01",
+    "months_on_book": 23,
+    "cohort_accounts": 352,
+    "cumulative_30plus_rate": 0.1676,
+    "cumulative_60plus_rate": 0.0597,
+    "cumulative_90plus_rate": 0.0369,
+    "cumulative_charge_off_rate": 0.0313
+  },
+  {
+    "origination_quarter": "2022-01-01",
+    "months_on_book": 24,
+    "cohort_accounts": 352,
+    "cumulative_30plus_rate": 0.1733,
+    "cumulative_60plus_rate": 0.0682,
+    "cumulative_90plus_rate": 0.0398,
+    "cumulative_charge_off_rate": 0.0341
+  },
+  {
+    "origination_quarter": "2022-01-01",
+    "months_on_book": 25,
+    "cohort_accounts": 352,
+    "cumulative_30plus_rate": 0.1847,
+    "cumulative_60plus_rate": 0.071,
+    "cumulative_90plus_rate": 0.0426,
+    "cumulative_charge_off_rate": 0.0369
+  },
+  {
+    "origination_quarter": "2022-01-01",
+    "months_on_book": 26,
+    "cohort_accounts": 352,
+    "cumulative_30plus_rate": 0.1875,
+    "cumulative_60plus_rate": 0.0767,
+    "cumulative_90plus_rate": 0.0426,
+    "cumulative_charge_off_rate": 0.0398
+  },
+  {
+    "origination_quarter": "2022-01-01",
+    "months_on_book": 27,
+    "cohort_accounts": 352,
+    "cumulative_30plus_rate": 0.196,
+    "cumulative_60plus_rate": 0.0824,
+    "cumulative_90plus_rate": 0.0455,
+    "cumulative_charge_off_rate": 0.0398
+  },
+  {
+    "origination_quarter": "2022-01-01",
+    "months_on_book": 28,
+    "cohort_accounts": 352,
+    "cumulative_30plus_rate": 0.2017,
+    "cumulative_60plus_rate": 0.0852,
+    "cumulative_90plus_rate": 0.0511,
+    "cumulative_charge_off_rate": 0.0398
+  },
+  {
+    "origination_quarter": "2022-01-01",
+    "months_on_book": 29,
+    "cohort_accounts": 352,
+    "cumulative_30plus_rate": 0.2045,
+    "cumulative_60plus_rate": 0.0909,
+    "cumulative_90plus_rate": 0.0568,
+    "cumulative_charge_off_rate": 0.0398
+  },
+  {
+    "origination_quarter": "2022-01-01",
+    "months_on_book": 30,
+    "cohort_accounts": 352,
+    "cumulative_30plus_rate": 0.2159,
+    "cumulative_60plus_rate": 0.0938,
+    "cumulative_90plus_rate": 0.0597,
+    "cumulative_charge_off_rate": 0.0426
+  },
+  {
+    "origination_quarter": "2022-01-01",
+    "months_on_book": 31,
+    "cohort_accounts": 352,
+    "cumulative_30plus_rate": 0.2244,
+    "cumulative_60plus_rate": 0.0938,
+    "cumulative_90plus_rate": 0.0625,
+    "cumulative_charge_off_rate": 0.0483
+  },
+  {
+    "origination_quarter": "2022-01-01",
+    "months_on_book": 32,
+    "cohort_accounts": 352,
+    "cumulative_30plus_rate": 0.2244,
+    "cumulative_60plus_rate": 0.0994,
+    "cumulative_90plus_rate": 0.0653,
+    "cumulative_charge_off_rate": 0.0511
+  },
+  {
+    "origination_quarter": "2022-01-01",
+    "months_on_book": 33,
+    "cohort_accounts": 352,
+    "cumulative_30plus_rate": 0.2358,
+    "cumulative_60plus_rate": 0.1023,
+    "cumulative_90plus_rate": 0.0682,
+    "cumulative_charge_off_rate": 0.054
+  },
+  {
+    "origination_quarter": "2022-01-01",
+    "months_on_book": 34,
+    "cohort_accounts": 352,
+    "cumulative_30plus_rate": 0.25,
+    "cumulative_60plus_rate": 0.1023,
+    "cumulative_90plus_rate": 0.071,
+    "cumulative_charge_off_rate": 0.054
+  },
+  {
+    "origination_quarter": "2022-01-01",
+    "months_on_book": 35,
+    "cohort_accounts": 352,
+    "cumulative_30plus_rate": 0.2585,
+    "cumulative_60plus_rate": 0.1108,
+    "cumulative_90plus_rate": 0.071,
+    "cumulative_charge_off_rate": 0.0625
+  },
+  {
+    "origination_quarter": "2022-01-01",
+    "months_on_book": 36,
+    "cohort_accounts": 352,
+    "cumulative_30plus_rate": 0.2642,
+    "cumulative_60plus_rate": 0.1136,
+    "cumulative_90plus_rate": 0.071,
+    "cumulative_charge_off_rate": 0.0625
+  },
+  {
+    "origination_quarter": "2022-01-01",
+    "months_on_book": 37,
+    "cohort_accounts": 352,
+    "cumulative_30plus_rate": 0.2642,
+    "cumulative_60plus_rate": 0.1136,
+    "cumulative_90plus_rate": 0.0767,
+    "cumulative_charge_off_rate": 0.0653
+  },
+  {
+    "origination_quarter": "2022-01-01",
+    "months_on_book": 38,
+    "cohort_accounts": 352,
+    "cumulative_30plus_rate": 0.2699,
+    "cumulative_60plus_rate": 0.1165,
+    "cumulative_90plus_rate": 0.0767,
+    "cumulative_charge_off_rate": 0.0682
+  },
+  {
+    "origination_quarter": "2022-01-01",
+    "months_on_book": 39,
+    "cohort_accounts": 352,
+    "cumulative_30plus_rate": 0.2699,
+    "cumulative_60plus_rate": 0.1222,
+    "cumulative_90plus_rate": 0.0824,
+    "cumulative_charge_off_rate": 0.071
+  },
+  {
+    "origination_quarter": "2022-01-01",
+    "months_on_book": 40,
+    "cohort_accounts": 352,
+    "cumulative_30plus_rate": 0.2813,
+    "cumulative_60plus_rate": 0.1222,
+    "cumulative_90plus_rate": 0.0852,
+    "cumulative_charge_off_rate": 0.071
+  },
+  {
+    "origination_quarter": "2022-01-01",
+    "months_on_book": 41,
+    "cohort_accounts": 352,
+    "cumulative_30plus_rate": 0.2841,
+    "cumulative_60plus_rate": 0.1278,
+    "cumulative_90plus_rate": 0.0852,
+    "cumulative_charge_off_rate": 0.071
+  },
+  {
+    "origination_quarter": "2022-04-01",
+    "months_on_book": 0,
+    "cohort_accounts": 327,
+    "cumulative_30plus_rate": 0.0,
+    "cumulative_60plus_rate": 0.0,
+    "cumulative_90plus_rate": 0.0,
+    "cumulative_charge_off_rate": 0.0
+  },
+  {
+    "origination_quarter": "2022-04-01",
+    "months_on_book": 1,
+    "cohort_accounts": 327,
+    "cumulative_30plus_rate": 0.0122,
+    "cumulative_60plus_rate": 0.0,
+    "cumulative_90plus_rate": 0.0,
+    "cumulative_charge_off_rate": 0.0
+  },
+  {
+    "origination_quarter": "2022-04-01",
+    "months_on_book": 2,
+    "cohort_accounts": 327,
+    "cumulative_30plus_rate": 0.0153,
+    "cumulative_60plus_rate": 0.0031,
+    "cumulative_90plus_rate": 0.0,
+    "cumulative_charge_off_rate": 0.0
+  },
+  {
+    "origination_quarter": "2022-04-01",
+    "months_on_book": 3,
+    "cohort_accounts": 327,
+    "cumulative_30plus_rate": 0.0183,
+    "cumulative_60plus_rate": 0.0092,
+    "cumulative_90plus_rate": 0.0031,
+    "cumulative_charge_off_rate": 0.0
+  },
+  {
+    "origination_quarter": "2022-04-01",
+    "months_on_book": 4,
+    "cohort_accounts": 327,
+    "cumulative_30plus_rate": 0.0214,
+    "cumulative_60plus_rate": 0.0092,
+    "cumulative_90plus_rate": 0.0031,
+    "cumulative_charge_off_rate": 0.0031
+  },
+  {
+    "origination_quarter": "2022-04-01",
+    "months_on_book": 5,
+    "cohort_accounts": 327,
+    "cumulative_30plus_rate": 0.0306,
+    "cumulative_60plus_rate": 0.0092,
+    "cumulative_90plus_rate": 0.0031,
+    "cumulative_charge_off_rate": 0.0031
+  },
+  {
+    "origination_quarter": "2022-04-01",
+    "months_on_book": 6,
+    "cohort_accounts": 327,
+    "cumulative_30plus_rate": 0.0367,
+    "cumulative_60plus_rate": 0.0092,
+    "cumulative_90plus_rate": 0.0031,
+    "cumulative_charge_off_rate": 0.0031
+  },
+  {
+    "origination_quarter": "2022-04-01",
+    "months_on_book": 7,
+    "cohort_accounts": 327,
+    "cumulative_30plus_rate": 0.0459,
+    "cumulative_60plus_rate": 0.0122,
+    "cumulative_90plus_rate": 0.0061,
+    "cumulative_charge_off_rate": 0.0031
+  },
+  {
+    "origination_quarter": "2022-04-01",
+    "months_on_book": 8,
+    "cohort_accounts": 327,
+    "cumulative_30plus_rate": 0.0489,
+    "cumulative_60plus_rate": 0.0214,
+    "cumulative_90plus_rate": 0.0061,
+    "cumulative_charge_off_rate": 0.0031
+  },
+  {
+    "origination_quarter": "2022-04-01",
+    "months_on_book": 9,
+    "cohort_accounts": 327,
+    "cumulative_30plus_rate": 0.0703,
+    "cumulative_60plus_rate": 0.0214,
+    "cumulative_90plus_rate": 0.0122,
+    "cumulative_charge_off_rate": 0.0031
+  },
+  {
+    "origination_quarter": "2022-04-01",
+    "months_on_book": 10,
+    "cohort_accounts": 327,
+    "cumulative_30plus_rate": 0.0826,
+    "cumulative_60plus_rate": 0.0275,
+    "cumulative_90plus_rate": 0.0153,
+    "cumulative_charge_off_rate": 0.0061
+  },
+  {
+    "origination_quarter": "2022-04-01",
+    "months_on_book": 11,
+    "cohort_accounts": 327,
+    "cumulative_30plus_rate": 0.0887,
+    "cumulative_60plus_rate": 0.0428,
+    "cumulative_90plus_rate": 0.0214,
+    "cumulative_charge_off_rate": 0.0092
+  },
+  {
+    "origination_quarter": "2022-04-01",
+    "months_on_book": 12,
+    "cohort_accounts": 327,
+    "cumulative_30plus_rate": 0.0948,
+    "cumulative_60plus_rate": 0.052,
+    "cumulative_90plus_rate": 0.0306,
+    "cumulative_charge_off_rate": 0.0153
+  },
+  {
+    "origination_quarter": "2022-04-01",
+    "months_on_book": 13,
+    "cohort_accounts": 327,
+    "cumulative_30plus_rate": 0.104,
+    "cumulative_60plus_rate": 0.055,
+    "cumulative_90plus_rate": 0.0367,
+    "cumulative_charge_off_rate": 0.0214
+  },
+  {
+    "origination_quarter": "2022-04-01",
+    "months_on_book": 14,
+    "cohort_accounts": 327,
+    "cumulative_30plus_rate": 0.1193,
+    "cumulative_60plus_rate": 0.0581,
+    "cumulative_90plus_rate": 0.0489,
+    "cumulative_charge_off_rate": 0.0275
+  },
+  {
+    "origination_quarter": "2022-04-01",
+    "months_on_book": 15,
+    "cohort_accounts": 327,
+    "cumulative_30plus_rate": 0.1346,
+    "cumulative_60plus_rate": 0.0734,
+    "cumulative_90plus_rate": 0.0489,
+    "cumulative_charge_off_rate": 0.0367
+  },
+  {
+    "origination_quarter": "2022-04-01",
+    "months_on_book": 16,
+    "cohort_accounts": 327,
+    "cumulative_30plus_rate": 0.1346,
+    "cumulative_60plus_rate": 0.0765,
+    "cumulative_90plus_rate": 0.0581,
+    "cumulative_charge_off_rate": 0.0367
+  },
+  {
+    "origination_quarter": "2022-04-01",
+    "months_on_book": 17,
+    "cohort_accounts": 327,
+    "cumulative_30plus_rate": 0.1437,
+    "cumulative_60plus_rate": 0.0795,
+    "cumulative_90plus_rate": 0.0673,
+    "cumulative_charge_off_rate": 0.0428
+  },
+  {
+    "origination_quarter": "2022-04-01",
+    "months_on_book": 18,
+    "cohort_accounts": 327,
+    "cumulative_30plus_rate": 0.1468,
+    "cumulative_60plus_rate": 0.0856,
+    "cumulative_90plus_rate": 0.0703,
+    "cumulative_charge_off_rate": 0.0489
+  },
+  {
+    "origination_quarter": "2022-04-01",
+    "months_on_book": 19,
+    "cohort_accounts": 327,
+    "cumulative_30plus_rate": 0.1529,
+    "cumulative_60plus_rate": 0.0887,
+    "cumulative_90plus_rate": 0.0734,
+    "cumulative_charge_off_rate": 0.055
+  },
+  {
+    "origination_quarter": "2022-04-01",
+    "months_on_book": 20,
+    "cohort_accounts": 327,
+    "cumulative_30plus_rate": 0.156,
+    "cumulative_60plus_rate": 0.0917,
+    "cumulative_90plus_rate": 0.0795,
+    "cumulative_charge_off_rate": 0.0642
+  },
+  {
+    "origination_quarter": "2022-04-01",
+    "months_on_book": 21,
+    "cohort_accounts": 327,
+    "cumulative_30plus_rate": 0.1651,
+    "cumulative_60plus_rate": 0.0917,
+    "cumulative_90plus_rate": 0.0795,
+    "cumulative_charge_off_rate": 0.0642
+  },
+  {
+    "origination_quarter": "2022-04-01",
+    "months_on_book": 22,
+    "cohort_accounts": 327,
+    "cumulative_30plus_rate": 0.1682,
+    "cumulative_60plus_rate": 0.0979,
+    "cumulative_90plus_rate": 0.0826,
+    "cumulative_charge_off_rate": 0.0673
+  },
+  {
+    "origination_quarter": "2022-04-01",
+    "months_on_book": 23,
+    "cohort_accounts": 327,
+    "cumulative_30plus_rate": 0.1713,
+    "cumulative_60plus_rate": 0.1009,
+    "cumulative_90plus_rate": 0.0856,
+    "cumulative_charge_off_rate": 0.0673
+  },
+  {
+    "origination_quarter": "2022-04-01",
+    "months_on_book": 24,
+    "cohort_accounts": 327,
+    "cumulative_30plus_rate": 0.1804,
+    "cumulative_60plus_rate": 0.104,
+    "cumulative_90plus_rate": 0.0856,
+    "cumulative_charge_off_rate": 0.0703
+  },
+  {
+    "origination_quarter": "2022-04-01",
+    "months_on_book": 25,
+    "cohort_accounts": 327,
+    "cumulative_30plus_rate": 0.1896,
+    "cumulative_60plus_rate": 0.107,
+    "cumulative_90plus_rate": 0.0856,
+    "cumulative_charge_off_rate": 0.0703
+  },
+  {
+    "origination_quarter": "2022-04-01",
+    "months_on_book": 26,
+    "cohort_accounts": 327,
+    "cumulative_30plus_rate": 0.1957,
+    "cumulative_60plus_rate": 0.107,
+    "cumulative_90plus_rate": 0.0856,
+    "cumulative_charge_off_rate": 0.0703
+  },
+  {
+    "origination_quarter": "2022-04-01",
+    "months_on_book": 27,
+    "cohort_accounts": 327,
+    "cumulative_30plus_rate": 0.2018,
+    "cumulative_60plus_rate": 0.1131,
+    "cumulative_90plus_rate": 0.0917,
+    "cumulative_charge_off_rate": 0.0703
+  },
+  {
+    "origination_quarter": "2022-04-01",
+    "months_on_book": 28,
+    "cohort_accounts": 327,
+    "cumulative_30plus_rate": 0.2141,
+    "cumulative_60plus_rate": 0.1162,
+    "cumulative_90plus_rate": 0.0948,
+    "cumulative_charge_off_rate": 0.0765
+  },
+  {
+    "origination_quarter": "2022-04-01",
+    "months_on_book": 29,
+    "cohort_accounts": 327,
+    "cumulative_30plus_rate": 0.2202,
+    "cumulative_60plus_rate": 0.1193,
+    "cumulative_90plus_rate": 0.0948,
+    "cumulative_charge_off_rate": 0.0795
+  },
+  {
+    "origination_quarter": "2022-04-01",
+    "months_on_book": 30,
+    "cohort_accounts": 327,
+    "cumulative_30plus_rate": 0.2294,
+    "cumulative_60plus_rate": 0.1284,
+    "cumulative_90plus_rate": 0.0979,
+    "cumulative_charge_off_rate": 0.0795
+  },
+  {
+    "origination_quarter": "2022-04-01",
+    "months_on_book": 31,
+    "cohort_accounts": 327,
+    "cumulative_30plus_rate": 0.2416,
+    "cumulative_60plus_rate": 0.1315,
+    "cumulative_90plus_rate": 0.107,
+    "cumulative_charge_off_rate": 0.0826
+  },
+  {
+    "origination_quarter": "2022-04-01",
+    "months_on_book": 32,
+    "cohort_accounts": 327,
+    "cumulative_30plus_rate": 0.2508,
+    "cumulative_60plus_rate": 0.1346,
+    "cumulative_90plus_rate": 0.1101,
+    "cumulative_charge_off_rate": 0.0856
+  },
+  {
+    "origination_quarter": "2022-04-01",
+    "months_on_book": 33,
+    "cohort_accounts": 327,
+    "cumulative_30plus_rate": 0.2661,
+    "cumulative_60plus_rate": 0.1376,
+    "cumulative_90plus_rate": 0.1131,
+    "cumulative_charge_off_rate": 0.0917
+  },
+  {
+    "origination_quarter": "2022-04-01",
+    "months_on_book": 34,
+    "cohort_accounts": 327,
+    "cumulative_30plus_rate": 0.2691,
+    "cumulative_60plus_rate": 0.1437,
+    "cumulative_90plus_rate": 0.1223,
+    "cumulative_charge_off_rate": 0.0948
+  },
+  {
+    "origination_quarter": "2022-04-01",
+    "months_on_book": 35,
+    "cohort_accounts": 327,
+    "cumulative_30plus_rate": 0.2722,
+    "cumulative_60plus_rate": 0.1437,
+    "cumulative_90plus_rate": 0.1254,
+    "cumulative_charge_off_rate": 0.1009
+  },
+  {
+    "origination_quarter": "2022-04-01",
+    "months_on_book": 36,
+    "cohort_accounts": 327,
+    "cumulative_30plus_rate": 0.2813,
+    "cumulative_60plus_rate": 0.1437,
+    "cumulative_90plus_rate": 0.1254,
+    "cumulative_charge_off_rate": 0.107
+  },
+  {
+    "origination_quarter": "2022-04-01",
+    "months_on_book": 37,
+    "cohort_accounts": 327,
+    "cumulative_30plus_rate": 0.2875,
+    "cumulative_60plus_rate": 0.1437,
+    "cumulative_90plus_rate": 0.1254,
+    "cumulative_charge_off_rate": 0.107
+  },
+  {
+    "origination_quarter": "2022-04-01",
+    "months_on_book": 38,
+    "cohort_accounts": 327,
+    "cumulative_30plus_rate": 0.2875,
+    "cumulative_60plus_rate": 0.1437,
+    "cumulative_90plus_rate": 0.1254,
+    "cumulative_charge_off_rate": 0.107
+  },
+  {
+    "origination_quarter": "2022-07-01",
+    "months_on_book": 0,
+    "cohort_accounts": 392,
+    "cumulative_30plus_rate": 0.0,
+    "cumulative_60plus_rate": 0.0,
+    "cumulative_90plus_rate": 0.0,
+    "cumulative_charge_off_rate": 0.0
+  },
+  {
+    "origination_quarter": "2022-07-01",
+    "months_on_book": 1,
+    "cohort_accounts": 392,
+    "cumulative_30plus_rate": 0.0102,
+    "cumulative_60plus_rate": 0.0,
+    "cumulative_90plus_rate": 0.0,
+    "cumulative_charge_off_rate": 0.0
+  },
+  {
+    "origination_quarter": "2022-07-01",
+    "months_on_book": 2,
+    "cohort_accounts": 392,
+    "cumulative_30plus_rate": 0.0102,
+    "cumulative_60plus_rate": 0.0077,
+    "cumulative_90plus_rate": 0.0,
+    "cumulative_charge_off_rate": 0.0
+  },
+  {
+    "origination_quarter": "2022-07-01",
+    "months_on_book": 3,
+    "cohort_accounts": 392,
+    "cumulative_30plus_rate": 0.0179,
+    "cumulative_60plus_rate": 0.0077,
+    "cumulative_90plus_rate": 0.0026,
+    "cumulative_charge_off_rate": 0.0
+  },
+  {
+    "origination_quarter": "2022-07-01",
+    "months_on_book": 4,
+    "cohort_accounts": 392,
+    "cumulative_30plus_rate": 0.023,
+    "cumulative_60plus_rate": 0.0128,
+    "cumulative_90plus_rate": 0.0051,
+    "cumulative_charge_off_rate": 0.0026
+  },
+  {
+    "origination_quarter": "2022-07-01",
+    "months_on_book": 5,
+    "cohort_accounts": 392,
+    "cumulative_30plus_rate": 0.0306,
+    "cumulative_60plus_rate": 0.0128,
+    "cumulative_90plus_rate": 0.0051,
+    "cumulative_charge_off_rate": 0.0026
+  },
+  {
+    "origination_quarter": "2022-07-01",
+    "months_on_book": 6,
+    "cohort_accounts": 392,
+    "cumulative_30plus_rate": 0.0357,
+    "cumulative_60plus_rate": 0.0153,
+    "cumulative_90plus_rate": 0.0051,
+    "cumulative_charge_off_rate": 0.0026
+  },
+  {
+    "origination_quarter": "2022-07-01",
+    "months_on_book": 7,
+    "cohort_accounts": 392,
+    "cumulative_30plus_rate": 0.0408,
+    "cumulative_60plus_rate": 0.0153,
+    "cumulative_90plus_rate": 0.0077,
+    "cumulative_charge_off_rate": 0.0051
+  },
+  {
+    "origination_quarter": "2022-07-01",
+    "months_on_book": 8,
+    "cohort_accounts": 392,
+    "cumulative_30plus_rate": 0.0434,
+    "cumulative_60plus_rate": 0.0204,
+    "cumulative_90plus_rate": 0.0102,
+    "cumulative_charge_off_rate": 0.0077
+  },
+  {
+    "origination_quarter": "2022-07-01",
+    "months_on_book": 9,
+    "cohort_accounts": 392,
+    "cumulative_30plus_rate": 0.0459,
+    "cumulative_60plus_rate": 0.0204,
+    "cumulative_90plus_rate": 0.0128,
+    "cumulative_charge_off_rate": 0.0102
+  },
+  {
+    "origination_quarter": "2022-07-01",
+    "months_on_book": 10,
+    "cohort_accounts": 392,
+    "cumulative_30plus_rate": 0.0561,
+    "cumulative_60plus_rate": 0.0204,
+    "cumulative_90plus_rate": 0.0128,
+    "cumulative_charge_off_rate": 0.0128
+  },
+  {
+    "origination_quarter": "2022-07-01",
+    "months_on_book": 11,
+    "cohort_accounts": 392,
+    "cumulative_30plus_rate": 0.0638,
+    "cumulative_60plus_rate": 0.0255,
+    "cumulative_90plus_rate": 0.0128,
+    "cumulative_charge_off_rate": 0.0128
+  },
+  {
+    "origination_quarter": "2022-07-01",
+    "months_on_book": 12,
+    "cohort_accounts": 392,
+    "cumulative_30plus_rate": 0.0791,
+    "cumulative_60plus_rate": 0.0281,
+    "cumulative_90plus_rate": 0.0153,
+    "cumulative_charge_off_rate": 0.0128
+  },
+  {
+    "origination_quarter": "2022-07-01",
+    "months_on_book": 13,
+    "cohort_accounts": 392,
+    "cumulative_30plus_rate": 0.0893,
+    "cumulative_60plus_rate": 0.0306,
+    "cumulative_90plus_rate": 0.0153,
+    "cumulative_charge_off_rate": 0.0128
+  },
+  {
+    "origination_quarter": "2022-07-01",
+    "months_on_book": 14,
+    "cohort_accounts": 392,
+    "cumulative_30plus_rate": 0.0944,
+    "cumulative_60plus_rate": 0.0383,
+    "cumulative_90plus_rate": 0.0179,
+    "cumulative_charge_off_rate": 0.0128
+  },
+  {
+    "origination_quarter": "2022-07-01",
+    "months_on_book": 15,
+    "cohort_accounts": 392,
+    "cumulative_30plus_rate": 0.102,
+    "cumulative_60plus_rate": 0.0459,
+    "cumulative_90plus_rate": 0.0204,
+    "cumulative_charge_off_rate": 0.0153
+  },
+  {
+    "origination_quarter": "2022-07-01",
+    "months_on_book": 16,
+    "cohort_accounts": 392,
+    "cumulative_30plus_rate": 0.1122,
+    "cumulative_60plus_rate": 0.051,
+    "cumulative_90plus_rate": 0.0281,
+    "cumulative_charge_off_rate": 0.0179
+  },
+  {
+    "origination_quarter": "2022-07-01",
+    "months_on_book": 17,
+    "cohort_accounts": 392,
+    "cumulative_30plus_rate": 0.1173,
+    "cumulative_60plus_rate": 0.051,
+    "cumulative_90plus_rate": 0.0306,
+    "cumulative_charge_off_rate": 0.023
+  },
+  {
+    "origination_quarter": "2022-07-01",
+    "months_on_book": 18,
+    "cohort_accounts": 392,
+    "cumulative_30plus_rate": 0.1224,
+    "cumulative_60plus_rate": 0.051,
+    "cumulative_90plus_rate": 0.0332,
+    "cumulative_charge_off_rate": 0.023
+  },
+  {
+    "origination_quarter": "2022-07-01",
+    "months_on_book": 19,
+    "cohort_accounts": 392,
+    "cumulative_30plus_rate": 0.1301,
+    "cumulative_60plus_rate": 0.0561,
+    "cumulative_90plus_rate": 0.0332,
+    "cumulative_charge_off_rate": 0.0281
+  },
+  {
+    "origination_quarter": "2022-07-01",
+    "months_on_book": 20,
+    "cohort_accounts": 392,
+    "cumulative_30plus_rate": 0.1352,
+    "cumulative_60plus_rate": 0.0638,
+    "cumulative_90plus_rate": 0.0332,
+    "cumulative_charge_off_rate": 0.0281
+  },
+  {
+    "origination_quarter": "2022-07-01",
+    "months_on_book": 21,
+    "cohort_accounts": 392,
+    "cumulative_30plus_rate": 0.1429,
+    "cumulative_60plus_rate": 0.0689,
+    "cumulative_90plus_rate": 0.0357,
+    "cumulative_charge_off_rate": 0.0281
+  },
+  {
+    "origination_quarter": "2022-07-01",
+    "months_on_book": 22,
+    "cohort_accounts": 392,
+    "cumulative_30plus_rate": 0.1607,
+    "cumulative_60plus_rate": 0.0689,
+    "cumulative_90plus_rate": 0.0408,
+    "cumulative_charge_off_rate": 0.0281
+  },
+  {
+    "origination_quarter": "2022-07-01",
+    "months_on_book": 23,
+    "cohort_accounts": 392,
+    "cumulative_30plus_rate": 0.1684,
+    "cumulative_60plus_rate": 0.0791,
+    "cumulative_90plus_rate": 0.0434,
+    "cumulative_charge_off_rate": 0.0332
+  },
+  {
+    "origination_quarter": "2022-07-01",
+    "months_on_book": 24,
+    "cohort_accounts": 392,
+    "cumulative_30plus_rate": 0.1735,
+    "cumulative_60plus_rate": 0.0867,
+    "cumulative_90plus_rate": 0.0485,
+    "cumulative_charge_off_rate": 0.0332
+  },
+  {
+    "origination_quarter": "2022-07-01",
+    "months_on_book": 25,
+    "cohort_accounts": 392,
+    "cumulative_30plus_rate": 0.1811,
+    "cumulative_60plus_rate": 0.0893,
+    "cumulative_90plus_rate": 0.0485,
+    "cumulative_charge_off_rate": 0.0383
+  },
+  {
+    "origination_quarter": "2022-07-01",
+    "months_on_book": 26,
+    "cohort_accounts": 392,
+    "cumulative_30plus_rate": 0.1837,
+    "cumulative_60plus_rate": 0.0918,
+    "cumulative_90plus_rate": 0.051,
+    "cumulative_charge_off_rate": 0.0408
+  },
+  {
+    "origination_quarter": "2022-07-01",
+    "months_on_book": 27,
+    "cohort_accounts": 392,
+    "cumulative_30plus_rate": 0.1837,
+    "cumulative_60plus_rate": 0.0944,
+    "cumulative_90plus_rate": 0.0536,
+    "cumulative_charge_off_rate": 0.0408
+  },
+  {
+    "origination_quarter": "2022-07-01",
+    "months_on_book": 28,
+    "cohort_accounts": 392,
+    "cumulative_30plus_rate": 0.1888,
+    "cumulative_60plus_rate": 0.0944,
+    "cumulative_90plus_rate": 0.0561,
+    "cumulative_charge_off_rate": 0.0459
+  },
+  {
+    "origination_quarter": "2022-07-01",
+    "months_on_book": 29,
+    "cohort_accounts": 392,
+    "cumulative_30plus_rate": 0.1913,
+    "cumulative_60plus_rate": 0.0944,
+    "cumulative_90plus_rate": 0.0561,
+    "cumulative_charge_off_rate": 0.051
+  },
+  {
+    "origination_quarter": "2022-07-01",
+    "months_on_book": 30,
+    "cohort_accounts": 392,
+    "cumulative_30plus_rate": 0.1939,
+    "cumulative_60plus_rate": 0.0944,
+    "cumulative_90plus_rate": 0.0561,
+    "cumulative_charge_off_rate": 0.051
+  },
+  {
+    "origination_quarter": "2022-07-01",
+    "months_on_book": 31,
+    "cohort_accounts": 392,
+    "cumulative_30plus_rate": 0.1964,
+    "cumulative_60plus_rate": 0.0969,
+    "cumulative_90plus_rate": 0.0587,
+    "cumulative_charge_off_rate": 0.051
+  },
+  {
+    "origination_quarter": "2022-07-01",
+    "months_on_book": 32,
+    "cohort_accounts": 392,
+    "cumulative_30plus_rate": 0.199,
+    "cumulative_60plus_rate": 0.0995,
+    "cumulative_90plus_rate": 0.0612,
+    "cumulative_charge_off_rate": 0.051
+  },
+  {
+    "origination_quarter": "2022-07-01",
+    "months_on_book": 33,
+    "cohort_accounts": 392,
+    "cumulative_30plus_rate": 0.2117,
+    "cumulative_60plus_rate": 0.0995,
+    "cumulative_90plus_rate": 0.0612,
+    "cumulative_charge_off_rate": 0.051
+  },
+  {
+    "origination_quarter": "2022-07-01",
+    "months_on_book": 34,
+    "cohort_accounts": 392,
+    "cumulative_30plus_rate": 0.2168,
+    "cumulative_60plus_rate": 0.1046,
+    "cumulative_90plus_rate": 0.0612,
+    "cumulative_charge_off_rate": 0.051
+  },
+  {
+    "origination_quarter": "2022-07-01",
+    "months_on_book": 35,
+    "cohort_accounts": 392,
+    "cumulative_30plus_rate": 0.2168,
+    "cumulative_60plus_rate": 0.1046,
+    "cumulative_90plus_rate": 0.0638,
+    "cumulative_charge_off_rate": 0.051
+  },
+  {
+    "origination_quarter": "2022-10-01",
+    "months_on_book": 0,
+    "cohort_accounts": 388,
+    "cumulative_30plus_rate": 0.0,
+    "cumulative_60plus_rate": 0.0,
+    "cumulative_90plus_rate": 0.0,
+    "cumulative_charge_off_rate": 0.0
+  },
+  {
+    "origination_quarter": "2022-10-01",
+    "months_on_book": 1,
+    "cohort_accounts": 388,
+    "cumulative_30plus_rate": 0.0103,
+    "cumulative_60plus_rate": 0.0,
+    "cumulative_90plus_rate": 0.0,
+    "cumulative_charge_off_rate": 0.0
+  },
+  {
+    "origination_quarter": "2022-10-01",
+    "months_on_book": 2,
+    "cohort_accounts": 388,
+    "cumulative_30plus_rate": 0.0129,
+    "cumulative_60plus_rate": 0.0052,
+    "cumulative_90plus_rate": 0.0,
+    "cumulative_charge_off_rate": 0.0
+  },
+  {
+    "origination_quarter": "2022-10-01",
+    "months_on_book": 3,
+    "cohort_accounts": 388,
+    "cumulative_30plus_rate": 0.0284,
+    "cumulative_60plus_rate": 0.0077,
+    "cumulative_90plus_rate": 0.0,
+    "cumulative_charge_off_rate": 0.0
+  },
+  {
+    "origination_quarter": "2022-10-01",
+    "months_on_book": 4,
+    "cohort_accounts": 388,
+    "cumulative_30plus_rate": 0.0309,
+    "cumulative_60plus_rate": 0.0129,
+    "cumulative_90plus_rate": 0.0052,
+    "cumulative_charge_off_rate": 0.0
+  },
+  {
+    "origination_quarter": "2022-10-01",
+    "months_on_book": 5,
+    "cohort_accounts": 388,
+    "cumulative_30plus_rate": 0.0335,
+    "cumulative_60plus_rate": 0.0155,
+    "cumulative_90plus_rate": 0.0077,
+    "cumulative_charge_off_rate": 0.0
+  },
+  {
+    "origination_quarter": "2022-10-01",
+    "months_on_book": 6,
+    "cohort_accounts": 388,
+    "cumulative_30plus_rate": 0.0438,
+    "cumulative_60plus_rate": 0.018,
+    "cumulative_90plus_rate": 0.0077,
+    "cumulative_charge_off_rate": 0.0
+  },
+  {
+    "origination_quarter": "2022-10-01",
+    "months_on_book": 7,
+    "cohort_accounts": 388,
+    "cumulative_30plus_rate": 0.049,
+    "cumulative_60plus_rate": 0.0232,
+    "cumulative_90plus_rate": 0.0103,
+    "cumulative_charge_off_rate": 0.0
+  },
+  {
+    "origination_quarter": "2022-10-01",
+    "months_on_book": 8,
+    "cohort_accounts": 388,
+    "cumulative_30plus_rate": 0.0567,
+    "cumulative_60plus_rate": 0.0232,
+    "cumulative_90plus_rate": 0.0129,
+    "cumulative_charge_off_rate": 0.0077
+  },
+  {
+    "origination_quarter": "2022-10-01",
+    "months_on_book": 9,
+    "cohort_accounts": 388,
+    "cumulative_30plus_rate": 0.0644,
+    "cumulative_60plus_rate": 0.0284,
+    "cumulative_90plus_rate": 0.0155,
+    "cumulative_charge_off_rate": 0.0103
+  },
+  {
+    "origination_quarter": "2022-10-01",
+    "months_on_book": 10,
+    "cohort_accounts": 388,
+    "cumulative_30plus_rate": 0.0799,
+    "cumulative_60plus_rate": 0.0309,
+    "cumulative_90plus_rate": 0.018,
+    "cumulative_charge_off_rate": 0.0129
+  },
+  {
+    "origination_quarter": "2022-10-01",
+    "months_on_book": 11,
+    "cohort_accounts": 388,
+    "cumulative_30plus_rate": 0.0825,
+    "cumulative_60plus_rate": 0.0387,
+    "cumulative_90plus_rate": 0.0232,
+    "cumulative_charge_off_rate": 0.0129
+  },
+  {
+    "origination_quarter": "2022-10-01",
+    "months_on_book": 12,
+    "cohort_accounts": 388,
+    "cumulative_30plus_rate": 0.0902,
+    "cumulative_60plus_rate": 0.0387,
+    "cumulative_90plus_rate": 0.0258,
+    "cumulative_charge_off_rate": 0.0206
+  },
+  {
+    "origination_quarter": "2022-10-01",
+    "months_on_book": 13,
+    "cohort_accounts": 388,
+    "cumulative_30plus_rate": 0.0928,
+    "cumulative_60plus_rate": 0.0464,
+    "cumulative_90plus_rate": 0.0309,
+    "cumulative_charge_off_rate": 0.0206
+  },
+  {
+    "origination_quarter": "2022-10-01",
+    "months_on_book": 14,
+    "cohort_accounts": 388,
+    "cumulative_30plus_rate": 0.1031,
+    "cumulative_60plus_rate": 0.0464,
+    "cumulative_90plus_rate": 0.0309,
+    "cumulative_charge_off_rate": 0.0232
+  },
+  {
+    "origination_quarter": "2022-10-01",
+    "months_on_book": 15,
+    "cohort_accounts": 388,
+    "cumulative_30plus_rate": 0.1108,
+    "cumulative_60plus_rate": 0.049,
+    "cumulative_90plus_rate": 0.0309,
+    "cumulative_charge_off_rate": 0.0232
+  },
+  {
+    "origination_quarter": "2022-10-01",
+    "months_on_book": 16,
+    "cohort_accounts": 388,
+    "cumulative_30plus_rate": 0.1186,
+    "cumulative_60plus_rate": 0.0515,
+    "cumulative_90plus_rate": 0.0361,
+    "cumulative_charge_off_rate": 0.0258
+  },
+  {
+    "origination_quarter": "2022-10-01",
+    "months_on_book": 17,
+    "cohort_accounts": 388,
+    "cumulative_30plus_rate": 0.1211,
+    "cumulative_60plus_rate": 0.0593,
+    "cumulative_90plus_rate": 0.0361,
+    "cumulative_charge_off_rate": 0.0335
+  },
+  {
+    "origination_quarter": "2022-10-01",
+    "months_on_book": 18,
+    "cohort_accounts": 388,
+    "cumulative_30plus_rate": 0.1314,
+    "cumulative_60plus_rate": 0.0619,
+    "cumulative_90plus_rate": 0.0412,
+    "cumulative_charge_off_rate": 0.0335
+  },
+  {
+    "origination_quarter": "2022-10-01",
+    "months_on_book": 19,
+    "cohort_accounts": 388,
+    "cumulative_30plus_rate": 0.1314,
+    "cumulative_60plus_rate": 0.0722,
+    "cumulative_90plus_rate": 0.0464,
+    "cumulative_charge_off_rate": 0.0387
+  },
+  {
+    "origination_quarter": "2022-10-01",
+    "months_on_book": 20,
+    "cohort_accounts": 388,
+    "cumulative_30plus_rate": 0.134,
+    "cumulative_60plus_rate": 0.0722,
+    "cumulative_90plus_rate": 0.0515,
+    "cumulative_charge_off_rate": 0.0412
+  },
+  {
+    "origination_quarter": "2022-10-01",
+    "months_on_book": 21,
+    "cohort_accounts": 388,
+    "cumulative_30plus_rate": 0.1392,
+    "cumulative_60plus_rate": 0.0722,
+    "cumulative_90plus_rate": 0.0541,
+    "cumulative_charge_off_rate": 0.0464
+  },
+  {
+    "origination_quarter": "2022-10-01",
+    "months_on_book": 22,
+    "cohort_accounts": 388,
+    "cumulative_30plus_rate": 0.1443,
+    "cumulative_60plus_rate": 0.0773,
+    "cumulative_90plus_rate": 0.0567,
+    "cumulative_charge_off_rate": 0.049
+  },
+  {
+    "origination_quarter": "2022-10-01",
+    "months_on_book": 23,
+    "cohort_accounts": 388,
+    "cumulative_30plus_rate": 0.1546,
+    "cumulative_60plus_rate": 0.0799,
+    "cumulative_90plus_rate": 0.0593,
+    "cumulative_charge_off_rate": 0.049
+  },
+  {
+    "origination_quarter": "2022-10-01",
+    "months_on_book": 24,
+    "cohort_accounts": 388,
+    "cumulative_30plus_rate": 0.1624,
+    "cumulative_60plus_rate": 0.0851,
+    "cumulative_90plus_rate": 0.0644,
+    "cumulative_charge_off_rate": 0.0515
+  },
+  {
+    "origination_quarter": "2022-10-01",
+    "months_on_book": 25,
+    "cohort_accounts": 388,
+    "cumulative_30plus_rate": 0.1649,
+    "cumulative_60plus_rate": 0.0928,
+    "cumulative_90plus_rate": 0.0644,
+    "cumulative_charge_off_rate": 0.0541
+  },
+  {
+    "origination_quarter": "2022-10-01",
+    "months_on_book": 26,
+    "cohort_accounts": 388,
+    "cumulative_30plus_rate": 0.1701,
+    "cumulative_60plus_rate": 0.0928,
+    "cumulative_90plus_rate": 0.0696,
+    "cumulative_charge_off_rate": 0.0541
+  },
+  {
+    "origination_quarter": "2022-10-01",
+    "months_on_book": 27,
+    "cohort_accounts": 388,
+    "cumulative_30plus_rate": 0.1753,
+    "cumulative_60plus_rate": 0.0928,
+    "cumulative_90plus_rate": 0.0722,
+    "cumulative_charge_off_rate": 0.0619
+  },
+  {
+    "origination_quarter": "2022-10-01",
+    "months_on_book": 28,
+    "cohort_accounts": 388,
+    "cumulative_30plus_rate": 0.1753,
+    "cumulative_60plus_rate": 0.0954,
+    "cumulative_90plus_rate": 0.0747,
+    "cumulative_charge_off_rate": 0.0644
+  },
+  {
+    "origination_quarter": "2022-10-01",
+    "months_on_book": 29,
+    "cohort_accounts": 388,
+    "cumulative_30plus_rate": 0.1804,
+    "cumulative_60plus_rate": 0.0979,
+    "cumulative_90plus_rate": 0.0747,
+    "cumulative_charge_off_rate": 0.067
+  },
+  {
+    "origination_quarter": "2022-10-01",
+    "months_on_book": 30,
+    "cohort_accounts": 388,
+    "cumulative_30plus_rate": 0.1881,
+    "cumulative_60plus_rate": 0.1005,
+    "cumulative_90plus_rate": 0.0747,
+    "cumulative_charge_off_rate": 0.067
+  },
+  {
+    "origination_quarter": "2022-10-01",
+    "months_on_book": 31,
+    "cohort_accounts": 388,
+    "cumulative_30plus_rate": 0.1907,
+    "cumulative_60plus_rate": 0.1005,
+    "cumulative_90plus_rate": 0.0747,
+    "cumulative_charge_off_rate": 0.067
+  },
+  {
+    "origination_quarter": "2022-10-01",
+    "months_on_book": 32,
+    "cohort_accounts": 388,
+    "cumulative_30plus_rate": 0.1933,
+    "cumulative_60plus_rate": 0.1005,
+    "cumulative_90plus_rate": 0.0747,
+    "cumulative_charge_off_rate": 0.067
+  },
+  {
+    "origination_quarter": "2023-01-01",
+    "months_on_book": 0,
+    "cohort_accounts": 364,
+    "cumulative_30plus_rate": 0.0,
+    "cumulative_60plus_rate": 0.0,
+    "cumulative_90plus_rate": 0.0,
+    "cumulative_charge_off_rate": 0.0
+  },
+  {
+    "origination_quarter": "2023-01-01",
+    "months_on_book": 1,
+    "cohort_accounts": 364,
+    "cumulative_30plus_rate": 0.011,
+    "cumulative_60plus_rate": 0.0,
+    "cumulative_90plus_rate": 0.0,
+    "cumulative_charge_off_rate": 0.0
+  },
+  {
+    "origination_quarter": "2023-01-01",
+    "months_on_book": 2,
+    "cohort_accounts": 364,
+    "cumulative_30plus_rate": 0.0137,
+    "cumulative_60plus_rate": 0.0055,
+    "cumulative_90plus_rate": 0.0,
+    "cumulative_charge_off_rate": 0.0
+  },
+  {
+    "origination_quarter": "2023-01-01",
+    "months_on_book": 3,
+    "cohort_accounts": 364,
+    "cumulative_30plus_rate": 0.033,
+    "cumulative_60plus_rate": 0.0055,
+    "cumulative_90plus_rate": 0.0027,
+    "cumulative_charge_off_rate": 0.0
+  },
+  {
+    "origination_quarter": "2023-01-01",
+    "months_on_book": 4,
+    "cohort_accounts": 364,
+    "cumulative_30plus_rate": 0.044,
+    "cumulative_60plus_rate": 0.0137,
+    "cumulative_90plus_rate": 0.0027,
+    "cumulative_charge_off_rate": 0.0027
+  },
+  {
+    "origination_quarter": "2023-01-01",
+    "months_on_book": 5,
+    "cohort_accounts": 364,
+    "cumulative_30plus_rate": 0.0522,
+    "cumulative_60plus_rate": 0.0165,
+    "cumulative_90plus_rate": 0.0027,
+    "cumulative_charge_off_rate": 0.0027
+  },
+  {
+    "origination_quarter": "2023-01-01",
+    "months_on_book": 6,
+    "cohort_accounts": 364,
+    "cumulative_30plus_rate": 0.0687,
+    "cumulative_60plus_rate": 0.0165,
+    "cumulative_90plus_rate": 0.0055,
+    "cumulative_charge_off_rate": 0.0027
+  },
+  {
+    "origination_quarter": "2023-01-01",
+    "months_on_book": 7,
+    "cohort_accounts": 364,
+    "cumulative_30plus_rate": 0.0769,
+    "cumulative_60plus_rate": 0.0247,
+    "cumulative_90plus_rate": 0.0055,
+    "cumulative_charge_off_rate": 0.0055
+  },
+  {
+    "origination_quarter": "2023-01-01",
+    "months_on_book": 8,
+    "cohort_accounts": 364,
+    "cumulative_30plus_rate": 0.0824,
+    "cumulative_60plus_rate": 0.0302,
+    "cumulative_90plus_rate": 0.0082,
+    "cumulative_charge_off_rate": 0.0055
+  },
+  {
+    "origination_quarter": "2023-01-01",
+    "months_on_book": 9,
+    "cohort_accounts": 364,
+    "cumulative_30plus_rate": 0.0907,
+    "cumulative_60plus_rate": 0.0357,
+    "cumulative_90plus_rate": 0.011,
+    "cumulative_charge_off_rate": 0.0082
+  },
+  {
+    "origination_quarter": "2023-01-01",
+    "months_on_book": 10,
+    "cohort_accounts": 364,
+    "cumulative_30plus_rate": 0.0962,
+    "cumulative_60plus_rate": 0.0385,
+    "cumulative_90plus_rate": 0.0165,
+    "cumulative_charge_off_rate": 0.011
+  },
+  {
+    "origination_quarter": "2023-01-01",
+    "months_on_book": 11,
+    "cohort_accounts": 364,
+    "cumulative_30plus_rate": 0.1016,
+    "cumulative_60plus_rate": 0.0412,
+    "cumulative_90plus_rate": 0.0165,
+    "cumulative_charge_off_rate": 0.0137
+  },
+  {
+    "origination_quarter": "2023-01-01",
+    "months_on_book": 12,
+    "cohort_accounts": 364,
+    "cumulative_30plus_rate": 0.1071,
+    "cumulative_60plus_rate": 0.044,
+    "cumulative_90plus_rate": 0.0165,
+    "cumulative_charge_off_rate": 0.0137
+  },
+  {
+    "origination_quarter": "2023-01-01",
+    "months_on_book": 13,
+    "cohort_accounts": 364,
+    "cumulative_30plus_rate": 0.1209,
+    "cumulative_60plus_rate": 0.044,
+    "cumulative_90plus_rate": 0.0192,
+    "cumulative_charge_off_rate": 0.0137
+  },
+  {
+    "origination_quarter": "2023-01-01",
+    "months_on_book": 14,
+    "cohort_accounts": 364,
+    "cumulative_30plus_rate": 0.1374,
+    "cumulative_60plus_rate": 0.0495,
+    "cumulative_90plus_rate": 0.0247,
+    "cumulative_charge_off_rate": 0.0192
+  },
+  {
+    "origination_quarter": "2023-01-01",
+    "months_on_book": 15,
+    "cohort_accounts": 364,
+    "cumulative_30plus_rate": 0.1456,
+    "cumulative_60plus_rate": 0.0522,
+    "cumulative_90plus_rate": 0.0275,
+    "cumulative_charge_off_rate": 0.0247
+  },
+  {
+    "origination_quarter": "2023-01-01",
+    "months_on_book": 16,
+    "cohort_accounts": 364,
+    "cumulative_30plus_rate": 0.1484,
+    "cumulative_60plus_rate": 0.0577,
+    "cumulative_90plus_rate": 0.033,
+    "cumulative_charge_off_rate": 0.0275
+  },
+  {
+    "origination_quarter": "2023-01-01",
+    "months_on_book": 17,
+    "cohort_accounts": 364,
+    "cumulative_30plus_rate": 0.1593,
+    "cumulative_60plus_rate": 0.0632,
+    "cumulative_90plus_rate": 0.0357,
+    "cumulative_charge_off_rate": 0.033
+  },
+  {
+    "origination_quarter": "2023-01-01",
+    "months_on_book": 18,
+    "cohort_accounts": 364,
+    "cumulative_30plus_rate": 0.1703,
+    "cumulative_60plus_rate": 0.0687,
+    "cumulative_90plus_rate": 0.0357,
+    "cumulative_charge_off_rate": 0.033
+  },
+  {
+    "origination_quarter": "2023-01-01",
+    "months_on_book": 19,
+    "cohort_accounts": 364,
+    "cumulative_30plus_rate": 0.1731,
+    "cumulative_60plus_rate": 0.0769,
+    "cumulative_90plus_rate": 0.0385,
+    "cumulative_charge_off_rate": 0.0357
+  },
+  {
+    "origination_quarter": "2023-01-01",
+    "months_on_book": 20,
+    "cohort_accounts": 364,
+    "cumulative_30plus_rate": 0.1786,
+    "cumulative_60plus_rate": 0.0769,
+    "cumulative_90plus_rate": 0.0495,
+    "cumulative_charge_off_rate": 0.0357
+  },
+  {
+    "origination_quarter": "2023-01-01",
+    "months_on_book": 21,
+    "cohort_accounts": 364,
+    "cumulative_30plus_rate": 0.1813,
+    "cumulative_60plus_rate": 0.0769,
+    "cumulative_90plus_rate": 0.0522,
+    "cumulative_charge_off_rate": 0.0385
+  },
+  {
+    "origination_quarter": "2023-01-01",
+    "months_on_book": 22,
+    "cohort_accounts": 364,
+    "cumulative_30plus_rate": 0.1868,
+    "cumulative_60plus_rate": 0.0797,
+    "cumulative_90plus_rate": 0.0549,
+    "cumulative_charge_off_rate": 0.0495
+  },
+  {
+    "origination_quarter": "2023-01-01",
+    "months_on_book": 23,
+    "cohort_accounts": 364,
+    "cumulative_30plus_rate": 0.1896,
+    "cumulative_60plus_rate": 0.0824,
+    "cumulative_90plus_rate": 0.0577,
+    "cumulative_charge_off_rate": 0.0522
+  },
+  {
+    "origination_quarter": "2023-01-01",
+    "months_on_book": 24,
+    "cohort_accounts": 364,
+    "cumulative_30plus_rate": 0.1951,
+    "cumulative_60plus_rate": 0.0824,
+    "cumulative_90plus_rate": 0.0577,
+    "cumulative_charge_off_rate": 0.0549
+  },
+  {
+    "origination_quarter": "2023-01-01",
+    "months_on_book": 25,
+    "cohort_accounts": 364,
+    "cumulative_30plus_rate": 0.1978,
+    "cumulative_60plus_rate": 0.0907,
+    "cumulative_90plus_rate": 0.0577,
+    "cumulative_charge_off_rate": 0.0549
+  },
+  {
+    "origination_quarter": "2023-01-01",
+    "months_on_book": 26,
+    "cohort_accounts": 364,
+    "cumulative_30plus_rate": 0.2088,
+    "cumulative_60plus_rate": 0.0907,
+    "cumulative_90plus_rate": 0.0577,
+    "cumulative_charge_off_rate": 0.0549
+  },
+  {
+    "origination_quarter": "2023-01-01",
+    "months_on_book": 27,
+    "cohort_accounts": 364,
+    "cumulative_30plus_rate": 0.2225,
+    "cumulative_60plus_rate": 0.0934,
+    "cumulative_90plus_rate": 0.0604,
+    "cumulative_charge_off_rate": 0.0549
+  },
+  {
+    "origination_quarter": "2023-01-01",
+    "months_on_book": 28,
+    "cohort_accounts": 364,
+    "cumulative_30plus_rate": 0.228,
+    "cumulative_60plus_rate": 0.0962,
+    "cumulative_90plus_rate": 0.0604,
+    "cumulative_charge_off_rate": 0.0549
+  },
+  {
+    "origination_quarter": "2023-01-01",
+    "months_on_book": 29,
+    "cohort_accounts": 364,
+    "cumulative_30plus_rate": 0.2308,
+    "cumulative_60plus_rate": 0.1044,
+    "cumulative_90plus_rate": 0.0632,
+    "cumulative_charge_off_rate": 0.0549
+  },
+  {
+    "origination_quarter": "2023-04-01",
+    "months_on_book": 0,
+    "cohort_accounts": 322,
+    "cumulative_30plus_rate": 0.0,
+    "cumulative_60plus_rate": 0.0,
+    "cumulative_90plus_rate": 0.0,
+    "cumulative_charge_off_rate": 0.0
+  },
+  {
+    "origination_quarter": "2023-04-01",
+    "months_on_book": 1,
+    "cohort_accounts": 322,
+    "cumulative_30plus_rate": 0.0062,
+    "cumulative_60plus_rate": 0.0,
+    "cumulative_90plus_rate": 0.0,
+    "cumulative_charge_off_rate": 0.0
+  },
+  {
+    "origination_quarter": "2023-04-01",
+    "months_on_book": 2,
+    "cohort_accounts": 322,
+    "cumulative_30plus_rate": 0.0217,
+    "cumulative_60plus_rate": 0.0031,
+    "cumulative_90plus_rate": 0.0,
+    "cumulative_charge_off_rate": 0.0
+  },
+  {
+    "origination_quarter": "2023-04-01",
+    "months_on_book": 3,
+    "cohort_accounts": 322,
+    "cumulative_30plus_rate": 0.028,
+    "cumulative_60plus_rate": 0.0124,
+    "cumulative_90plus_rate": 0.0031,
+    "cumulative_charge_off_rate": 0.0
+  },
+  {
+    "origination_quarter": "2023-04-01",
+    "months_on_book": 4,
+    "cohort_accounts": 322,
+    "cumulative_30plus_rate": 0.0404,
+    "cumulative_60plus_rate": 0.0155,
+    "cumulative_90plus_rate": 0.0031,
+    "cumulative_charge_off_rate": 0.0
+  },
+  {
+    "origination_quarter": "2023-04-01",
+    "months_on_book": 5,
+    "cohort_accounts": 322,
+    "cumulative_30plus_rate": 0.0435,
+    "cumulative_60plus_rate": 0.0217,
+    "cumulative_90plus_rate": 0.0062,
+    "cumulative_charge_off_rate": 0.0
+  },
+  {
+    "origination_quarter": "2023-04-01",
+    "months_on_book": 6,
+    "cohort_accounts": 322,
+    "cumulative_30plus_rate": 0.0559,
+    "cumulative_60plus_rate": 0.0248,
+    "cumulative_90plus_rate": 0.0062,
+    "cumulative_charge_off_rate": 0.0
+  },
+  {
+    "origination_quarter": "2023-04-01",
+    "months_on_book": 7,
+    "cohort_accounts": 322,
+    "cumulative_30plus_rate": 0.0745,
+    "cumulative_60plus_rate": 0.028,
+    "cumulative_90plus_rate": 0.0093,
+    "cumulative_charge_off_rate": 0.0031
+  },
+  {
+    "origination_quarter": "2023-04-01",
+    "months_on_book": 8,
+    "cohort_accounts": 322,
+    "cumulative_30plus_rate": 0.0932,
+    "cumulative_60plus_rate": 0.028,
+    "cumulative_90plus_rate": 0.0093,
+    "cumulative_charge_off_rate": 0.0031
+  },
+  {
+    "origination_quarter": "2023-04-01",
+    "months_on_book": 9,
+    "cohort_accounts": 322,
+    "cumulative_30plus_rate": 0.0994,
+    "cumulative_60plus_rate": 0.0342,
+    "cumulative_90plus_rate": 0.0124,
+    "cumulative_charge_off_rate": 0.0031
+  },
+  {
+    "origination_quarter": "2023-04-01",
+    "months_on_book": 10,
+    "cohort_accounts": 322,
+    "cumulative_30plus_rate": 0.1087,
+    "cumulative_60plus_rate": 0.0404,
+    "cumulative_90plus_rate": 0.0155,
+    "cumulative_charge_off_rate": 0.0062
+  },
+  {
+    "origination_quarter": "2023-04-01",
+    "months_on_book": 11,
+    "cohort_accounts": 322,
+    "cumulative_30plus_rate": 0.1149,
+    "cumulative_60plus_rate": 0.0466,
+    "cumulative_90plus_rate": 0.0217,
+    "cumulative_charge_off_rate": 0.0093
+  },
+  {
+    "origination_quarter": "2023-04-01",
+    "months_on_book": 12,
+    "cohort_accounts": 322,
+    "cumulative_30plus_rate": 0.1242,
+    "cumulative_60plus_rate": 0.0466,
+    "cumulative_90plus_rate": 0.028,
+    "cumulative_charge_off_rate": 0.0217
+  },
+  {
+    "origination_quarter": "2023-04-01",
+    "months_on_book": 13,
+    "cohort_accounts": 322,
+    "cumulative_30plus_rate": 0.1366,
+    "cumulative_60plus_rate": 0.0528,
+    "cumulative_90plus_rate": 0.028,
+    "cumulative_charge_off_rate": 0.0248
+  },
+  {
+    "origination_quarter": "2023-04-01",
+    "months_on_book": 14,
+    "cohort_accounts": 322,
+    "cumulative_30plus_rate": 0.1522,
+    "cumulative_60plus_rate": 0.0621,
+    "cumulative_90plus_rate": 0.0373,
+    "cumulative_charge_off_rate": 0.0248
+  },
+  {
+    "origination_quarter": "2023-04-01",
+    "months_on_book": 15,
+    "cohort_accounts": 322,
+    "cumulative_30plus_rate": 0.1584,
+    "cumulative_60plus_rate": 0.0714,
+    "cumulative_90plus_rate": 0.0435,
+    "cumulative_charge_off_rate": 0.028
+  },
+  {
+    "origination_quarter": "2023-04-01",
+    "months_on_book": 16,
+    "cohort_accounts": 322,
+    "cumulative_30plus_rate": 0.1677,
+    "cumulative_60plus_rate": 0.0776,
+    "cumulative_90plus_rate": 0.0466,
+    "cumulative_charge_off_rate": 0.0311
+  },
+  {
+    "origination_quarter": "2023-04-01",
+    "months_on_book": 17,
+    "cohort_accounts": 322,
+    "cumulative_30plus_rate": 0.1708,
+    "cumulative_60plus_rate": 0.0839,
+    "cumulative_90plus_rate": 0.0559,
+    "cumulative_charge_off_rate": 0.0404
+  },
+  {
+    "origination_quarter": "2023-04-01",
+    "months_on_book": 18,
+    "cohort_accounts": 322,
+    "cumulative_30plus_rate": 0.1801,
+    "cumulative_60plus_rate": 0.0839,
+    "cumulative_90plus_rate": 0.0621,
+    "cumulative_charge_off_rate": 0.0466
+  },
+  {
+    "origination_quarter": "2023-04-01",
+    "months_on_book": 19,
+    "cohort_accounts": 322,
+    "cumulative_30plus_rate": 0.1863,
+    "cumulative_60plus_rate": 0.0901,
+    "cumulative_90plus_rate": 0.0621,
+    "cumulative_charge_off_rate": 0.0528
+  },
+  {
+    "origination_quarter": "2023-04-01",
+    "months_on_book": 20,
+    "cohort_accounts": 322,
+    "cumulative_30plus_rate": 0.1925,
+    "cumulative_60plus_rate": 0.0932,
+    "cumulative_90plus_rate": 0.0683,
+    "cumulative_charge_off_rate": 0.0559
+  },
+  {
+    "origination_quarter": "2023-04-01",
+    "months_on_book": 21,
+    "cohort_accounts": 322,
+    "cumulative_30plus_rate": 0.1925,
+    "cumulative_60plus_rate": 0.0932,
+    "cumulative_90plus_rate": 0.0745,
+    "cumulative_charge_off_rate": 0.0621
+  },
+  {
+    "origination_quarter": "2023-04-01",
+    "months_on_book": 22,
+    "cohort_accounts": 322,
+    "cumulative_30plus_rate": 0.1988,
+    "cumulative_60plus_rate": 0.0932,
+    "cumulative_90plus_rate": 0.0745,
+    "cumulative_charge_off_rate": 0.0683
+  },
+  {
+    "origination_quarter": "2023-04-01",
+    "months_on_book": 23,
+    "cohort_accounts": 322,
+    "cumulative_30plus_rate": 0.205,
+    "cumulative_60plus_rate": 0.1025,
+    "cumulative_90plus_rate": 0.0745,
+    "cumulative_charge_off_rate": 0.0714
+  },
+  {
+    "origination_quarter": "2023-04-01",
+    "months_on_book": 24,
+    "cohort_accounts": 322,
+    "cumulative_30plus_rate": 0.2143,
+    "cumulative_60plus_rate": 0.1118,
+    "cumulative_90plus_rate": 0.0776,
+    "cumulative_charge_off_rate": 0.0714
+  },
+  {
+    "origination_quarter": "2023-04-01",
+    "months_on_book": 25,
+    "cohort_accounts": 322,
+    "cumulative_30plus_rate": 0.2174,
+    "cumulative_60plus_rate": 0.1118,
+    "cumulative_90plus_rate": 0.0839,
+    "cumulative_charge_off_rate": 0.0714
+  },
+  {
+    "origination_quarter": "2023-04-01",
+    "months_on_book": 26,
+    "cohort_accounts": 322,
+    "cumulative_30plus_rate": 0.2205,
+    "cumulative_60plus_rate": 0.1118,
+    "cumulative_90plus_rate": 0.0839,
+    "cumulative_charge_off_rate": 0.0776
+  },
+  {
+    "origination_quarter": "2023-07-01",
+    "months_on_book": 0,
+    "cohort_accounts": 411,
+    "cumulative_30plus_rate": 0.0,
+    "cumulative_60plus_rate": 0.0,
+    "cumulative_90plus_rate": 0.0,
+    "cumulative_charge_off_rate": 0.0
+  },
+  {
+    "origination_quarter": "2023-07-01",
+    "months_on_book": 1,
+    "cohort_accounts": 411,
+    "cumulative_30plus_rate": 0.0122,
+    "cumulative_60plus_rate": 0.0,
+    "cumulative_90plus_rate": 0.0,
+    "cumulative_charge_off_rate": 0.0
+  },
+  {
+    "origination_quarter": "2023-07-01",
+    "months_on_book": 2,
+    "cohort_accounts": 411,
+    "cumulative_30plus_rate": 0.0292,
+    "cumulative_60plus_rate": 0.0073,
+    "cumulative_90plus_rate": 0.0,
+    "cumulative_charge_off_rate": 0.0
+  },
+  {
+    "origination_quarter": "2023-07-01",
+    "months_on_book": 3,
+    "cohort_accounts": 411,
+    "cumulative_30plus_rate": 0.0389,
+    "cumulative_60plus_rate": 0.0122,
+    "cumulative_90plus_rate": 0.0024,
+    "cumulative_charge_off_rate": 0.0
+  },
+  {
+    "origination_quarter": "2023-07-01",
+    "months_on_book": 4,
+    "cohort_accounts": 411,
+    "cumulative_30plus_rate": 0.0511,
+    "cumulative_60plus_rate": 0.0195,
+    "cumulative_90plus_rate": 0.0049,
+    "cumulative_charge_off_rate": 0.0
+  },
+  {
+    "origination_quarter": "2023-07-01",
+    "months_on_book": 5,
+    "cohort_accounts": 411,
+    "cumulative_30plus_rate": 0.0584,
+    "cumulative_60plus_rate": 0.0268,
+    "cumulative_90plus_rate": 0.0146,
+    "cumulative_charge_off_rate": 0.0
+  },
+  {
+    "origination_quarter": "2023-07-01",
+    "months_on_book": 6,
+    "cohort_accounts": 411,
+    "cumulative_30plus_rate": 0.0754,
+    "cumulative_60plus_rate": 0.0341,
+    "cumulative_90plus_rate": 0.0195,
+    "cumulative_charge_off_rate": 0.0073
+  },
+  {
+    "origination_quarter": "2023-07-01",
+    "months_on_book": 7,
+    "cohort_accounts": 411,
+    "cumulative_30plus_rate": 0.0803,
+    "cumulative_60plus_rate": 0.0414,
+    "cumulative_90plus_rate": 0.0219,
+    "cumulative_charge_off_rate": 0.0097
+  },
+  {
+    "origination_quarter": "2023-07-01",
+    "months_on_book": 8,
+    "cohort_accounts": 411,
+    "cumulative_30plus_rate": 0.0925,
+    "cumulative_60plus_rate": 0.0438,
+    "cumulative_90plus_rate": 0.0292,
+    "cumulative_charge_off_rate": 0.0122
+  },
+  {
+    "origination_quarter": "2023-07-01",
+    "months_on_book": 9,
+    "cohort_accounts": 411,
+    "cumulative_30plus_rate": 0.0973,
+    "cumulative_60plus_rate": 0.0462,
+    "cumulative_90plus_rate": 0.0365,
+    "cumulative_charge_off_rate": 0.0195
+  },
+  {
+    "origination_quarter": "2023-07-01",
+    "months_on_book": 10,
+    "cohort_accounts": 411,
+    "cumulative_30plus_rate": 0.1046,
+    "cumulative_60plus_rate": 0.0535,
+    "cumulative_90plus_rate": 0.0365,
+    "cumulative_charge_off_rate": 0.0219
+  },
+  {
+    "origination_quarter": "2023-07-01",
+    "months_on_book": 11,
+    "cohort_accounts": 411,
+    "cumulative_30plus_rate": 0.1144,
+    "cumulative_60plus_rate": 0.056,
+    "cumulative_90plus_rate": 0.0414,
+    "cumulative_charge_off_rate": 0.0243
+  },
+  {
+    "origination_quarter": "2023-07-01",
+    "months_on_book": 12,
+    "cohort_accounts": 411,
+    "cumulative_30plus_rate": 0.1217,
+    "cumulative_60plus_rate": 0.0608,
+    "cumulative_90plus_rate": 0.0438,
+    "cumulative_charge_off_rate": 0.0292
+  },
+  {
+    "origination_quarter": "2023-07-01",
+    "months_on_book": 13,
+    "cohort_accounts": 411,
+    "cumulative_30plus_rate": 0.1265,
+    "cumulative_60plus_rate": 0.0657,
+    "cumulative_90plus_rate": 0.0462,
+    "cumulative_charge_off_rate": 0.0341
+  },
+  {
+    "origination_quarter": "2023-07-01",
+    "months_on_book": 14,
+    "cohort_accounts": 411,
+    "cumulative_30plus_rate": 0.1314,
+    "cumulative_60plus_rate": 0.0706,
+    "cumulative_90plus_rate": 0.0511,
+    "cumulative_charge_off_rate": 0.0365
+  },
+  {
+    "origination_quarter": "2023-07-01",
+    "months_on_book": 15,
+    "cohort_accounts": 411,
+    "cumulative_30plus_rate": 0.1387,
+    "cumulative_60plus_rate": 0.073,
+    "cumulative_90plus_rate": 0.056,
+    "cumulative_charge_off_rate": 0.0414
+  },
+  {
+    "origination_quarter": "2023-07-01",
+    "months_on_book": 16,
+    "cohort_accounts": 411,
+    "cumulative_30plus_rate": 0.146,
+    "cumulative_60plus_rate": 0.073,
+    "cumulative_90plus_rate": 0.056,
+    "cumulative_charge_off_rate": 0.0462
+  },
+  {
+    "origination_quarter": "2023-07-01",
+    "months_on_book": 17,
+    "cohort_accounts": 411,
+    "cumulative_30plus_rate": 0.1509,
+    "cumulative_60plus_rate": 0.0754,
+    "cumulative_90plus_rate": 0.0584,
+    "cumulative_charge_off_rate": 0.0487
+  },
+  {
+    "origination_quarter": "2023-07-01",
+    "months_on_book": 18,
+    "cohort_accounts": 411,
+    "cumulative_30plus_rate": 0.1533,
+    "cumulative_60plus_rate": 0.0754,
+    "cumulative_90plus_rate": 0.0633,
+    "cumulative_charge_off_rate": 0.0511
+  },
+  {
+    "origination_quarter": "2023-07-01",
+    "months_on_book": 19,
+    "cohort_accounts": 411,
+    "cumulative_30plus_rate": 0.163,
+    "cumulative_60plus_rate": 0.0779,
+    "cumulative_90plus_rate": 0.0633,
+    "cumulative_charge_off_rate": 0.0511
+  },
+  {
+    "origination_quarter": "2023-07-01",
+    "months_on_book": 20,
+    "cohort_accounts": 411,
+    "cumulative_30plus_rate": 0.1655,
+    "cumulative_60plus_rate": 0.0827,
+    "cumulative_90plus_rate": 0.0633,
+    "cumulative_charge_off_rate": 0.0535
+  },
+  {
+    "origination_quarter": "2023-07-01",
+    "months_on_book": 21,
+    "cohort_accounts": 411,
+    "cumulative_30plus_rate": 0.1703,
+    "cumulative_60plus_rate": 0.0852,
+    "cumulative_90plus_rate": 0.0681,
+    "cumulative_charge_off_rate": 0.056
+  },
+  {
+    "origination_quarter": "2023-07-01",
+    "months_on_book": 22,
+    "cohort_accounts": 411,
+    "cumulative_30plus_rate": 0.1873,
+    "cumulative_60plus_rate": 0.0852,
+    "cumulative_90plus_rate": 0.0706,
+    "cumulative_charge_off_rate": 0.056
+  },
+  {
+    "origination_quarter": "2023-07-01",
+    "months_on_book": 23,
+    "cohort_accounts": 411,
+    "cumulative_30plus_rate": 0.1898,
+    "cumulative_60plus_rate": 0.09,
+    "cumulative_90plus_rate": 0.0706,
+    "cumulative_charge_off_rate": 0.056
+  },
+  {
+    "origination_quarter": "2023-10-01",
+    "months_on_book": 0,
+    "cohort_accounts": 277,
+    "cumulative_30plus_rate": 0.0,
+    "cumulative_60plus_rate": 0.0,
+    "cumulative_90plus_rate": 0.0,
+    "cumulative_charge_off_rate": 0.0
+  },
+  {
+    "origination_quarter": "2023-10-01",
+    "months_on_book": 1,
+    "cohort_accounts": 277,
+    "cumulative_30plus_rate": 0.0036,
+    "cumulative_60plus_rate": 0.0,
+    "cumulative_90plus_rate": 0.0,
+    "cumulative_charge_off_rate": 0.0
+  },
+  {
+    "origination_quarter": "2023-10-01",
+    "months_on_book": 2,
+    "cohort_accounts": 277,
+    "cumulative_30plus_rate": 0.0217,
+    "cumulative_60plus_rate": 0.0036,
+    "cumulative_90plus_rate": 0.0,
+    "cumulative_charge_off_rate": 0.0
+  },
+  {
+    "origination_quarter": "2023-10-01",
+    "months_on_book": 3,
+    "cohort_accounts": 277,
+    "cumulative_30plus_rate": 0.0325,
+    "cumulative_60plus_rate": 0.0072,
+    "cumulative_90plus_rate": 0.0,
+    "cumulative_charge_off_rate": 0.0
+  },
+  {
+    "origination_quarter": "2023-10-01",
+    "months_on_book": 4,
+    "cohort_accounts": 277,
+    "cumulative_30plus_rate": 0.0397,
+    "cumulative_60plus_rate": 0.0144,
+    "cumulative_90plus_rate": 0.0036,
+    "cumulative_charge_off_rate": 0.0
+  },
+  {
+    "origination_quarter": "2023-10-01",
+    "months_on_book": 5,
+    "cohort_accounts": 277,
+    "cumulative_30plus_rate": 0.0469,
+    "cumulative_60plus_rate": 0.0217,
+    "cumulative_90plus_rate": 0.0072,
+    "cumulative_charge_off_rate": 0.0036
+  },
+  {
+    "origination_quarter": "2023-10-01",
+    "months_on_book": 6,
+    "cohort_accounts": 277,
+    "cumulative_30plus_rate": 0.0578,
+    "cumulative_60plus_rate": 0.0253,
+    "cumulative_90plus_rate": 0.0108,
+    "cumulative_charge_off_rate": 0.0036
+  },
+  {
+    "origination_quarter": "2023-10-01",
+    "months_on_book": 7,
+    "cohort_accounts": 277,
+    "cumulative_30plus_rate": 0.083,
+    "cumulative_60plus_rate": 0.0289,
+    "cumulative_90plus_rate": 0.0108,
+    "cumulative_charge_off_rate": 0.0072
+  },
+  {
+    "origination_quarter": "2023-10-01",
+    "months_on_book": 8,
+    "cohort_accounts": 277,
+    "cumulative_30plus_rate": 0.0939,
+    "cumulative_60plus_rate": 0.0397,
+    "cumulative_90plus_rate": 0.0144,
+    "cumulative_charge_off_rate": 0.0108
+  },
+  {
+    "origination_quarter": "2023-10-01",
+    "months_on_book": 9,
+    "cohort_accounts": 277,
+    "cumulative_30plus_rate": 0.1011,
+    "cumulative_60plus_rate": 0.0433,
+    "cumulative_90plus_rate": 0.0217,
+    "cumulative_charge_off_rate": 0.0144
+  },
+  {
+    "origination_quarter": "2023-10-01",
+    "months_on_book": 10,
+    "cohort_accounts": 277,
+    "cumulative_30plus_rate": 0.1155,
+    "cumulative_60plus_rate": 0.0433,
+    "cumulative_90plus_rate": 0.0217,
+    "cumulative_charge_off_rate": 0.0144
+  },
+  {
+    "origination_quarter": "2023-10-01",
+    "months_on_book": 11,
+    "cohort_accounts": 277,
+    "cumulative_30plus_rate": 0.1227,
+    "cumulative_60plus_rate": 0.0469,
+    "cumulative_90plus_rate": 0.0289,
+    "cumulative_charge_off_rate": 0.0181
+  },
+  {
+    "origination_quarter": "2023-10-01",
+    "months_on_book": 12,
+    "cohort_accounts": 277,
+    "cumulative_30plus_rate": 0.1264,
+    "cumulative_60plus_rate": 0.0578,
+    "cumulative_90plus_rate": 0.0325,
+    "cumulative_charge_off_rate": 0.0253
+  },
+  {
+    "origination_quarter": "2023-10-01",
+    "months_on_book": 13,
+    "cohort_accounts": 277,
+    "cumulative_30plus_rate": 0.1336,
+    "cumulative_60plus_rate": 0.0614,
+    "cumulative_90plus_rate": 0.0397,
+    "cumulative_charge_off_rate": 0.0253
+  },
+  {
+    "origination_quarter": "2023-10-01",
+    "months_on_book": 14,
+    "cohort_accounts": 277,
+    "cumulative_30plus_rate": 0.1444,
+    "cumulative_60plus_rate": 0.065,
+    "cumulative_90plus_rate": 0.0469,
+    "cumulative_charge_off_rate": 0.0289
+  },
+  {
+    "origination_quarter": "2023-10-01",
+    "months_on_book": 15,
+    "cohort_accounts": 277,
+    "cumulative_30plus_rate": 0.1444,
+    "cumulative_60plus_rate": 0.0686,
+    "cumulative_90plus_rate": 0.0542,
+    "cumulative_charge_off_rate": 0.0361
+  },
+  {
+    "origination_quarter": "2023-10-01",
+    "months_on_book": 16,
+    "cohort_accounts": 277,
+    "cumulative_30plus_rate": 0.1516,
+    "cumulative_60plus_rate": 0.0686,
+    "cumulative_90plus_rate": 0.0542,
+    "cumulative_charge_off_rate": 0.0433
+  },
+  {
+    "origination_quarter": "2023-10-01",
+    "months_on_book": 17,
+    "cohort_accounts": 277,
+    "cumulative_30plus_rate": 0.1552,
+    "cumulative_60plus_rate": 0.0722,
+    "cumulative_90plus_rate": 0.0542,
+    "cumulative_charge_off_rate": 0.0505
+  },
+  {
+    "origination_quarter": "2023-10-01",
+    "months_on_book": 18,
+    "cohort_accounts": 277,
+    "cumulative_30plus_rate": 0.1625,
+    "cumulative_60plus_rate": 0.0758,
+    "cumulative_90plus_rate": 0.0542,
+    "cumulative_charge_off_rate": 0.0505
+  },
+  {
+    "origination_quarter": "2023-10-01",
+    "months_on_book": 19,
+    "cohort_accounts": 277,
+    "cumulative_30plus_rate": 0.1769,
+    "cumulative_60plus_rate": 0.0794,
+    "cumulative_90plus_rate": 0.0578,
+    "cumulative_charge_off_rate": 0.0505
+  },
+  {
+    "origination_quarter": "2023-10-01",
+    "months_on_book": 20,
+    "cohort_accounts": 277,
+    "cumulative_30plus_rate": 0.1805,
+    "cumulative_60plus_rate": 0.083,
+    "cumulative_90plus_rate": 0.065,
+    "cumulative_charge_off_rate": 0.0505
+  },
+  {
+    "origination_quarter": "2024-01-01",
+    "months_on_book": 0,
+    "cohort_accounts": 285,
+    "cumulative_30plus_rate": 0.0,
+    "cumulative_60plus_rate": 0.0,
+    "cumulative_90plus_rate": 0.0,
+    "cumulative_charge_off_rate": 0.0
+  },
+  {
+    "origination_quarter": "2024-01-01",
+    "months_on_book": 1,
+    "cohort_accounts": 285,
+    "cumulative_30plus_rate": 0.007,
+    "cumulative_60plus_rate": 0.0,
+    "cumulative_90plus_rate": 0.0,
+    "cumulative_charge_off_rate": 0.0
+  },
+  {
+    "origination_quarter": "2024-01-01",
+    "months_on_book": 2,
+    "cohort_accounts": 285,
+    "cumulative_30plus_rate": 0.0105,
+    "cumulative_60plus_rate": 0.0,
+    "cumulative_90plus_rate": 0.0,
+    "cumulative_charge_off_rate": 0.0
+  },
+  {
+    "origination_quarter": "2024-01-01",
+    "months_on_book": 3,
+    "cohort_accounts": 285,
+    "cumulative_30plus_rate": 0.0281,
+    "cumulative_60plus_rate": 0.0035,
+    "cumulative_90plus_rate": 0.0,
+    "cumulative_charge_off_rate": 0.0
+  },
+  {
+    "origination_quarter": "2024-01-01",
+    "months_on_book": 4,
+    "cohort_accounts": 285,
+    "cumulative_30plus_rate": 0.0281,
+    "cumulative_60plus_rate": 0.0105,
+    "cumulative_90plus_rate": 0.0,
+    "cumulative_charge_off_rate": 0.0
+  },
+  {
+    "origination_quarter": "2024-01-01",
+    "months_on_book": 5,
+    "cohort_accounts": 285,
+    "cumulative_30plus_rate": 0.0456,
+    "cumulative_60plus_rate": 0.0105,
+    "cumulative_90plus_rate": 0.0,
+    "cumulative_charge_off_rate": 0.0
+  },
+  {
+    "origination_quarter": "2024-01-01",
+    "months_on_book": 6,
+    "cohort_accounts": 285,
+    "cumulative_30plus_rate": 0.0561,
+    "cumulative_60plus_rate": 0.014,
+    "cumulative_90plus_rate": 0.0,
+    "cumulative_charge_off_rate": 0.0
+  },
+  {
+    "origination_quarter": "2024-01-01",
+    "months_on_book": 7,
+    "cohort_accounts": 285,
+    "cumulative_30plus_rate": 0.0702,
+    "cumulative_60plus_rate": 0.0211,
+    "cumulative_90plus_rate": 0.0,
+    "cumulative_charge_off_rate": 0.0
+  },
+  {
+    "origination_quarter": "2024-01-01",
+    "months_on_book": 8,
+    "cohort_accounts": 285,
+    "cumulative_30plus_rate": 0.0737,
+    "cumulative_60plus_rate": 0.0281,
+    "cumulative_90plus_rate": 0.007,
+    "cumulative_charge_off_rate": 0.0
+  },
+  {
+    "origination_quarter": "2024-01-01",
+    "months_on_book": 9,
+    "cohort_accounts": 285,
+    "cumulative_30plus_rate": 0.0877,
+    "cumulative_60plus_rate": 0.0281,
+    "cumulative_90plus_rate": 0.0105,
+    "cumulative_charge_off_rate": 0.007
+  },
+  {
+    "origination_quarter": "2024-01-01",
+    "months_on_book": 10,
+    "cohort_accounts": 285,
+    "cumulative_30plus_rate": 0.0912,
+    "cumulative_60plus_rate": 0.0386,
+    "cumulative_90plus_rate": 0.014,
+    "cumulative_charge_off_rate": 0.0105
+  },
+  {
+    "origination_quarter": "2024-01-01",
+    "months_on_book": 11,
+    "cohort_accounts": 285,
+    "cumulative_30plus_rate": 0.0982,
+    "cumulative_60plus_rate": 0.0386,
+    "cumulative_90plus_rate": 0.0175,
+    "cumulative_charge_off_rate": 0.014
+  },
+  {
+    "origination_quarter": "2024-01-01",
+    "months_on_book": 12,
+    "cohort_accounts": 285,
+    "cumulative_30plus_rate": 0.1018,
+    "cumulative_60plus_rate": 0.0421,
+    "cumulative_90plus_rate": 0.0211,
+    "cumulative_charge_off_rate": 0.0175
+  },
+  {
+    "origination_quarter": "2024-01-01",
+    "months_on_book": 13,
+    "cohort_accounts": 285,
+    "cumulative_30plus_rate": 0.1018,
+    "cumulative_60plus_rate": 0.0421,
+    "cumulative_90plus_rate": 0.0281,
+    "cumulative_charge_off_rate": 0.0175
+  },
+  {
+    "origination_quarter": "2024-01-01",
+    "months_on_book": 14,
+    "cohort_accounts": 285,
+    "cumulative_30plus_rate": 0.1158,
+    "cumulative_60plus_rate": 0.0421,
+    "cumulative_90plus_rate": 0.0281,
+    "cumulative_charge_off_rate": 0.0246
+  },
+  {
+    "origination_quarter": "2024-01-01",
+    "months_on_book": 15,
+    "cohort_accounts": 285,
+    "cumulative_30plus_rate": 0.1193,
+    "cumulative_60plus_rate": 0.0491,
+    "cumulative_90plus_rate": 0.0281,
+    "cumulative_charge_off_rate": 0.0246
+  },
+  {
+    "origination_quarter": "2024-01-01",
+    "months_on_book": 16,
+    "cohort_accounts": 285,
+    "cumulative_30plus_rate": 0.1333,
+    "cumulative_60plus_rate": 0.0526,
+    "cumulative_90plus_rate": 0.0281,
+    "cumulative_charge_off_rate": 0.0246
+  },
+  {
+    "origination_quarter": "2024-01-01",
+    "months_on_book": 17,
+    "cohort_accounts": 285,
+    "cumulative_30plus_rate": 0.1333,
+    "cumulative_60plus_rate": 0.0561,
+    "cumulative_90plus_rate": 0.0281,
+    "cumulative_charge_off_rate": 0.0246
+  },
+  {
+    "origination_quarter": "2024-04-01",
+    "months_on_book": 0,
+    "cohort_accounts": 344,
+    "cumulative_30plus_rate": 0.0,
+    "cumulative_60plus_rate": 0.0,
+    "cumulative_90plus_rate": 0.0,
+    "cumulative_charge_off_rate": 0.0
+  },
+  {
+    "origination_quarter": "2024-04-01",
+    "months_on_book": 1,
+    "cohort_accounts": 344,
+    "cumulative_30plus_rate": 0.0029,
+    "cumulative_60plus_rate": 0.0,
+    "cumulative_90plus_rate": 0.0,
+    "cumulative_charge_off_rate": 0.0
+  },
+  {
+    "origination_quarter": "2024-04-01",
+    "months_on_book": 2,
+    "cohort_accounts": 344,
+    "cumulative_30plus_rate": 0.0029,
+    "cumulative_60plus_rate": 0.0,
+    "cumulative_90plus_rate": 0.0,
+    "cumulative_charge_off_rate": 0.0
+  },
+  {
+    "origination_quarter": "2024-04-01",
+    "months_on_book": 3,
+    "cohort_accounts": 344,
+    "cumulative_30plus_rate": 0.0058,
+    "cumulative_60plus_rate": 0.0,
+    "cumulative_90plus_rate": 0.0,
+    "cumulative_charge_off_rate": 0.0
+  },
+  {
+    "origination_quarter": "2024-04-01",
+    "months_on_book": 4,
+    "cohort_accounts": 344,
+    "cumulative_30plus_rate": 0.0174,
+    "cumulative_60plus_rate": 0.0029,
+    "cumulative_90plus_rate": 0.0,
+    "cumulative_charge_off_rate": 0.0
+  },
+  {
+    "origination_quarter": "2024-04-01",
+    "months_on_book": 5,
+    "cohort_accounts": 344,
+    "cumulative_30plus_rate": 0.0203,
+    "cumulative_60plus_rate": 0.0087,
+    "cumulative_90plus_rate": 0.0029,
+    "cumulative_charge_off_rate": 0.0
+  },
+  {
+    "origination_quarter": "2024-04-01",
+    "months_on_book": 6,
+    "cohort_accounts": 344,
+    "cumulative_30plus_rate": 0.0262,
+    "cumulative_60plus_rate": 0.0087,
+    "cumulative_90plus_rate": 0.0029,
+    "cumulative_charge_off_rate": 0.0029
+  },
+  {
+    "origination_quarter": "2024-04-01",
+    "months_on_book": 7,
+    "cohort_accounts": 344,
+    "cumulative_30plus_rate": 0.0291,
+    "cumulative_60plus_rate": 0.0145,
+    "cumulative_90plus_rate": 0.0029,
+    "cumulative_charge_off_rate": 0.0029
+  },
+  {
+    "origination_quarter": "2024-04-01",
+    "months_on_book": 8,
+    "cohort_accounts": 344,
+    "cumulative_30plus_rate": 0.0378,
+    "cumulative_60plus_rate": 0.0174,
+    "cumulative_90plus_rate": 0.0116,
+    "cumulative_charge_off_rate": 0.0029
+  },
+  {
+    "origination_quarter": "2024-04-01",
+    "months_on_book": 9,
+    "cohort_accounts": 344,
+    "cumulative_30plus_rate": 0.0465,
+    "cumulative_60plus_rate": 0.0174,
+    "cumulative_90plus_rate": 0.0145,
+    "cumulative_charge_off_rate": 0.0087
+  },
+  {
+    "origination_quarter": "2024-04-01",
+    "months_on_book": 10,
+    "cohort_accounts": 344,
+    "cumulative_30plus_rate": 0.0552,
+    "cumulative_60plus_rate": 0.0291,
+    "cumulative_90plus_rate": 0.0145,
+    "cumulative_charge_off_rate": 0.0087
+  },
+  {
+    "origination_quarter": "2024-04-01",
+    "months_on_book": 11,
+    "cohort_accounts": 344,
+    "cumulative_30plus_rate": 0.0756,
+    "cumulative_60plus_rate": 0.032,
+    "cumulative_90plus_rate": 0.0174,
+    "cumulative_charge_off_rate": 0.0087
+  },
+  {
+    "origination_quarter": "2024-04-01",
+    "months_on_book": 12,
+    "cohort_accounts": 344,
+    "cumulative_30plus_rate": 0.0843,
+    "cumulative_60plus_rate": 0.0465,
+    "cumulative_90plus_rate": 0.0203,
+    "cumulative_charge_off_rate": 0.0116
+  },
+  {
+    "origination_quarter": "2024-04-01",
+    "months_on_book": 13,
+    "cohort_accounts": 344,
+    "cumulative_30plus_rate": 0.0872,
+    "cumulative_60plus_rate": 0.0465,
+    "cumulative_90plus_rate": 0.0233,
+    "cumulative_charge_off_rate": 0.0145
+  },
+  {
+    "origination_quarter": "2024-04-01",
+    "months_on_book": 14,
+    "cohort_accounts": 344,
+    "cumulative_30plus_rate": 0.0872,
+    "cumulative_60plus_rate": 0.0465,
+    "cumulative_90plus_rate": 0.0262,
+    "cumulative_charge_off_rate": 0.0174
+  },
+  {
+    "origination_quarter": "2024-07-01",
+    "months_on_book": 0,
+    "cohort_accounts": 376,
+    "cumulative_30plus_rate": 0.0,
+    "cumulative_60plus_rate": 0.0,
+    "cumulative_90plus_rate": 0.0,
+    "cumulative_charge_off_rate": 0.0
+  },
+  {
+    "origination_quarter": "2024-07-01",
+    "months_on_book": 1,
+    "cohort_accounts": 376,
+    "cumulative_30plus_rate": 0.008,
+    "cumulative_60plus_rate": 0.0,
+    "cumulative_90plus_rate": 0.0,
+    "cumulative_charge_off_rate": 0.0
+  },
+  {
+    "origination_quarter": "2024-07-01",
+    "months_on_book": 2,
+    "cohort_accounts": 376,
+    "cumulative_30plus_rate": 0.0106,
+    "cumulative_60plus_rate": 0.0,
+    "cumulative_90plus_rate": 0.0,
+    "cumulative_charge_off_rate": 0.0
+  },
+  {
+    "origination_quarter": "2024-07-01",
+    "months_on_book": 3,
+    "cohort_accounts": 376,
+    "cumulative_30plus_rate": 0.0186,
+    "cumulative_60plus_rate": 0.0053,
+    "cumulative_90plus_rate": 0.0,
+    "cumulative_charge_off_rate": 0.0
+  },
+  {
+    "origination_quarter": "2024-07-01",
+    "months_on_book": 4,
+    "cohort_accounts": 376,
+    "cumulative_30plus_rate": 0.0293,
+    "cumulative_60plus_rate": 0.0053,
+    "cumulative_90plus_rate": 0.0053,
+    "cumulative_charge_off_rate": 0.0
+  },
+  {
+    "origination_quarter": "2024-07-01",
+    "months_on_book": 5,
+    "cohort_accounts": 376,
+    "cumulative_30plus_rate": 0.0399,
+    "cumulative_60plus_rate": 0.016,
+    "cumulative_90plus_rate": 0.0053,
+    "cumulative_charge_off_rate": 0.0053
+  },
+  {
+    "origination_quarter": "2024-07-01",
+    "months_on_book": 6,
+    "cohort_accounts": 376,
+    "cumulative_30plus_rate": 0.0559,
+    "cumulative_60plus_rate": 0.0186,
+    "cumulative_90plus_rate": 0.0053,
+    "cumulative_charge_off_rate": 0.0053
+  },
+  {
+    "origination_quarter": "2024-07-01",
+    "months_on_book": 7,
+    "cohort_accounts": 376,
+    "cumulative_30plus_rate": 0.0691,
+    "cumulative_60plus_rate": 0.0266,
+    "cumulative_90plus_rate": 0.0133,
+    "cumulative_charge_off_rate": 0.0053
+  },
+  {
+    "origination_quarter": "2024-07-01",
+    "months_on_book": 8,
+    "cohort_accounts": 376,
+    "cumulative_30plus_rate": 0.0745,
+    "cumulative_60plus_rate": 0.0346,
+    "cumulative_90plus_rate": 0.0213,
+    "cumulative_charge_off_rate": 0.008
+  },
+  {
+    "origination_quarter": "2024-07-01",
+    "months_on_book": 9,
+    "cohort_accounts": 376,
+    "cumulative_30plus_rate": 0.0771,
+    "cumulative_60plus_rate": 0.0372,
+    "cumulative_90plus_rate": 0.0266,
+    "cumulative_charge_off_rate": 0.0133
+  },
+  {
+    "origination_quarter": "2024-07-01",
+    "months_on_book": 10,
+    "cohort_accounts": 376,
+    "cumulative_30plus_rate": 0.0771,
+    "cumulative_60plus_rate": 0.0372,
+    "cumulative_90plus_rate": 0.0293,
+    "cumulative_charge_off_rate": 0.016
+  },
+  {
+    "origination_quarter": "2024-07-01",
+    "months_on_book": 11,
+    "cohort_accounts": 376,
+    "cumulative_30plus_rate": 0.0771,
+    "cumulative_60plus_rate": 0.0372,
+    "cumulative_90plus_rate": 0.0293,
+    "cumulative_charge_off_rate": 0.0186
+  },
+  {
+    "origination_quarter": "2024-10-01",
+    "months_on_book": 0,
+    "cohort_accounts": 303,
+    "cumulative_30plus_rate": 0.0,
+    "cumulative_60plus_rate": 0.0,
+    "cumulative_90plus_rate": 0.0,
+    "cumulative_charge_off_rate": 0.0
+  },
+  {
+    "origination_quarter": "2024-10-01",
+    "months_on_book": 1,
+    "cohort_accounts": 303,
+    "cumulative_30plus_rate": 0.0033,
+    "cumulative_60plus_rate": 0.0,
+    "cumulative_90plus_rate": 0.0,
+    "cumulative_charge_off_rate": 0.0
+  },
+  {
+    "origination_quarter": "2024-10-01",
+    "months_on_book": 2,
+    "cohort_accounts": 303,
+    "cumulative_30plus_rate": 0.0033,
+    "cumulative_60plus_rate": 0.0,
+    "cumulative_90plus_rate": 0.0,
+    "cumulative_charge_off_rate": 0.0
+  },
+  {
+    "origination_quarter": "2024-10-01",
+    "months_on_book": 3,
+    "cohort_accounts": 303,
+    "cumulative_30plus_rate": 0.0198,
+    "cumulative_60plus_rate": 0.0,
+    "cumulative_90plus_rate": 0.0,
+    "cumulative_charge_off_rate": 0.0
+  },
+  {
+    "origination_quarter": "2024-10-01",
+    "months_on_book": 4,
+    "cohort_accounts": 303,
+    "cumulative_30plus_rate": 0.0396,
+    "cumulative_60plus_rate": 0.0099,
+    "cumulative_90plus_rate": 0.0,
+    "cumulative_charge_off_rate": 0.0
+  },
+  {
+    "origination_quarter": "2024-10-01",
+    "months_on_book": 5,
+    "cohort_accounts": 303,
+    "cumulative_30plus_rate": 0.0462,
+    "cumulative_60plus_rate": 0.0132,
+    "cumulative_90plus_rate": 0.0033,
+    "cumulative_charge_off_rate": 0.0
+  },
+  {
+    "origination_quarter": "2024-10-01",
+    "months_on_book": 6,
+    "cohort_accounts": 303,
+    "cumulative_30plus_rate": 0.0528,
+    "cumulative_60plus_rate": 0.0132,
+    "cumulative_90plus_rate": 0.0033,
+    "cumulative_charge_off_rate": 0.0
+  },
+  {
+    "origination_quarter": "2024-10-01",
+    "months_on_book": 7,
+    "cohort_accounts": 303,
+    "cumulative_30plus_rate": 0.0594,
+    "cumulative_60plus_rate": 0.0165,
+    "cumulative_90plus_rate": 0.0033,
+    "cumulative_charge_off_rate": 0.0
+  },
+  {
+    "origination_quarter": "2024-10-01",
+    "months_on_book": 8,
+    "cohort_accounts": 303,
+    "cumulative_30plus_rate": 0.0594,
+    "cumulative_60plus_rate": 0.0198,
+    "cumulative_90plus_rate": 0.0033,
+    "cumulative_charge_off_rate": 0.0033
+  }
+]
