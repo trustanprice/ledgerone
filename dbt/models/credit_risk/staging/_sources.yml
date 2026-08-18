@@ -1,0 +1,45 @@
+version: 2
+
+sources:
+  - name: credit_risk
+    description: >
+      Raw synthetic consumer credit/loan portfolio data produced by
+      src/generate_credit_risk_data.py and written to
+      data/raw/credit_risk/ as Parquet. A separate domain from the
+      e-commerce ledger (the `raw` source in dbt/models/staging/) — never
+      blended with it.
+    meta:
+      external_location: "{{ env_var('LEDGERONE_RAW_DIR', '../data/raw') }}/credit_risk/{name}.parquet"
+    tables:
+      - name: loan_originations
+        description: One row per account at origination.
+        columns:
+          - name: account_id
+            description: Unique identifier for the loan account.
+          - name: origination_date
+            description: Date the account was opened.
+          - name: origination_score_band
+            description: Credit score band at origination (Subprime, Near Prime, Prime, Super Prime).
+          - name: credit_limit
+            description: Assigned credit limit at origination, in USD.
+          - name: apr
+            description: Annual percentage rate assigned at origination.
+          - name: product_type
+            description: Private Label Card, Dual Card, or General Purpose Card.
+      - name: loan_performance
+        description: One row per account per month of active performance history.
+        columns:
+          - name: account_id
+            description: Loan account. Foreign key to loan_originations.
+          - name: performance_month
+            description: Calendar month of this performance snapshot.
+          - name: months_on_book
+            description: Months since origination (0 = origination month).
+          - name: statement_balance
+            description: Balance as of this month's statement.
+          - name: payment_amount
+            description: Payment made this month.
+          - name: delinquency_bucket
+            description: Current, 30-59 DPD, 60-89 DPD, 90-119 DPD, or 120+/Charged-Off.
+          - name: charge_off_flag
+            description: True in the single terminal month an account charges off. No further rows follow for that account.

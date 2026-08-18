@@ -278,6 +278,27 @@ fails.
 
 ---
 
+## Credit Risk Practice Module (outside the roadmap)
+
+`dbt/models/credit_risk/` is a separate, self-contained practice module —
+**not** a numbered phase, and it doesn't touch Phase 3 or Phase 4 above.
+It exists purely to build hands-on SQL/data-modeling reps for credit-risk /
+loss-forecasting analyst interviews: a second synthetic domain (a consumer
+credit/loan portfolio, generated the same seeded/deterministic way as the
+e-commerce ledger) with its own staging layer and marts for **vintage
+analysis** and **roll-rate / transition-matrix analysis**, plus a
+simplified illustration of how a transition-matrix roll-forward becomes a
+CECL-style reserve estimate.
+
+Full writeup — the data, the technique behind each mart, and how it maps to
+real CECL loss forecasting — is in
+**[dbt/models/credit_risk/README.md](dbt/models/credit_risk/README.md)**,
+written to double as interview review material. Module map:
+[dbt/models/credit_risk/AGENTS.md](dbt/models/credit_risk/AGENTS.md).
+Same stack, same `make all` — no separate command needed.
+
+---
+
 ## Why Synthetic Data?
 
 Real fintech transaction data is proprietary and unavailable publicly. LedgerOne uses **synthetic but realistic data** to accurately reflect how production systems behave while avoiding privacy and compliance issues.

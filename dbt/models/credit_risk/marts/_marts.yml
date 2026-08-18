@@ -1,0 +1,123 @@
+version: 2
+
+models:
+  - name: credit_risk__vintage_curves
+    description: >
+      Vintage curve mart: cumulative share of each origination cohort that
+      has EVER reached 30+/60+/90+ DPD or charged off, by months-on-book.
+      Answers "how is this quarter's cohort performing compared to prior
+      cohorts, at the same point in its life?" — the standard first question
+      in vintage analysis.
+    columns:
+      - name: vintage_curve_id
+        description: Deterministic surrogate key — hash of (origination_quarter, months_on_book).
+        data_tests:
+          - unique
+          - not_null
+      - name: origination_quarter
+        description: Vintage cohort — first day of the origination calendar quarter.
+        data_tests:
+          - not_null
+      - name: months_on_book
+        data_tests:
+          - not_null
+      - name: cohort_accounts
+        description: Total accounts originated in this cohort (the vintage curve's denominator).
+        data_tests:
+          - not_null
+      - name: cumulative_charge_off_rate
+        description: Share of the cohort that has charged off by this months-on-book.
+        data_tests:
+          - not_null
+
+  - name: credit_risk__roll_rate_transition_matrix
+    description: >
+      Roll-rate transition matrix mart: for each pair of consecutive
+      months, how many/what share of accounts moved from each delinquency
+      bucket to each other bucket. Answers "what's the probability an
+      account in bucket X this month is in bucket Y next month?" — the
+      core building block CECL loss-forecasting models are built on.
+    columns:
+      - name: transition_id
+        description: Deterministic surrogate key — hash of (transition_month, from_bucket, to_bucket).
+        data_tests:
+          - unique
+          - not_null
+      - name: transition_month
+        data_tests:
+          - not_null
+      - name: from_bucket
+        data_tests:
+          - not_null
+          - accepted_values:
+              values: ['Current', '30-59 DPD', '60-89 DPD', '90-119 DPD']
+      - name: to_bucket
+        data_tests:
+          - not_null
+          - accepted_values:
+              values: ['Current', '30-59 DPD', '60-89 DPD', '90-119 DPD', '120+/Charged-Off']
+      - name: account_count
+        data_tests:
+          - not_null
+      - name: transition_rate
+        description: account_count as a share of all accounts in from_bucket this transition_month. Rows for the same (transition_month, from_bucket) sum to 1.
+        data_tests:
+          - not_null
+
+  - name: credit_risk__cecl_reserve_estimate
+    description: >
+      CECL-style reserve mart: rolls the blended roll-rate transition
+      matrix forward {{ var('cecl_forecast_horizon_months') }} months from
+      each current delinquency bucket to estimate probability of charge-off
+      within the forecast horizon, then applies that to today's outstanding
+      balances to get an expected-loss reserve schedule by bucket. A
+      simplified illustration of the roll-rate/Markov-chain reserve method
+      — see dbt/models/credit_risk/README.md for what a production model
+      adds on top.
+    columns:
+      - name: current_bucket
+        description: Primary key — today's delinquency bucket (the reserve segment).
+        data_tests:
+          - unique
+          - not_null
+          - accepted_values:
+              values: ['Current', '30-59 DPD', '60-89 DPD', '90-119 DPD']
+      - name: account_count
+        data_tests:
+          - not_null
+      - name: outstanding_balance
+        data_tests:
+          - not_null
+      - name: prob_charge_off_within_horizon
+        description: Modeled probability an account starting in this bucket charges off within the forecast horizon.
+        data_tests:
+          - not_null
+      - name: expected_loss_amount
+        description: outstanding_balance * prob_charge_off_within_horizon.
+        data_tests:
+          - not_null
+      - name: reserve_rate
+        description: expected_loss_amount / outstanding_balance for this segment.
+        data_tests:
+          - not_null
+
+  - name: credit_risk__portfolio_summary_by_score_band
+    description: >
+      Supporting mart: current portfolio composition and performance cut by
+      origination credit score band. Answers "how does risk/return vary by
+      the segment we underwrote at origination?" — a routine cross-cut
+      analysts pull on demand.
+    columns:
+      - name: origination_score_band
+        description: Primary key.
+        data_tests:
+          - unique
+          - not_null
+          - accepted_values:
+              values: ['Subprime', 'Near Prime', 'Prime', 'Super Prime']
+      - name: account_count
+        data_tests:
+          - not_null
+      - name: lifetime_charge_off_rate
+        data_tests:
+          - not_null

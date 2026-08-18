@@ -1,0 +1,64 @@
+version: 2
+
+models:
+  - name: credit_risk__stg_loan_originations
+    description: One row per account at origination, typed and renamed 1:1 from the raw loan_originations source.
+    columns:
+      - name: account_id
+        description: Primary key.
+        data_tests:
+          - unique
+          - not_null
+      - name: origination_date
+        data_tests:
+          - not_null
+      - name: origination_quarter
+        description: First day of the calendar quarter origination_date falls in — the vintage cohort key.
+        data_tests:
+          - not_null
+      - name: origination_score_band
+        data_tests:
+          - not_null
+          - accepted_values:
+              values: ['Subprime', 'Near Prime', 'Prime', 'Super Prime']
+      - name: credit_limit
+        data_tests:
+          - not_null
+      - name: apr
+        data_tests:
+          - not_null
+      - name: product_type
+        data_tests:
+          - not_null
+          - accepted_values:
+              values: ['Private Label Card', 'Dual Card', 'General Purpose Card']
+
+  - name: credit_risk__stg_loan_performance
+    description: One row per account per month of active performance history.
+    columns:
+      - name: performance_id
+        description: Deterministic surrogate key — hash of (account_id, months_on_book).
+        data_tests:
+          - unique
+          - not_null
+      - name: account_id
+        description: Foreign key to credit_risk__stg_loan_originations.
+        data_tests:
+          - not_null
+          - relationships:
+              to: ref('credit_risk__stg_loan_originations')
+              field: account_id
+      - name: performance_month
+        data_tests:
+          - not_null
+      - name: months_on_book
+        data_tests:
+          - not_null
+      - name: delinquency_bucket
+        data_tests:
+          - not_null
+          - accepted_values:
+              values: ['Current', '30-59 DPD', '60-89 DPD', '90-119 DPD', '120+/Charged-Off']
+      - name: charge_off_flag
+        data_tests:
+          - not_null

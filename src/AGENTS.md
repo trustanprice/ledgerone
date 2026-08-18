@@ -4,17 +4,26 @@ Fleet: [../AGENTS.md](../AGENTS.md)
 
 ## Purpose
 
-Two standalone Python scripts. Neither orchestrates the warehouse build
+Three standalone Python scripts. None orchestrates the warehouse build
 anymore — that's dbt's job (see [../dbt/AGENTS.md](../dbt/AGENTS.md)).
 
 - **`generate_data.py`** — generates synthetic users, accounts, and financial
   events (DEPOSIT/PURCHASE/FEE/REFUND) and writes them to `data/raw/*.parquet`.
   Seeded (`SEED = 42`) for reproducibility. This is the *only* place
-  synthetic data is created; nothing downstream invents data.
-- **`generate_report.py`** — read-only. Queries the dbt reporting marts
-  (`main_marts.*` in the DuckDB file) and writes charts + a CSV to
-  `reports/`. **Assumes `dbt build` has already run** — it does not build or
-  refresh anything itself.
+  e-commerce-ledger synthetic data is created; nothing downstream invents data.
+- **`generate_credit_risk_data.py`** — a separate domain: generates a
+  synthetic consumer credit/loan portfolio (originations + monthly
+  performance, with delinquency evolving as a Markov chain) and writes it to
+  `data/raw/credit_risk/*.parquet`. Same seeded-for-reproducibility pattern
+  as `generate_data.py`, but do not merge or share code between the two —
+  see [../dbt/models/credit_risk/AGENTS.md](../dbt/models/credit_risk/AGENTS.md)
+  and its README for the full modeling writeup.
+- **`generate_report.py`** — read-only. Queries the e-commerce ledger's dbt
+  reporting marts (`main_marts.*` in the DuckDB file) and writes charts + a
+  CSV to `reports/`. **Assumes `dbt build` has already run** — it does not
+  build or refresh anything itself. (The credit-risk module's own
+  eyeball-only plots live in a notebook instead, per that module's scope —
+  see `notebooks/AGENTS.md`.)
 
 There used to be a third script, `run_pipeline.py` (ran `sql/*.sql` in
 order) and `ledger_validation.py` (hand-written integrity checks). Both were
@@ -35,6 +44,6 @@ recreate either — extend the dbt project instead.
 
 ## Connects to
 
-- Writes that `dbt/` reads (`data/raw/*.parquet`, via the `raw` source's
-  `external_location`).
+- Writes that `dbt/` reads (`data/raw/*.parquet` via the `raw` source, and
+  `data/raw/credit_risk/*.parquet` via the separate `credit_risk` source).
 - Reads what `dbt/` writes (`main_marts.*` tables) to produce `reports/`.

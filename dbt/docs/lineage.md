@@ -5,6 +5,12 @@ This is a static export of the same DAG the interactive `dbt docs serve` lineage
 regenerate it any time with `dbt docs generate` and re-run the extraction snippet in the repo README
 if models change.
 
+The project has two domains that share this one dbt project and DuckDB file
+but have **zero edges between them** (verified from `manifest.json`'s
+`parent_map` — see each diagram below).
+
+## E-commerce ledger
+
 ```mermaid
 graph LR
   subgraph Raw sources
@@ -56,4 +62,39 @@ graph LR
   dim_date --> avg_txn_value
   dim_date --> running_balance
   dim_customer --> top_customers
+```
+
+## Credit risk practice module (separate domain)
+
+```mermaid
+graph LR
+  subgraph Raw sources
+    loan_originations[credit_risk.loan_originations]
+    loan_performance[credit_risk.loan_performance]
+  end
+
+  subgraph Staging
+    cr_stg_originations[credit_risk__stg_loan_originations]
+    cr_stg_performance[credit_risk__stg_loan_performance]
+  end
+
+  subgraph Marts
+    vintage_curves[credit_risk__vintage_curves]
+    roll_rate[credit_risk__roll_rate_transition_matrix]
+    cecl_reserve[credit_risk__cecl_reserve_estimate]
+    portfolio_summary[credit_risk__portfolio_summary_by_score_band]
+  end
+
+  loan_originations --> cr_stg_originations
+  loan_performance --> cr_stg_performance
+
+  cr_stg_originations --> vintage_curves
+  cr_stg_performance --> vintage_curves
+
+  cr_stg_performance --> roll_rate
+  roll_rate --> cecl_reserve
+  cr_stg_performance --> cecl_reserve
+
+  cr_stg_originations --> portfolio_summary
+  cr_stg_performance --> portfolio_summary
 ```

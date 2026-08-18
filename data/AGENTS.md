@@ -12,6 +12,11 @@ you run the pipeline.
   by `src/generate_data.py`. Treated as the immutable source of truth for
   everything downstream (dbt sources read these files directly, with no
   load/seed step).
+- **`raw/credit_risk/`** — `loan_originations.parquet`, `loan_performance.parquet`,
+  written by `src/generate_credit_risk_data.py`. A separate synthetic
+  domain (consumer credit portfolio, not e-commerce) for the credit-risk
+  practice module — see
+  [../dbt/models/credit_risk/AGENTS.md](../dbt/models/credit_risk/AGENTS.md).
 - **`processed/ledgerone.duckdb`** — the entire warehouse, built by
   `dbt build` from `dbt/`. Contains the `main_staging` and `main_marts`
   schemas.

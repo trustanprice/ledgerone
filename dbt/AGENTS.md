@@ -7,7 +7,12 @@ Fleet: [../AGENTS.md](../AGENTS.md)
 The entire transformation, testing, and documentation layer for LedgerOne.
 Everything from "typed raw data" through "answers to business questions"
 lives here, as a single dbt project (`profile: ledgerone`, target `dev`,
-adapter `duckdb`).
+adapter `duckdb`) — for **both** domains it contains: the e-commerce
+ledger (`models/staging/`, `models/marts/core/`, `models/marts/reporting/`)
+and the credit-risk practice module (`models/credit_risk/`, its own
+[AGENTS.md](models/credit_risk/AGENTS.md)). They share this one project and
+one DuckDB file but never share models or joins — see the root
+[AGENTS.md](../AGENTS.md)'s "two domains, never blended" convention.
 
 ## Layout
 
@@ -24,7 +29,9 @@ models/marts/reporting/          — one model per business question
   top_customers_by_transaction_volume, avg_transaction_value_trend,
   account_running_balance
   _reporting.yml
-tests/                           — singular (custom) tests
+models/credit_risk/               — separate domain: credit-risk practice module
+  staging/, marts/, README.md, AGENTS.md — see models/credit_risk/AGENTS.md
+tests/                           — singular (custom) tests, both domains
 docs/lineage.md                  — static export of the dbt docs lineage graph
 target/, logs/                   — build artifacts, gitignored, don't hand-edit
 ```
@@ -71,7 +78,9 @@ express:
 
 When adding a new mart, add schema tests to its `_*.yml` at minimum
 (`not_null`/`unique` on the grain column); add a singular test only when the
-invariant can't be expressed declaratively.
+invariant can't be expressed declaratively. The credit-risk module follows
+the same rule — see its own singular test,
+`assert_roll_rate_transition_rates_sum_to_one.sql`.
 
 ## No dbt packages
 
@@ -97,3 +106,7 @@ snippet.
 
 - Reads `data/raw/*.parquet`, written by `src/generate_data.py`.
 - Writes `main_marts.*`, read by `src/generate_report.py`.
+- The credit-risk module reads `data/raw/credit_risk/*.parquet` (written by
+  `src/generate_credit_risk_data.py`) and is read only by
+  `notebooks/02_credit_risk_vintage_and_roll_rates.ipynb` — see
+  [models/credit_risk/AGENTS.md](models/credit_risk/AGENTS.md).

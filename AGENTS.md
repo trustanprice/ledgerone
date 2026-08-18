@@ -5,6 +5,13 @@ immutable financial events; dbt (on DuckDB) transforms them into a tested,
 documented star schema and a set of business-question marts; a small Python
 script turns those marts into charts/CSV a stakeholder could look at.
 
+A second, separate domain lives alongside the e-commerce ledger: a
+synthetic consumer credit/loan portfolio, built purely as SQL/data-modeling
+practice for credit-risk-analyst interviews (vintage analysis, roll-rate /
+transition-matrix modeling, a simplified CECL reserve estimate). It's not
+part of the numbered roadmap below and never joins to the ledger domain —
+see [dbt/models/credit_risk/AGENTS.md](dbt/models/credit_risk/AGENTS.md).
+
 Nothing here touches real money, a cloud warehouse, or an orchestrator —
 this is intentionally a local, single-command, dbt+DuckDB project.
 
@@ -30,6 +37,14 @@ src/generate_data.py
                     fact_transactions (star schema)      [dbt/models/marts/core]
                       -> reporting marts (business Qs)    [dbt/models/marts/reporting]
                            -> src/generate_report.py -> reports/ (charts + CSV)
+
+src/generate_credit_risk_data.py
+  -> data/raw/credit_risk/{loan_originations,loan_performance}.parquet
+       -> dbt sources -> credit_risk__stg_*                [dbt/models/credit_risk/staging]
+            -> credit_risk__vintage_curves,
+               credit_risk__roll_rate_transition_matrix,
+               credit_risk__cecl_reserve_estimate, etc.     [dbt/models/credit_risk/marts]
+                 -> notebooks/02_..._vintage_and_roll_rates.ipynb (eyeball only)
 ```
 
 `dbt test` runs schema tests (not_null/unique/relationships/accepted_values)
@@ -59,6 +74,7 @@ you `cd dbt` first).
 |---|---|---|
 | `src/` | Python: synthetic event generation, report/chart generation | [src/AGENTS.md](src/AGENTS.md) |
 | `dbt/` | The dbt project: staging, star schema, reporting marts, tests, docs | [dbt/AGENTS.md](dbt/AGENTS.md) |
+| `dbt/models/credit_risk/` | Credit-risk practice module: vintage analysis, roll-rate/transition matrix, CECL reserve estimate | [dbt/models/credit_risk/AGENTS.md](dbt/models/credit_risk/AGENTS.md) |
 | `notebooks/` | Ad hoc exploratory sanity checks, not part of the reproducible pipeline | [notebooks/AGENTS.md](notebooks/AGENTS.md) |
 | `data/` | Raw parquet + the DuckDB warehouse file. Gitignored, regenerated locally | [data/AGENTS.md](data/AGENTS.md) |
 | `reports/` | Output of `src/generate_report.py` — charts + CSV, committed as evidence | [reports/AGENTS.md](reports/AGENTS.md) |
@@ -74,3 +90,8 @@ you `cd dbt` first).
   in `src/generate_data.py`), so there is nothing here to protect.
 - **Out of scope**: investment/portfolio simulation and market data
   (README's Phase 4) are explicitly not being built. Don't add them.
+- **Two domains, never blended**: the e-commerce ledger and the credit-risk
+  practice module are separate synthetic datasets with separate raw
+  folders (`data/raw/` vs `data/raw/credit_risk/`) and separate model
+  prefixes (`stg_*`/`dim_*`/`fact_*` vs `credit_risk__*`). Don't join
+  across them or reuse one domain's generator/models for the other.

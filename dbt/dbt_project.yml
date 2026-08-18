@@ -14,6 +14,9 @@ clean-targets:
   - "target"
   - "dbt_packages"
 
+vars:
+  cecl_forecast_horizon_months: 12
+
 models:
   ledgerone:
     staging:
@@ -24,5 +27,12 @@ models:
         +materialized: table
         +schema: marts
       reporting:
+        +materialized: table
+        +schema: marts
+    credit_risk:
+      staging:
+        +materialized: view
+        +schema: staging
+      marts:
         +materialized: table
         +schema: marts

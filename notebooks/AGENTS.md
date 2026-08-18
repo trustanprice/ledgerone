@@ -15,6 +15,13 @@ useful, it belongs in `dbt/` as a schema test or singular test
   (`main_staging.stg_ledger_entries`) row count matches. The last cell
   assumes `dbt build` has already run — it reads the DuckDB file read-only
   rather than building anything itself.
+- **`02_credit_risk_vintage_and_roll_rates.ipynb`** — plots vintage curves
+  (cumulative charge-off rate by cohort x months-on-book), the roll-rate
+  transition matrix as a heatmap, and the CECL-style reserve estimate, all
+  read from `main_marts.credit_risk__*`. This is the credit-risk module's
+  entire "visual" surface, by design — see
+  [../dbt/models/credit_risk/AGENTS.md](../dbt/models/credit_risk/AGENTS.md):
+  no dashboard app, a notebook is enough.
 
 ## Conventions
 
@@ -28,3 +35,6 @@ useful, it belongs in `dbt/` as a schema test or singular test
 
 - Reads `data/raw/*.parquet` (written by `src/generate_data.py`) and
   `data/processed/ledgerone.duckdb` (written by `dbt build`).
+- `02_credit_risk_vintage_and_roll_rates.ipynb` additionally depends on
+  `main_marts.credit_risk__*`, built from `data/raw/credit_risk/*.parquet`
+  (written by `src/generate_credit_risk_data.py`).
