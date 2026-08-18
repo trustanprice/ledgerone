@@ -12,12 +12,16 @@ transition-matrix modeling, a simplified CECL reserve estimate). It's not
 part of the numbered roadmap below and never joins to the ledger domain —
 see [dbt/models/credit_risk/AGENTS.md](dbt/models/credit_risk/AGENTS.md).
 
-A third piece, `apps/walkthrough/`, is a static React site that turns the
-credit-risk module into a scroll-driven visual walkthrough — a portfolio
-artifact, not a dashboard app, and not part of the numbered roadmap either.
-It's a pure read-only consumer of static JSON exported from the credit-risk
-marts; it never queries DuckDB directly and never modifies dbt. See
-[apps/walkthrough/AGENTS.md](apps/walkthrough/AGENTS.md).
+A third piece, `apps/walkthrough/`, is a static, multi-tab React site
+covering the credit-risk module from four angles behind one nav: a
+teaching walkthrough (the original scroll-driven scenes), a data-
+engineering reference (dbt lineage, SQL, data dictionary), a forecasting
+dashboard (the same charts, reference mode), and an infrastructure/
+architecture writeup (static content, no real cloud calls). A portfolio
+artifact, not a dashboard app, and not part of the numbered roadmap
+either. It's a pure read-only consumer of static JSON exported from the
+credit-risk marts; it never queries DuckDB directly and never modifies
+dbt. See [apps/walkthrough/AGENTS.md](apps/walkthrough/AGENTS.md).
 
 Nothing here touches real money, a cloud warehouse, or an orchestrator —
 this is intentionally a local, single-command, dbt+DuckDB project (the one
@@ -95,7 +99,7 @@ you `cd dbt` first).
 | `notebooks/` | Ad hoc exploratory sanity checks, not part of the reproducible pipeline | [notebooks/AGENTS.md](notebooks/AGENTS.md) |
 | `data/` | Raw parquet + the DuckDB warehouse file. Gitignored, regenerated locally | [data/AGENTS.md](data/AGENTS.md) |
 | `reports/` | Output of `src/generate_report.py` — charts + CSV, committed as evidence | [reports/AGENTS.md](reports/AGENTS.md) |
-| `apps/walkthrough/` | Static React site: scroll-driven walkthrough of the credit-risk module, no backend | [apps/walkthrough/AGENTS.md](apps/walkthrough/AGENTS.md) |
+| `apps/walkthrough/` | Static multi-tab React site: teaching walkthrough + data-eng/forecasting/infra reference tabs, no backend | [apps/walkthrough/AGENTS.md](apps/walkthrough/AGENTS.md) |
 
 ## Conventions that span the fleet
 

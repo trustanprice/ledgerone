@@ -4,18 +4,35 @@ Fleet: [../../AGENTS.md](../../AGENTS.md)
 
 ## Purpose
 
-A static React site: a scroll-driven "day in the life of a credit risk
-analyst" walkthrough of the credit-risk practice module
-([dbt/models/credit_risk/](../../dbt/models/credit_risk/)) — 5 scenes,
-each a pinned visualization beside scrolling narrative text. Built as a
-portfolio/interview-review artifact, not a dashboard app and not part of
-the numbered roadmap's Phase 3 (BI dashboards) — see the root AGENTS.md.
+A static, multi-tab React site covering the credit-risk practice module
+([dbt/models/credit_risk/](../../dbt/models/credit_risk/)) from four
+angles behind one persistent top nav: **Overview** (landing), **Day in
+the Life** (the original 5-scene scrollytelling walkthrough — teaching-
+oriented), **Database & Data Engineering** (dbt lineage, SQL, data
+dictionary, test coverage — reference-oriented), **Forecasting & Data
+Science** (the same charts as the walkthrough, reused in reference mode —
+all cohorts visible, no scene-by-scene reveal), and **Infrastructure &
+Productionization** (a static architecture writeup, explicitly not a live
+deployment). Built as a portfolio/interview-review artifact, not a
+dashboard app and not part of the numbered roadmap's Phase 3 (BI
+dashboards) — see the root AGENTS.md.
 
-**This app has no backend and never queries DuckDB.** It's a pure
+**Important tonal split, don't blur it**: Day in the Life teaches concepts
+to someone new to them (step-by-step narrative). Every other tab is a
+dense reference for someone who already knows the domain (captions and
+definitions, not explanations, with everything visible at once). If a new
+addition to a reference tab starts reading like a tutorial, or the
+walkthrough starts reading like a spec sheet, that's a sign it's in the
+wrong tab.
+
+**This app has no backend and never queries DuckDB, and nothing on the
+Infrastructure tab talks to AWS or any cloud provider.** It's a pure
 consumer of static JSON exported once (or whenever the credit-risk marts
-change) by `src/export_credit_risk_walkthrough_data.py` at the repo root.
-It does not modify the dbt project, the credit-risk module, or its data —
-read-only, one direction, source of truth stays in `dbt/`.
+change) by `src/export_credit_risk_walkthrough_data.py` at the repo root;
+the Data Engineering and Infrastructure tabs are static reference content
+with no data dependency at all. It does not modify the dbt project, the
+credit-risk module, or its data — read-only, one direction, source of
+truth stays in `dbt/`.
 
 ## Layout
 
@@ -23,46 +40,96 @@ read-only, one direction, source of truth stays in `dbt/`.
 public/data/*.json        — static data, written by the export script (not hand-edited)
 src/
   types.ts                 — TS types mirroring the JSON shape (kept in sync by hand)
-  theme.ts                 — the one shared color system: cohort palette + sequential ramp
+  theme.ts                 — the one shared color system: cohort palette + sequential ramp + chart chrome
+  tabConfig.ts              — TabId union + nav labels (the tab list itself)
   hooks/
     useJsonData.ts          — fetch(public/data/*.json) at runtime
-    useScrollySteps.ts       — IntersectionObserver-driven "active narrative step"
+    useCreditRiskData.ts     — fetches all 6 datasets; shared by Walkthrough + Forecasting tabs
+    useScrollySteps.ts       — IntersectionObserver-driven "active narrative step" (walkthrough only)
+    useHashTab.ts            — URL-hash-based tab state, no router library
   components/
-    Scene.tsx                — shared layout: sticky visual panel + narrative column
-    charts/                  — one component per chart type, all sharing theme.ts
+    Nav.tsx                  — persistent top nav, one button per tab
+    GlassPanel.tsx            — the one reusable glass-surface wrapper
+    Scene.tsx                 — walkthrough-only layout: sticky visual panel + narrative column
+    SqlBlock.tsx               — ~50-line regex SQL tokenizer + syntax-highlighted <pre>
+    FlowDiagram.tsx             — generic box-and-arrow diagram (dbt lineage AND infra architecture)
+    DataTable.tsx                — generic reference table
+    charts/                       — one component per chart type, all sharing theme.ts;
+                                     reused as-is (no scrolly wrapper) by the Forecasting tab
+  content/
+    dataEngineeringContent.ts     — SQL snippets, data dictionary, test-coverage counts (static)
+    infrastructureContent.ts      — architecture diagram data + CI/CD writeup copy (static)
   scenes/
-    Scene1Morning.tsx ... Scene5SoWhat.tsx
-  App.tsx                   — fetches all datasets, renders hero + 5 scenes + footer
+    Scene1Morning.tsx ... Scene5SoWhat.tsx   — walkthrough-tab-only, content unchanged
+  tabs/
+    OverviewTab.tsx, WalkthroughTab.tsx, DataEngineeringTab.tsx,
+    ForecastingTab.tsx, InfrastructureTab.tsx
+  App.tsx                   — shell: <Nav/> + whichever tab is active (useHashTab)
 ```
 
 ## Conventions
 
-- **Static data only.** If a scene needs a number that isn't in
+- **Static data only.** If a tab needs a number that isn't in
   `public/data/*.json`, add it to the export script (mirroring an existing
   mart's query, or a light aggregation over a staging table) — never add a
-  live DB connection or an API route to this app.
-- **One shared visual system** (`theme.ts`): a fixed 12-color categorical
-  palette for vintage cohorts (assigned by index, never reassigned), and a
-  single-hue sequential blue ramp for every magnitude encoding (the
-  roll-rate heatmap, the bucket-distribution bars). Don't introduce a
-  second color scheme for a new chart — reuse `theme.ts`.
-- **Scrollytelling via `useScrollySteps`**, not a dedicated library —
-  IntersectionObserver with a centered `rootMargin` tracks which narrative
-  paragraph is active; each scene's `renderVisual(activeStep)` maps that
-  index to a visualization state (which chart, what's highlighted). See
-  the hook's docstring for why a library wasn't worth it here.
-- **CSS Grid/Flex `min-width: 0` discipline**: grid/flex children default
-  to `min-width: auto`, which refuses to shrink below their content's
-  min-content width — this genuinely broke the mobile layout once (see
-  git history / the walkthrough build notes) until `minmax(0, 1fr)` and
-  `min-width: 0` were added throughout. Keep that pattern when adding new
-  grid/flex layouts here, especially anything with long unbreakable
-  tokens (`<code>`, long labels).
+  live DB connection or an API route to this app. The Data Engineering and
+  Infrastructure tabs' content (`src/content/*.ts`) is static and hand-
+  written by design — it documents the dbt project and a hypothetical
+  architecture, it doesn't need to be data-driven.
+- **One shared visual system** (`theme.ts` + `.glass-panel` in
+  `index.css`): a fixed 12-color categorical palette for vintage cohorts
+  (assigned by index, never reassigned), a single-hue sequential ramp for
+  every magnitude encoding (roll-rate heatmap, bucket-distribution bars,
+  originations-by-band bars) — re-anchored for dark surfaces (dim → vivid,
+  not light → dark; see `sequentialBlue`'s docstring for why), and shared
+  Recharts chrome tokens (`CHART_CHROME`) so axis/gridline colors don't
+  drift per-chart. Don't introduce a second color system or hardcode a hex
+  value in a chart component — extend `theme.ts`.
+- **Reference tabs reuse the walkthrough's chart components directly** —
+  `VintageCurvesChart`, `RollRateHeatmap`, `ReserveForecastChart` all
+  accept a "no highlight" state (`null` / `'none'`) that renders them as
+  a plain reference view. Don't fork a second copy of a chart component
+  for a reference tab; if it needs a genuinely different capability, add
+  a prop.
+- **Scrollytelling via `useScrollySteps`** (Day in the Life only, not the
+  reference tabs) — IntersectionObserver with a centered `rootMargin`
+  tracks which narrative paragraph is active; each scene's
+  `renderVisual(activeStep)` maps that index to a visualization state.
+- **Tab state via `useHashTab`**, not a router library — see README's
+  "Routing" section for why (works identically on both deploy targets
+  with zero server config).
+- **CSS Grid/Flex `min-width: 0` discipline — this bit the app twice.**
+  Grid/flex children default to `min-width: auto`, which refuses to
+  shrink below their content's min-content width, EVEN IF a descendant
+  has `overflow-x: auto`: an inner scroll container does not save an
+  outer grid/flex item from this unless every item in the ancestor chain
+  also has `min-width: 0`. First hit: `.nav-tabs` (the tab bar itself)
+  pushing the page wider than the viewport on mobile. Second hit, same
+  session: `.ref-panel` (a `.glass-panel` grid item in `.ref-grid`)
+  refusing to shrink below the lineage diagram's intrinsic width, again
+  only on mobile — fixed by adding `min-width: 0` to `.glass-panel`
+  itself so every panel gets it automatically. When adding a new
+  grid/flex layout here, default to `minmax(0, 1fr)` for grid tracks and
+  `min-width: 0` on grid/flex items from the start, don't wait to
+  discover the bug on a narrow viewport.
+- **Long unbroken tokens need `overflow-wrap: break-word` explicitly.**
+  Normal CSS text wrapping only breaks at spaces/hyphens — a single long
+  identifier with underscores (a dbt test name, a SQL keyword run) has no
+  natural break point and will overflow its box even inside a properly
+  `min-width: 0` container, since the box can shrink but the *text run*
+  inside it still won't wrap mid-word without this. Applied to
+  `.stat-sub`, `.section-desc`, `.ref-panel p` — extend the same pattern
+  to any new prose-in-a-narrow-box element.
 - **A `<p>` that's `display: flex` for vertical centering needs exactly
   one child.** `Scene.tsx` wraps each narrative step's rich content
   (text + `<strong>`/`<code>`) in a single `<span>` — without that, each
   text run becomes its own flex item and normal text wrapping breaks. See
   the comment in `Scene.tsx` if this pattern is reused elsewhere.
+- **Every layout bug above was caught by actually screenshotting the
+  built site in a headless browser at desktop AND mobile viewports**, not
+  by reading the CSS. `tsc -b && vite build` passing proves nothing about
+  whether a grid overflows on a 390px viewport — verify visually before
+  calling a UI change done.
 
 ## Running it
 
