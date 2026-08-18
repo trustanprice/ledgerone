@@ -107,20 +107,28 @@ npm run preview   # serve that build locally
 
 ## Deployment / hosting
 
-Static build deployed to **GitHub Pages** via a GitHub Actions workflow
-(`.github/workflows/deploy-walkthrough.yml` at the repo root): on every
-push to `main` that touches `apps/walkthrough/**`, it builds the app and
-publishes `dist/` to Pages. Live at:
+Two live deploy targets, both from the same build:
 
-**https://trustanprice.github.io/ledgerone/walkthrough/**
+- **Vercel** — root directory set to `apps/walkthrough` in the Vercel
+  project settings; auto-detects Vite (`npm run build`, output `dist`).
+  Served from the root of its own domain, so `base` is left at its
+  default (`"/"`).
+- **GitHub Pages** — a GitHub Actions workflow
+  (`.github/workflows/deploy-walkthrough.yml` at the repo root) builds
+  and publishes `dist/` on every push to `main` that touches
+  `apps/walkthrough/**`. Live at
+  **https://trustanprice.github.io/ledgerone/walkthrough/**.
 
-`vite.config.ts`'s `base: '/ledgerone/walkthrough/'` matches that
-subpath — if this ever moves to a different host or path, update `base`
-to match or every asset/data URL will 404.
-
-To deploy manually instead: `npm run build`, then publish the `dist/`
-folder's contents to any static host (Netlify, Vercel, S3+CloudFront,
-etc.) — there's nothing GitHub-Pages-specific about the build itself.
+The one thing that has to stay correct across both: **`base` must match
+where the app is actually served from, or the page renders blank** (every
+asset and `public/data/*.json` fetch 404s, with no error beyond failed
+network requests — check the browser Network tab first if this ever
+happens after a deploy). `vite.config.ts` defaults `base` to `"/"`
+(correct for Vercel and local dev); the GitHub Actions workflow overrides
+it to `/ledgerone/walkthrough/` via the `VITE_BASE_PATH` env var at build
+time, since Pages serves this as a subpath project site. If you add a
+third static host that serves from a subpath, set `VITE_BASE_PATH` for
+that build the same way — don't hardcode a new default.
 
 ## Judgment calls / known limitations
 

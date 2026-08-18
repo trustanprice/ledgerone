@@ -10,8 +10,10 @@ interface JsonDataState<T> {
  * Fetches a static JSON file from public/data/ (written by
  * src/export_credit_risk_walkthrough_data.py at the repo root — this app
  * never queries DuckDB directly, see AGENTS.md). Uses import.meta.env.BASE_URL
- * so it resolves correctly both in local dev (base "/") and the deployed
- * GitHub Pages subpath (base "/ledgerone/walkthrough/").
+ * so it resolves correctly regardless of deploy target — root-relative
+ * ("/") on Vercel/local dev, or the GitHub Pages subpath
+ * ("/ledgerone/walkthrough/") when VITE_BASE_PATH is set at build time.
+ * See vite.config.ts.
  */
 export function useJsonData<T>(filename: string): JsonDataState<T> {
   const [state, setState] = useState<JsonDataState<T>>({ data: null, loading: true, error: null })

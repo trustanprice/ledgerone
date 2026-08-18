@@ -86,12 +86,19 @@ mart's logic on purpose — see that script's docstring) are in
 
 ## Hosting
 
-Deployed as a static site via GitHub Pages (GitHub Actions workflow at
-`../../.github/workflows/deploy-walkthrough.yml`), at
-`https://trustanprice.github.io/ledgerone/walkthrough/`. No server, no
-database, no auth — "hosted" means "a static build is deployed and
-reachable by URL," consistent with the rest of the project's
-no-orchestration, no-cloud-services constraint. See README.md for the
+Deployed as a static site to two targets: **Vercel** (root directory =
+`apps/walkthrough`, served from its own domain root) and **GitHub Pages**
+(GitHub Actions workflow at `../../.github/workflows/deploy-walkthrough.yml`,
+served under `https://trustanprice.github.io/ledgerone/walkthrough/`). No
+server, no database, no auth — "hosted" means "a static build is deployed
+and reachable by URL," consistent with the rest of the project's
+no-orchestration, no-cloud-services constraint.
+
+`vite.config.ts`'s `base` defaults to `"/"` (Vercel/local dev) and is
+overridden to `/ledgerone/walkthrough/` only when the GitHub Actions build
+sets `VITE_BASE_PATH` — get this wrong for whatever host is actually
+serving the build and the page renders blank (every asset/data fetch
+404s). See README.md for the
 deploy trigger and how to redeploy.
 
 ## Connects to

@@ -42,6 +42,8 @@ jobs:
       - name: Build
         working-directory: apps/walkthrough
         run: npm run build
+        env:
+          VITE_BASE_PATH: /ledgerone/walkthrough/
 
       - uses: actions/upload-pages-artifact@v3
         with:
