@@ -12,8 +12,17 @@ transition-matrix modeling, a simplified CECL reserve estimate). It's not
 part of the numbered roadmap below and never joins to the ledger domain —
 see [dbt/models/credit_risk/AGENTS.md](dbt/models/credit_risk/AGENTS.md).
 
+A third piece, `apps/walkthrough/`, is a static React site that turns the
+credit-risk module into a scroll-driven visual walkthrough — a portfolio
+artifact, not a dashboard app, and not part of the numbered roadmap either.
+It's a pure read-only consumer of static JSON exported from the credit-risk
+marts; it never queries DuckDB directly and never modifies dbt. See
+[apps/walkthrough/AGENTS.md](apps/walkthrough/AGENTS.md).
+
 Nothing here touches real money, a cloud warehouse, or an orchestrator —
-this is intentionally a local, single-command, dbt+DuckDB project.
+this is intentionally a local, single-command, dbt+DuckDB project (the one
+exception is `apps/walkthrough/`, a static site with no backend of its own
+— see "Out of scope" below for what that does and doesn't permit).
 
 ## Stack
 
@@ -25,6 +34,9 @@ this is intentionally a local, single-command, dbt+DuckDB project.
   DuckDB SQL or dbt-core's built-in cross-db macros (e.g. `dbt.hash()`).
 - **Parquet** — raw event storage (`data/raw/`).
 - **Matplotlib** — the one BI-adjacent tool; no BI product is used.
+- **React + Vite + TypeScript** (`apps/walkthrough/` only) — a static
+  site, not a general frontend stack for the project. See its own
+  AGENTS.md before adding any other JS/TS code elsewhere in the repo.
 
 ## Data flow
 
@@ -45,6 +57,11 @@ src/generate_credit_risk_data.py
                credit_risk__roll_rate_transition_matrix,
                credit_risk__cecl_reserve_estimate, etc.     [dbt/models/credit_risk/marts]
                  -> notebooks/02_..._vintage_and_roll_rates.ipynb (eyeball only)
+
+src/export_credit_risk_walkthrough_data.py
+  (reads main_marts.credit_risk__* / main_staging.credit_risk__stg_*)
+       -> apps/walkthrough/public/data/*.json (static, checked in)
+            -> apps/walkthrough (React/Vite) -> deployed static site
 ```
 
 `dbt test` runs schema tests (not_null/unique/relationships/accepted_values)
@@ -78,6 +95,7 @@ you `cd dbt` first).
 | `notebooks/` | Ad hoc exploratory sanity checks, not part of the reproducible pipeline | [notebooks/AGENTS.md](notebooks/AGENTS.md) |
 | `data/` | Raw parquet + the DuckDB warehouse file. Gitignored, regenerated locally | [data/AGENTS.md](data/AGENTS.md) |
 | `reports/` | Output of `src/generate_report.py` — charts + CSV, committed as evidence | [reports/AGENTS.md](reports/AGENTS.md) |
+| `apps/walkthrough/` | Static React site: scroll-driven walkthrough of the credit-risk module, no backend | [apps/walkthrough/AGENTS.md](apps/walkthrough/AGENTS.md) |
 
 ## Conventions that span the fleet
 
@@ -90,6 +108,10 @@ you `cd dbt` first).
   in `src/generate_data.py`), so there is nothing here to protect.
 - **Out of scope**: investment/portfolio simulation and market data
   (README's Phase 4) are explicitly not being built. Don't add them.
+  Same for a live BI dashboard app (README's Phase 3) —
+  `apps/walkthrough/` is a static, pre-computed-data site, not that; don't
+  extend it into one, and don't add a database connection, API route, or
+  auth to it.
 - **Two domains, never blended**: the e-commerce ledger and the credit-risk
   practice module are separate synthetic datasets with separate raw
   folders (`data/raw/` vs `data/raw/credit_risk/`) and separate model

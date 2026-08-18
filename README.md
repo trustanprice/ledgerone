@@ -297,6 +297,20 @@ written to double as interview review material. Module map:
 [dbt/models/credit_risk/AGENTS.md](dbt/models/credit_risk/AGENTS.md).
 Same stack, same `make all` — no separate command needed.
 
+### "A day in the life" walkthrough
+
+`apps/walkthrough/` is a static React scrollytelling site built on top of
+the credit risk module above — 5 scenes walking through vintage curves,
+the roll-rate transition matrix, and the CECL reserve forecast, each a
+pinned chart beside scrolling narrative text. No backend: it reads static
+JSON exported once from the dbt marts
+(`src/export_credit_risk_walkthrough_data.py`), and deploys as a plain
+static site — consistent with the rest of the project's no-orchestration,
+no-cloud-services constraint. Live at
+**https://trustanprice.github.io/ledgerone/walkthrough/**; see
+[apps/walkthrough/README.md](apps/walkthrough/README.md) for how to run it
+locally and regenerate its data.
+
 ---
 
 ## Why Synthetic Data?
