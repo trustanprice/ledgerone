@@ -1,0 +1,52 @@
+version: 2
+
+sources:
+  - name: raw
+    description: >
+      Raw, immutable synthetic event data produced by src/generate_data.py and
+      written to data/raw/ as Parquet. Treated as the source of truth — never
+      modified by any downstream model.
+    meta:
+      external_location: "{{ env_var('LEDGERONE_RAW_DIR', '../data/raw') }}/{name}.parquet"
+    tables:
+      - name: events
+        description: One row per financial event (deposit, purchase, fee, refund).
+        columns:
+          - name: event_id
+            description: Unique identifier for the event.
+          - name: event_ts
+            description: Timestamp the event occurred.
+          - name: user_id
+            description: User associated with the event.
+          - name: account_id
+            description: Account impacted by the event.
+          - name: event_type
+            description: DEPOSIT, PURCHASE, FEE, or REFUND.
+          - name: direction
+            description: CREDIT or DEBIT.
+          - name: amount
+            description: Positive numeric amount.
+          - name: currency
+            description: ISO currency code.
+          - name: reference_id
+            description: Links a FEE or REFUND back to the PURCHASE event it belongs to.
+      - name: users
+        description: One row per synthetic user.
+        columns:
+          - name: user_id
+            description: Unique identifier for the user.
+          - name: signup_date
+            description: Date/time the user signed up.
+          - name: user_type
+            description: Synthetic persona (spender, saver, investor) used to shape event generation.
+      - name: accounts
+        description: One row per account (one CASH account per user in the MVP).
+        columns:
+          - name: account_id
+            description: Unique identifier for the account.
+          - name: user_id
+            description: Owning user.
+          - name: account_type
+            description: Type of account. Only CASH exists in the MVP.
+          - name: currency
+            description: ISO currency code for the account.

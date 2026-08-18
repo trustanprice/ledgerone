@@ -1,0 +1,64 @@
+version: 2
+
+models:
+  - name: monthly_revenue_and_refund_rate
+    description: >
+      One row per month: gross purchase revenue, refunds, fee revenue, net
+      revenue, and refund rate (refunds / gross revenue). Answers "how much
+      did we make, and how much of it came back?"
+    columns:
+      - name: month_start
+        description: First day of the calendar month.
+        data_tests:
+          - unique
+          - not_null
+
+  - name: net_payout_by_period
+    description: >
+      One row per month: total credits, total debits, and net cash movement
+      across all accounts. Answers "how much cash actually moved through the
+      platform?" — a cash-flow view, distinct from the revenue view above.
+    columns:
+      - name: month_start
+        description: First day of the calendar month.
+        data_tests:
+          - unique
+          - not_null
+
+  - name: top_customers_by_transaction_volume
+    description: >
+      One row per customer with at least one purchase, ranked by total
+      purchase amount. Answers "who are our highest-value customers?"
+    columns:
+      - name: customer_key
+        description: Foreign key to dim_customer.
+        data_tests:
+          - unique
+          - not_null
+
+  - name: avg_transaction_value_trend
+    description: >
+      One row per month: purchase count and average purchase amount.
+      Answers "is average order size trending up or down?"
+    columns:
+      - name: month_start
+        description: First day of the calendar month.
+        data_tests:
+          - unique
+          - not_null
+
+  - name: account_running_balance
+    description: >
+      One row per account per active day, with a running balance computed
+      as a cumulative sum of signed transaction amounts. Replaces the old
+      sql/daily_account_balances.sql script. Answers "what did this
+      account's balance look like over time?"
+    columns:
+      - name: account_key
+        description: Foreign key to dim_account.
+        data_tests:
+          - not_null
+      - name: date_day
+        description: Calendar day of the balance snapshot.
+        data_tests:
+          - not_null

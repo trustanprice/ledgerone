@@ -1,0 +1,100 @@
+version: 2
+
+models:
+  - name: dim_date
+    description: Calendar dimension, one row per day, spanning the full range of ledger activity.
+    columns:
+      - name: date_key
+        description: Primary key — integer YYYYMMDD surrogate key.
+        data_tests:
+          - unique
+          - not_null
+      - name: date_day
+        description: The calendar date.
+        data_tests:
+          - unique
+          - not_null
+
+  - name: dim_customer
+    description: One row per user/customer.
+    columns:
+      - name: customer_key
+        description: Primary key — same value as user_id.
+        data_tests:
+          - unique
+          - not_null
+      - name: user_type
+        description: Synthetic user persona.
+        data_tests:
+          - not_null
+          - accepted_values:
+              values: ['spender', 'saver', 'investor']
+
+  - name: dim_account
+    description: One row per account.
+    columns:
+      - name: account_key
+        description: Primary key — same value as account_id.
+        data_tests:
+          - unique
+          - not_null
+      - name: customer_key
+        description: Owning customer. Foreign key to dim_customer.
+        data_tests:
+          - not_null
+          - relationships:
+              to: ref('dim_customer')
+              field: customer_key
+
+  - name: fact_transactions
+    description: >
+      Fact table at one row per financial event / ledger posting. Grain
+      matches stg_ledger_entries; adds foreign keys to the date, customer
+      and account dimensions.
+    columns:
+      - name: ledger_entry_id
+        description: Primary key.
+        data_tests:
+          - unique
+          - not_null
+      - name: date_key
+        description: Foreign key to dim_date.
+        data_tests:
+          - not_null
+          - relationships:
+              to: ref('dim_date')
+              field: date_key
+      - name: customer_key
+        description: Foreign key to dim_customer.
+        data_tests:
+          - not_null
+          - relationships:
+              to: ref('dim_customer')
+              field: customer_key
+      - name: account_key
+        description: Foreign key to dim_account.
+        data_tests:
+          - not_null
+          - relationships:
+              to: ref('dim_account')
+              field: account_key
+      - name: event_type
+        description: The kind of financial event this posting came from.
+        data_tests:
+          - not_null
+          - accepted_values:
+              values: ['DEPOSIT', 'PURCHASE', 'FEE', 'REFUND']
+      - name: posting_type
+        description: CREDIT or DEBIT.
+        data_tests:
+          - not_null
+          - accepted_values:
+              values: ['CREDIT', 'DEBIT']
+      - name: amount
+        description: Positive posting amount.
+        data_tests:
+          - not_null
+      - name: signed_amount
+        description: amount with CREDIT/DEBIT sign applied — sums directly to net cash movement.
+        data_tests:
+          - not_null

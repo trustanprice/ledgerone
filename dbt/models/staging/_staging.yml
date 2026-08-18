@@ -1,0 +1,117 @@
+version: 2
+
+models:
+  - name: stg_users
+    description: One row per synthetic user, typed and renamed 1:1 from the raw users source.
+    columns:
+      - name: user_id
+        description: Primary key — unique identifier for a user.
+        data_tests:
+          - unique
+          - not_null
+      - name: signup_date
+        description: Timestamp the user signed up.
+        data_tests:
+          - not_null
+      - name: user_type
+        description: Synthetic user persona used to shape event generation.
+        data_tests:
+          - not_null
+          - accepted_values:
+              values: ['spender', 'saver', 'investor']
+
+  - name: stg_accounts
+    description: One row per account, typed and renamed 1:1 from the raw accounts source.
+    columns:
+      - name: account_id
+        description: Primary key — unique identifier for an account.
+        data_tests:
+          - unique
+          - not_null
+      - name: user_id
+        description: Owning user. Foreign key to stg_users.
+        data_tests:
+          - not_null
+          - relationships:
+              to: ref('stg_users')
+              field: user_id
+      - name: account_type
+        description: Type of account. Only CASH accounts exist in the MVP.
+        data_tests:
+          - not_null
+          - accepted_values:
+              values: ['CASH']
+      - name: currency
+        description: ISO currency code for the account.
+        data_tests:
+          - not_null
+
+  - name: stg_events
+    description: One row per raw financial event, typed and renamed 1:1 from the raw events source.
+    columns:
+      - name: event_id
+        description: Primary key — unique identifier for an event.
+        data_tests:
+          - unique
+          - not_null
+      - name: event_ts
+        description: Timestamp the event occurred.
+        data_tests:
+          - not_null
+      - name: user_id
+        description: User associated with the event. Foreign key to stg_users.
+        data_tests:
+          - not_null
+          - relationships:
+              to: ref('stg_users')
+              field: user_id
+      - name: account_id
+        description: Account impacted by the event. Foreign key to stg_accounts.
+        data_tests:
+          - not_null
+          - relationships:
+              to: ref('stg_accounts')
+              field: account_id
+      - name: event_type
+        description: The kind of financial event.
+        data_tests:
+          - not_null
+          - accepted_values:
+              values: ['DEPOSIT', 'PURCHASE', 'FEE', 'REFUND']
+      - name: direction
+        description: Whether the event is a CREDIT or DEBIT posting.
+        data_tests:
+          - not_null
+          - accepted_values:
+              values: ['CREDIT', 'DEBIT']
+      - name: amount
+        description: Positive numeric amount of the event.
+        data_tests:
+          - not_null
+
+  - name: stg_ledger_entries
+    description: >
+      Canonical ledger postings, one row per event. This is the typed
+      dbt replacement for the legacy sql/ledger.sql script — direction is
+      renamed to posting_type and a deterministic surrogate key is added.
+    columns:
+      - name: ledger_entry_id
+        description: Deterministic surrogate key (hash of event_id).
+        data_tests:
+          - unique
+          - not_null
+      - name: event_id
+        description: Source event. 1:1 with stg_events in this single-posting-per-event MVP model.
+        data_tests:
+          - unique
+          - not_null
+      - name: posting_type
+        description: CREDIT or DEBIT — renamed from the raw event's direction column.
+        data_tests:
+          - not_null
+          - accepted_values:
+              values: ['CREDIT', 'DEBIT']
+      - name: amount
+        description: Positive numeric posting amount.
+        data_tests:
+          - not_null

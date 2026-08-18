@@ -114,97 +114,167 @@ The system follows a clear, production-style data flow:
 ## Project Structure
 
 ledgerone/
+├── AGENTS.md              # Fleet manager — map of the project for AI agents
+├── Makefile                # `make all` — the one-command reproducible run
 ├── data/
-│ ├── raw/ # Immutable raw events
-│ └── processed/ # Ledger & analytics outputs
+│ ├── AGENTS.md
+│ ├── raw/                  # Immutable raw events (gitignored, generated)
+│ └── processed/            # ledgerone.duckdb — the entire warehouse
 ├── src/
-│ └── generate_data.py
-│ └── ledger_validation.py
-│ └── run_pipeline.py
-├── sql/
-│ └── ledger.sql
-│ └── fact_transactions.sql
-│ └── monthly_revenue.sql
-│ └── daily_account_balances.sql
+│ ├── AGENTS.md
+│ ├── generate_data.py      # Synthetic users/accounts/events -> data/raw/
+│ └── generate_report.py    # Reads dbt marts -> reports/ (charts + CSV)
+├── dbt/                     # The dbt project (staging -> star schema -> marts)
+│ ├── AGENTS.md
+│ ├── dbt_project.yml, profiles.yml
+│ ├── models/staging/        # stg_* : typed, 1:1 with raw sources
+│ ├── models/marts/core/     # dim_date, dim_customer, dim_account, fact_transactions
+│ ├── models/marts/reporting/# One model per business question
+│ ├── tests/                 # Singular (custom) tests
+│ └── docs/lineage.md        # Static export of the dbt lineage graph
 ├── notebooks/
+│ ├── AGENTS.md
 │ └── 01_event_sanity_checks.ipynb
+├── reports/                 # Output of generate_report.py — committed as evidence
+│ ├── AGENTS.md
+│ └── *.png, monthly_revenue_and_refund_rate.csv
 ├── README.md
 └── requirements.txt
+
+Each folder has its own `AGENTS.md` describing its purpose, conventions, and
+how it connects to the rest of the project — start at the root
+[AGENTS.md](AGENTS.md) if you're an agent working in this repo.
 
 ---
 
 ## How to Run
 
-1. Create a virtual environment and install dependencies.
-2. Generate synthetic data:
-   - `python src/generate_data.py`
-3. Build the warehouse:
-   - `python src/run_pipeline.py`
-4. Validate ledger integrity:
-   - `python src/ledger_validation.py`
+**One command**, from a fresh clone:
+
+```
+python -m venv venv && source venv/bin/activate
+pip install -r requirements.txt
+make all
+```
+
+`make all` runs the whole pipeline: generates synthetic data, builds and
+tests the dbt warehouse, and produces the report output. See
+[Phase 2: Analytics Layer](#phase-2-analytics-layer) below for what each
+step actually does, or run the steps individually:
+
+1. Generate synthetic data: `make generate` (`python src/generate_data.py`)
+2. Build + test the warehouse: `make build` (`dbt build --project-dir dbt --profiles-dir dbt`)
+3. Produce the report output: `make report` (`python src/generate_report.py`)
+
+Ledger integrity is now validated by `dbt test` (`make test`), not a
+standalone script — see below.
 
 ---
 
 ## Tech Stack
 
-- **Python** – Synthetic data generation  
-- **DuckDB** – Analytical warehouse  
-- **SQL** – Ledger and analytics logic  
-- **Parquet** – Columnar storage format  
-- **VS Code** – Development environment  
-- **Git/GitHub** – Version control  
+- **Python** – Synthetic data generation, reporting/charts
+- **DuckDB** – Analytical warehouse (a single local file, no server)
+- **dbt-core + dbt-duckdb** – Staging, dimensional modeling, marts, testing, docs
+- **Parquet** – Columnar storage format for raw events
+- **Matplotlib** – Lightweight reporting output (no BI tool)
+- **VS Code** – Development environment
+- **Git/GitHub** – Version control
 
-This stack prioritizes simplicity, performance, and realism.
+This stack prioritizes simplicity, performance, and realism — no Airflow,
+no cloud warehouse, no orchestration framework. Everything runs locally.
 
 ---
 
-## Metrics & Analytics (Planned)
+## Phase 2: Analytics Layer
 
-LedgerOne is designed to support common fintech metrics such as:
+Phase 2 adds a dbt project (`dbt/`) on top of the Phase 1 ledger — the kind
+of scope an early-career analytics data engineer would actually own, not a
+full production build-out. It replaced the old hand-written
+`sql/*.sql` + `run_pipeline.py` + `ledger_validation.py` pipeline outright,
+rather than running alongside it.
 
-- Net deposits  
-- Gross vs net revenue  
-- Fee revenue  
-- Active users  
-- Average account balance  
-- Churn proxies  
-- Portfolio value (future phase)  
+**Staging → dimensional → mart flow:**
+
+1. **Staging** (`dbt/models/staging/`) — `stg_users`, `stg_accounts`,
+   `stg_events` sit directly on the raw parquet (via a dbt source with
+   `external_location`, no load step), just typed and renamed.
+   `stg_ledger_entries` is the typed replacement for the old
+   `sql/ledger.sql`: same CREDIT/DEBIT posting derivation, now with a
+   deterministic surrogate key instead of a random `uuid()`.
+2. **Star schema** (`dbt/models/marts/core/`) — one fact table,
+   `fact_transactions` (one row per ledger posting), with foreign keys to
+   three dimensions: `dim_date`, `dim_customer`, `dim_account`.
+3. **Reporting marts** (`dbt/models/marts/reporting/`) — five single-purpose
+   models, each answering one business question: monthly revenue & refund
+   rate, net payout by period, top customers by transaction volume, average
+   transaction value trend, and account running balance (the old
+   `sql/daily_account_balances.sql`, rebuilt on the star schema).
+
+**Testing** — `dbt test` (run as part of `dbt build`) is now the only
+correctness gate. Every staging and mart model has `not_null` / `unique` /
+`relationships` / `accepted_values` tests, plus two custom singular tests:
+one asserting every REFUND balances exactly against the PURCHASE it
+reverses (this is a single-entry ledger, so that's the one place a real
+"balances" invariant applies — see `dbt/AGENTS.md` for why a global
+credits=debits check would be wrong here), and one asserting all amounts
+are strictly positive.
+
+**Docs** — every model and key column has a description in `schema.yml`.
+`dbt docs generate` produces the full catalog/manifest; since this
+environment can't run a headless browser to screenshot the interactive
+lineage UI, `dbt/docs/lineage.md` is a static Mermaid export of the same
+dependency graph, generated from `manifest.json`.
+
+**Reporting output** — `src/generate_report.py` queries the reporting marts
+and writes three charts plus a CSV to `reports/` (committed to the repo as
+evidence the pipeline produces something a stakeholder could actually look
+at — see `reports/AGENTS.md`).
+
+**Reproducibility** — `make all` runs the entire thing end to end: generate
+synthetic data → `dbt build` (staging, star schema, marts, tests) →
+generate report output. See [How to Run](#how-to-run).
+
+Full project map: [AGENTS.md](AGENTS.md).
 
 ---
 
 ## Validation & Data Integrity
 
-Ledger correctness is validated through:
+Ledger correctness is validated by `dbt test` / `dbt build` (`make test` /
+`make build`), covering:
 
-- Balance consistency checks  
-- Refund reversals  
-- Revenue reconciliation  
-- Account-level rollups  
+- Schema constraints (not-null, uniqueness, accepted values, foreign keys)
+  across every staging and mart model
+- Refund reversals — every REFUND balances exactly against its PURCHASE
+- Positive amounts on every posting
 
-Incorrect balances indicate upstream data or logic errors and are treated as critical failures.
+Incorrect balances indicate upstream data or logic errors and are treated
+as critical failures — `dbt build` fails loudly (non-zero exit) if any test
+fails.
 
 ---
 
 ## Roadmap
 
-### Phase 1 (Current)
-- Synthetic event generation  
-- Ledger construction  
-- Balance validation  
+### Phase 1 — Complete
+- Synthetic event generation
+- Ledger construction
+- Balance validation
 
-### Phase 2
-- Analytics warehouse modeling  
-- Fact and dimension tables  
-- Core financial metrics  
+### Phase 2 — Complete
+- dbt staging layer, schema + custom tests, star schema, business-question
+  marts, docs, reporting output, reproducible one-command run. See
+  [Phase 2: Analytics Layer](#phase-2-analytics-layer) above.
 
 ### Phase 3
-- Business intelligence dashboards  
-- Executive and finance reporting  
+- Business intelligence dashboards
+- Executive and finance reporting
 
-### Phase 4 (Optional)
-- Investment portfolio simulation  
-- Market data integration  
-- Risk and volatility analytics  
+### Phase 4 (Optional, out of scope)
+- Investment portfolio simulation
+- Market data integration
+- Risk and volatility analytics
 
 ---
 
