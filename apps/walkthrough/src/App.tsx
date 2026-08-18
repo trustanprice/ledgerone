@@ -4,6 +4,7 @@ import { OverviewTab } from './tabs/OverviewTab'
 import { WalkthroughTab } from './tabs/WalkthroughTab'
 import { DataEngineeringTab } from './tabs/DataEngineeringTab'
 import { ForecastingTab } from './tabs/ForecastingTab'
+import { InfrastructureTab } from './tabs/InfrastructureTab'
 
 function App() {
   const [tab, setTab] = useHashTab()
@@ -15,6 +16,7 @@ function App() {
       {tab === 'walkthrough' && <WalkthroughTab />}
       {tab === 'data-engineering' && <DataEngineeringTab />}
       {tab === 'forecasting' && <ForecastingTab />}
+      {tab === 'infrastructure' && <InfrastructureTab />}
     </>
   )
 }
