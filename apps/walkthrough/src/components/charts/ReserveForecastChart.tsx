@@ -1,6 +1,6 @@
 import { Area, AreaChart, CartesianGrid, ReferenceDot, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts'
 import type { ReserveForecastPoint } from '../../types'
-import { COLORS } from '../../theme'
+import { CHART_CHROME, COLORS } from '../../theme'
 
 interface Props {
   points: ReserveForecastPoint[]
@@ -22,15 +22,15 @@ export function ReserveForecastChart({ points, highlightMonth }: Props) {
               <stop offset="100%" stopColor={COLORS.accent} stopOpacity={0.03} />
             </linearGradient>
           </defs>
-          <CartesianGrid stroke="#EEF0F3" vertical={false} />
+          <CartesianGrid stroke={CHART_CHROME.grid} vertical={false} />
           <XAxis
             dataKey="horizon_month"
-            tick={{ fontSize: 11, fill: '#5B6270' }}
-            axisLine={{ stroke: '#E4E6EB' }}
+            tick={{ fontSize: 11, fill: CHART_CHROME.tick }}
+            axisLine={{ stroke: CHART_CHROME.axisLine }}
             tickLine={false}
-            label={{ value: 'Months forward', position: 'insideBottom', offset: -2, fontSize: 11, fill: '#5B6270' }}
+            label={{ value: 'Months forward', position: 'insideBottom', offset: -2, fontSize: 11, fill: CHART_CHROME.tick }}
           />
-          <YAxis tickFormatter={money} tick={{ fontSize: 11, fill: '#5B6270' }} axisLine={false} tickLine={false} width={44} />
+          <YAxis tickFormatter={money} tick={{ fontSize: 11, fill: CHART_CHROME.tick }} axisLine={false} tickLine={false} width={44} />
           <Tooltip
             content={({ active, payload }) => {
               if (!active || !payload?.length) return null

@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import type { DelinquencyBucket, RollRateCell, RollRateMatrix } from '../../types'
 import { BUCKET_ORDER } from '../../types'
-import { sequentialBlue } from '../../theme'
+import { sequentialBlue, sequentialTextColor } from '../../theme'
 
 export type HeatmapHighlight = 'none' | 'stable' | 'roll-forward' | 'cure'
 
@@ -94,7 +94,7 @@ function FromRow({
         const pct = cell?.pct ?? 0
         const isMatch = cell ? matchesHighlight(cell, highlight) : false
         const isDimmed = highlight !== 'none' && cell !== undefined && !isMatch
-        const textColor = pct > 0.55 ? '#FFFFFF' : '#1A1D23'
+        const textColor = cell ? sequentialTextColor(pct) : undefined
 
         return (
           <div

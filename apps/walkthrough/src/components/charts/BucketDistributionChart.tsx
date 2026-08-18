@@ -1,7 +1,7 @@
 import { Bar, BarChart, Cell, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts'
 import type { BucketDistributionRow } from '../../types'
 import { BUCKET_ORDER } from '../../types'
-import { sequentialBlue } from '../../theme'
+import { CHART_CHROME, sequentialBlue } from '../../theme'
 
 interface Props {
   rows: BucketDistributionRow[]
@@ -16,12 +16,12 @@ export function BucketDistributionChart({ rows }: Props) {
     <div style={{ flex: 1, minHeight: 0 }}>
       <ResponsiveContainer width="100%" height="100%" minHeight={280}>
         <BarChart data={ordered} layout="vertical" margin={{ top: 8, right: 24, left: 8, bottom: 0 }}>
-          <XAxis type="number" tick={{ fontSize: 11, fill: '#5B6270' }} axisLine={false} tickLine={false} />
+          <XAxis type="number" tick={{ fontSize: 11, fill: CHART_CHROME.tick }} axisLine={false} tickLine={false} />
           <YAxis
             type="category"
             dataKey="bucket"
             width={78}
-            tick={{ fontSize: 11, fill: '#5B6270' }}
+            tick={{ fontSize: 11, fill: CHART_CHROME.tick }}
             axisLine={false}
             tickLine={false}
           />

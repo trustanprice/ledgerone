@@ -1,6 +1,6 @@
 import { CartesianGrid, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts'
 import type { VintageCurveRow } from '../../types'
-import { cohortColor } from '../../theme'
+import { CHART_CHROME, cohortColor } from '../../theme'
 
 interface Props {
   rows: VintageCurveRow[]
@@ -26,17 +26,17 @@ export function VintageCurvesChart({ rows, highlightedCohort }: Props) {
     <div style={{ flex: 1, minHeight: 0 }}>
       <ResponsiveContainer width="100%" height="100%" minHeight={280}>
         <LineChart data={data} margin={{ top: 8, right: 8, left: 0, bottom: 0 }}>
-          <CartesianGrid stroke="#EEF0F3" vertical={false} />
+          <CartesianGrid stroke={CHART_CHROME.grid} vertical={false} />
           <XAxis
             dataKey="months_on_book"
-            tick={{ fontSize: 11, fill: '#5B6270' }}
-            axisLine={{ stroke: '#E4E6EB' }}
+            tick={{ fontSize: 11, fill: CHART_CHROME.tick }}
+            axisLine={{ stroke: CHART_CHROME.axisLine }}
             tickLine={false}
-            label={{ value: 'Months on book', position: 'insideBottom', offset: -2, fontSize: 11, fill: '#5B6270' }}
+            label={{ value: 'Months on book', position: 'insideBottom', offset: -2, fontSize: 11, fill: CHART_CHROME.tick }}
           />
           <YAxis
             tickFormatter={(v: number) => `${(v * 100).toFixed(0)}%`}
-            tick={{ fontSize: 11, fill: '#5B6270' }}
+            tick={{ fontSize: 11, fill: CHART_CHROME.tick }}
             axisLine={false}
             tickLine={false}
             width={38}

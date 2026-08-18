@@ -23,7 +23,7 @@ export function Scene({ id, eyebrow, title, steps, renderVisual }: SceneProps) {
   return (
     <section className="scene" id={id}>
       <div className="scene-visual-col">
-        <div className="scene-visual-sticky">
+        <div className="scene-visual-sticky glass-panel">
           <div className="scene-visual-header">
             <span className="eyebrow">{eyebrow}</span>
             <h2>{title}</h2>
