@@ -34,6 +34,17 @@ with no data dependency at all. It does not modify the dbt project, the
 credit-risk module, or its data — read-only, one direction, source of
 truth stays in `dbt/`.
 
+**Overview is a dense bento dashboard, not a card grid.** A row of
+evenly-sized cards (label + title + paragraph) is the single most common
+AI-generated landing-page pattern there is — the fix wasn't a theme
+change, it was an asymmetric grid where each tile previews real content
+(a live sparkline, an actual lineage snippet, real SQL, scene-progress
+dots, a mini diagram) plus a real-number stat strip above it. If you're
+tempted to add a fifth tile or "simplify" this back to uniform cards,
+don't — see README.md's Visual System section for the reasoning, and keep
+new tiles asymmetric (varied `grid-column`/`grid-row` spans) rather than
+uniform.
+
 ## Layout
 
 ```
@@ -52,8 +63,11 @@ src/
     GlassPanel.tsx            — the one reusable glass-surface wrapper
     Scene.tsx                 — walkthrough-only layout: sticky visual panel + narrative column
     SqlBlock.tsx               — ~50-line regex SQL tokenizer + syntax-highlighted <pre>
-    FlowDiagram.tsx             — generic box-and-arrow diagram (dbt lineage AND infra architecture)
+    FlowDiagram.tsx             — generic box-and-arrow diagram (dbt lineage, infra architecture,
+                                   AND the compact previews on the Overview tiles via .mini-diagram)
     DataTable.tsx                — generic reference table
+    Sparkline.tsx                 — dependency-free inline SVG line+area, Overview's Forecasting tile
+    StatStrip.tsx                  — ticker-row stat component, Overview only (so far)
     charts/                       — one component per chart type, all sharing theme.ts;
                                      reused as-is (no scrolly wrapper) by the Forecasting tab
   content/
@@ -95,6 +109,14 @@ src/
   reference tabs) — IntersectionObserver with a centered `rootMargin`
   tracks which narrative paragraph is active; each scene's
   `renderVisual(activeStep)` maps that index to a visualization state.
+- **No fabricated trend indicators.** A `StatStrip` value only gets an
+  up/down delta or arrow if there's a genuine prior-period or target
+  value to compare against — none of the current Overview stats have
+  one (this is a static snapshot, not a time series with a "yesterday").
+  Don't add a decorative trend arrow just because that's a common ticker
+  convention; it implies a comparison that doesn't exist here. If a stat
+  genuinely has a trajectory (like the reserve forecast), show that as an
+  actual `Sparkline` of the real data instead.
 - **Tab state via `useHashTab`**, not a router library — see README's
   "Routing" section for why (works identically on both deploy targets
   with zero server config).

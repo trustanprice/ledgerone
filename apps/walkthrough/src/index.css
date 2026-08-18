@@ -210,7 +210,8 @@ code,
   margin-bottom: 2rem;
 }
 
-/* ---------- Hero (overview tab) ---------- */
+/* ---------- Hero (Day in the Life tab header — NOT the Overview tab,
+   which uses .dash-header below for a denser, left-aligned treatment) ---------- */
 
 .hero {
   max-width: 820px;
@@ -252,48 +253,275 @@ code,
   color: var(--ink-secondary);
 }
 
-.tab-card-grid {
-  max-width: 1100px;
+/* ---------- Overview tab: dense dashboard, not a card grid ---------- */
+
+.dash-page {
+  max-width: 1320px;
   margin: 0 auto;
-  padding: 1rem 1.5rem 5rem;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 1.1rem;
+  padding: 2.25rem 1.5rem 5rem;
 }
 
-.tab-card {
-  padding: 1.4rem;
+.dash-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 2rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.25rem;
+}
+
+.dash-header h1 {
+  font-size: clamp(1.6rem, 3vw, 2.1rem);
+  margin: 0.3rem 0 0;
+}
+
+.dash-header p.lede {
+  color: var(--ink-secondary);
+  font-size: 0.92rem;
+  max-width: 56ch;
+  margin: 0.4rem 0 0;
+}
+
+.dash-header .hero-meta {
+  font-size: 0.78rem;
+  color: var(--ink-tertiary);
+  display: flex;
+  gap: 1.1rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.2rem;
+}
+
+/* Ticker-style stat strip: one panel, hairline-divided segments, not
+   individually-boxed cards — this is the "land on the page and see real
+   numbers" row. */
+.stat-strip {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  margin-bottom: 1.1rem;
+}
+
+.stat-strip-item {
+  padding: 0.85rem 1rem;
+  border-right: 1px solid var(--border);
+  min-width: 0;
+}
+
+.stat-strip-item:last-child {
+  border-right: none;
+}
+
+.stat-strip-label {
+  font-size: 0.64rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--ink-tertiary);
+  margin-bottom: 0.3rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.stat-strip-value {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.1;
+}
+
+.stat-strip-sub {
+  font-size: 0.7rem;
+  color: var(--ink-secondary);
+  margin-top: 0.2rem;
+}
+
+/* Bento grid: asymmetric spans, not uniform tiles. Spans are set per-tile
+   below and must sum to 12 within each row-pair (7+5, then 4+8) so tiles
+   pack cleanly without needing `grid-auto-flow: dense`. */
+.bento-grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  grid-auto-rows: minmax(150px, auto);
+  gap: 1rem;
+}
+
+.bento-tile {
+  padding: 1.1rem 1.25rem;
   cursor: pointer;
   text-align: left;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
   transition:
     transform 0.15s ease,
     border-color 0.15s ease;
 }
 
-.tab-card:hover {
+.bento-tile:hover {
   transform: translateY(-2px);
   border-color: var(--border-strong);
 }
 
-.tab-card .tab-card-kicker {
-  font-size: 0.7rem;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--accent);
-  font-weight: 700;
-  margin-bottom: 0.5rem;
+.bento-forecasting {
+  grid-column: span 7;
+  grid-row: span 2;
 }
 
-.tab-card h3 {
-  margin: 0 0 0.5rem;
-  font-size: 1.15rem;
+.bento-data-engineering {
+  grid-column: span 5;
+  grid-row: span 2;
 }
 
-.tab-card p {
+.bento-walkthrough {
+  grid-column: span 4;
+}
+
+.bento-infrastructure {
+  grid-column: span 8;
+}
+
+.bento-tile-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6rem;
+  margin-bottom: 0.7rem;
+}
+
+.bento-tile-header h3 {
   margin: 0;
+  font-size: 1rem;
+}
+
+.bento-tile-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 0;
+}
+
+.bento-tile-footer {
+  margin-top: 0.75rem;
   color: var(--ink-secondary);
-  font-size: 0.88rem;
+  font-size: 0.8rem;
   line-height: 1.5;
+}
+
+/* Forecasting tile preview */
+.preview-sparkline-row {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.preview-sparkline-figures {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.preview-figure .stat-strip-label {
+  margin-bottom: 0.15rem;
+}
+
+.preview-figure .stat-strip-value {
+  font-size: 1.1rem;
+}
+
+/* Data Engineering tile preview: compact lineage + one real SQL line */
+.mini-diagram .diagram-node {
+  padding: 0.3rem 0.55rem;
+  font-size: 0.62rem;
+  min-height: auto;
+  min-width: 92px;
+}
+
+.mini-diagram .diagram-group-label {
+  font-size: 0.58rem;
+}
+
+.mini-diagram .diagram-arrow {
+  font-size: 0.85rem;
+}
+
+.mini-diagram .diagram-row {
+  align-items: center;
+}
+
+.mini-sql {
+  display: block;
+  margin-top: 0.85rem;
+  padding: 0.5rem 0.65rem;
+  border-radius: 8px;
+  background: rgba(4, 6, 10, 0.55);
+  border: 1px solid var(--border);
+  font-size: 0.68rem;
+  line-height: 1.5;
+  overflow-x: auto;
+  white-space: pre;
+}
+
+/* Day in the Life tile preview: scene progress */
+.scene-progress {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.4rem;
+}
+
+.scene-progress-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  flex: 1;
+  min-width: 0;
+  position: relative;
+}
+
+.scene-progress-step:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  top: 12px;
+  left: calc(50% + 16px);
+  right: calc(-50% + 16px);
+  height: 1px;
+  background: var(--border);
+}
+
+.scene-progress-dot {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 1px solid var(--border-strong);
+  background: rgba(255, 255, 255, 0.04);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: var(--ink-secondary);
+  position: relative;
+  z-index: 1;
+  flex-shrink: 0;
+}
+
+.scene-progress-label {
+  font-size: 0.6rem;
+  color: var(--ink-tertiary);
+  text-align: center;
+  line-height: 1.2;
+}
+
+/* Infrastructure tile preview */
+.bento-infrastructure .diagram-node {
+  padding: 0.3rem 0.55rem;
+  font-size: 0.62rem;
+  min-height: auto;
+  min-width: 84px;
+}
+
+.bento-infrastructure .diagram-group-label {
+  font-size: 0.58rem;
 }
 
 /* ---------- Scene layout (walkthrough tab) ---------- */
@@ -909,5 +1137,40 @@ table.data-table tr:hover td {
 
   .site-nav {
     padding: 0.7rem 1rem;
+  }
+
+  .dash-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+
+  .stat-strip {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .stat-strip-item {
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .stat-strip-item:nth-last-child(-n + 2) {
+    border-bottom: none;
+  }
+
+  .bento-forecasting,
+  .bento-data-engineering,
+  .bento-walkthrough,
+  .bento-infrastructure {
+    grid-column: 1 / -1;
+    grid-row: auto;
+  }
+
+  .scene-progress {
+    flex-wrap: wrap;
+  }
+
+  .scene-progress-step:not(:last-child)::after {
+    display: none;
   }
 }

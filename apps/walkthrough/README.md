@@ -13,7 +13,7 @@ agent-facing map of this folder.
 
 | Tab | Style | What it shows |
 |---|---|---|
-| **Overview** | Landing | Front door: what this is, cards linking into the other four tabs. |
+| **Overview** | Dashboard | Front door, built as a dense "bento" dashboard, not a table of contents — a real-number stat strip (accounts originated, cohorts, blended charge-off rate, active delinquency, reserve rate, test coverage) plus four asymmetric tiles that preview actual content from each tab (a live sparkline, a real lineage snippet, real SQL, scene-progress dots, a mini architecture diagram) instead of just describing it in prose. |
 | **Day in the Life** | Teaching | The original 5-scene scrollytelling walkthrough — sticky chart + scrolling narrative, unchanged in content from before this became a multi-tab site. Explains vintage curves, the roll-rate transition matrix, and the CECL reserve forecast from first principles. |
 | **Database & Data Engineering** | Reference | How this is actually built: a lineage diagram for both dbt domains (ledger + credit risk, kept visually distinct), the three most interesting model SQL queries verbatim, a data dictionary (grain/keys/tests per model), and an exact test-coverage breakdown (48 tests, by type). |
 | **Forecasting & Data Science** | Reference | The same chart components as the walkthrough, reused in "reference mode" — every cohort visible at once, no scene-by-scene reveal — plus a portfolio-summary table and a placeholder section for backtest/validation metrics (not yet available; see below). |
@@ -134,6 +134,17 @@ color tokens and `src/index.css` for the `.glass-panel` primitive.
   background gradients. Verified visually via full-page screenshots
   across all 5 tabs at multiple scroll positions (desktop + mobile), not
   just assumed.
+- **The Overview tab is a bento grid, not a card grid** — this was a
+  deliberate second pass. Four evenly-sized cards with a label/title/
+  paragraph is the single most common AI-generated landing-page pattern,
+  dark theme or not; it reads as a table of contents. The fix wasn't a
+  theme change, it was an asymmetric `12-column` grid (spans of 7/5, then
+  4/8 — see `.bento-*` classes in `index.css`) where each tile previews
+  *real* content from its tab — a live sparkline, an actual lineage
+  snippet, real SQL, scene-progress dots, a mini architecture diagram —
+  instead of describing it in prose, plus a ticker-style stat strip above
+  it with six real numbers computed from the same static JSON every other
+  tab reads. See the Tabs table above for exactly what each preview shows.
 
 ## Routing: URL hash, no router library
 
@@ -225,6 +236,23 @@ that build the same way — don't hardcode a new default.
   choices (MotherDuck, OIDC, CloudFormation) explained with real
   reasoning, but written for this portfolio site, not vetted the way an
   actual production design doc would be.
+- **The Overview stat strip deliberately has no up/down trend
+  indicators**, even though that's a common ticker-row convention. A
+  trend arrow implies a comparison against a prior period or a target,
+  and none of these six numbers have a legitimate one — this is a single
+  static snapshot, not a time series with a "yesterday" to diff against.
+  Showing a fake delta would violate the same honesty principle as not
+  implying live-updating data. The one number that legitimately has a
+  real trajectory (the reserve forecast) gets that shown as an actual
+  sparkline instead, on the Forecasting tile.
+- **Overview's six stats are computed client-side in `OverviewTab.tsx`
+  from data the other tabs already fetch** (`useCreditRiskData` +
+  `dataEngineeringContent.ts`'s already-verified test counts), not a
+  seventh export file. All six are simple aggregations (sums, a blended
+  rate, a distinct count) cheap enough to do in the browser — adding a
+  dedicated `overview_stats.json` would have meant computing the same
+  numbers twice, once in the export script and once for anyone
+  double-checking them against the source marts.
 - **No automated tests.** Numbers are spot-checked by hand against the
   dbt marts' own (already-tested) output, and the whole site was verified
   in an actual headless-Chromium browser (desktop + mobile, all 5 tabs,
