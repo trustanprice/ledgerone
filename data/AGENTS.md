@@ -4,9 +4,11 @@ Fleet: [../AGENTS.md](../AGENTS.md)
 
 ## Purpose
 
-Everything here is generated, not authored, and entirely gitignored
-(`.gitignore`: `data/`). A fresh clone has no `data/` directory at all until
-you run the pipeline.
+Everything here is generated or externally sourced, not authored, and
+gitignored (`.gitignore`: `data/raw/`, `data/processed/*.duckdb`,
+`data/external/`). A fresh clone has no `data/` directory at all until you
+run the pipeline (or, for `external/`, do the one-time manual download
+described below).
 
 - **`raw/`** — `users.parquet`, `accounts.parquet`, `events.parquet`, written
   by `src/generate_data.py`. Treated as the immutable source of truth for
@@ -17,6 +19,17 @@ you run the pipeline.
   domain (consumer credit portfolio, not e-commerce) for the credit-risk
   practice module — see
   [../dbt/models/credit_risk/AGENTS.md](../dbt/models/credit_risk/AGENTS.md).
+- **`external/freddie_mac/`** — real (not synthetic) data: Freddie Mac's
+  Single-Family Loan-Level Dataset, 2021 vintage sample (50,000 loans),
+  used only by `notebooks/03_credit_risk_validation_backtest.ipynb` to
+  backtest the credit-risk module's methodology. **Not reproducible by a
+  script** — Freddie Mac requires manual registration at their Clarity
+  Data Intelligence portal before download. Two raw pipe-delimited `.txt`
+  files (`sample_orig_2021.txt`, `sample_perf_2021.txt`) plus two derived
+  `.parquet` files written by `src/ingest_freddie_mac_validation_data.py`.
+  See the Validation section of
+  [../dbt/models/credit_risk/README.md](../dbt/models/credit_risk/README.md)
+  for exactly how to get these files if they're missing.
 - **`processed/ledgerone.duckdb`** — the entire warehouse, built by
   `dbt build` from `dbt/`. Contains the `main_staging` and `main_marts`
   schemas.
@@ -30,7 +43,12 @@ you run the pipeline.
 
 ## Connects to
 
-- Produced by [../src/AGENTS.md](../src/AGENTS.md) (`generate_data.py`) and
-  [../dbt/AGENTS.md](../dbt/AGENTS.md) (`dbt build`).
+- Produced by [../src/AGENTS.md](../src/AGENTS.md) (`generate_data.py`,
+  `generate_credit_risk_data.py`) and [../dbt/AGENTS.md](../dbt/AGENTS.md)
+  (`dbt build`).
 - Consumed by `dbt/` (raw) and `src/generate_report.py` + `notebooks/`
   (processed).
+- `external/freddie_mac/` is produced by a manual download (see above) +
+  `src/ingest_freddie_mac_validation_data.py`, and consumed only by
+  `notebooks/03_credit_risk_validation_backtest.ipynb` — it never touches
+  dbt or the rest of the pipeline.

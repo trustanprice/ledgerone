@@ -297,6 +297,15 @@ written to double as interview review material. Module map:
 [dbt/models/credit_risk/AGENTS.md](dbt/models/credit_risk/AGENTS.md).
 Same stack, same `make all` — no separate command needed.
 
+**The module also includes a real-data validation layer**: `notebooks/03_credit_risk_validation_backtest.ipynb`
+backtests the vintage-curve/roll-rate methodology (not just the synthetic
+numbers) against a real Freddie Mac mortgage panel with a genuine
+time-based holdout — MAE of 0.19 percentage points on the cumulative
+serious-delinquency forecast, with one real, explainable gap (the roll-
+rate matrix isn't time-stable — see the README's Validation section for
+the full result and why that's the interesting finding, not the headline
+error number).
+
 ### "A day in the life" walkthrough
 
 `apps/walkthrough/` is a static React scrollytelling site built on top of

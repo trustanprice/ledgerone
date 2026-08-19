@@ -22,6 +22,17 @@ useful, it belongs in `dbt/` as a schema test or singular test
   entire "visual" surface, by design — see
   [../dbt/models/credit_risk/AGENTS.md](../dbt/models/credit_risk/AGENTS.md):
   no dashboard app, a notebook is enough.
+- **`03_credit_risk_validation_backtest.ipynb`** — a different kind of
+  notebook from the other two: it doesn't read from dbt/DuckDB at all. It
+  backtests the credit-risk module's *methodology* (not its synthetic
+  data) against real Freddie Mac mortgage performance data
+  (`data/external/freddie_mac/`, via `src/ingest_freddie_mac_validation_data.py`)
+  with a genuine time-based train/holdout split. Teaching-style like the
+  rest of this module (explains the *why* of each step, not just the
+  code) — see the Validation section of
+  [../dbt/models/credit_risk/README.md](../dbt/models/credit_risk/README.md)
+  for the headline results and how to reproduce the manual data download
+  this notebook depends on.
 
 ## Conventions
 
@@ -38,3 +49,8 @@ useful, it belongs in `dbt/` as a schema test or singular test
 - `02_credit_risk_vintage_and_roll_rates.ipynb` additionally depends on
   `main_marts.credit_risk__*`, built from `data/raw/credit_risk/*.parquet`
   (written by `src/generate_credit_risk_data.py`).
+- `03_credit_risk_validation_backtest.ipynb` depends on
+  `data/external/freddie_mac/*.parquet` (written by
+  `src/ingest_freddie_mac_validation_data.py`, from manually-downloaded raw
+  files) — it's the one notebook in this folder that doesn't touch
+  `data/processed/ledgerone.duckdb` at all.

@@ -4,7 +4,7 @@ Fleet: [../AGENTS.md](../AGENTS.md)
 
 ## Purpose
 
-Three standalone Python scripts. None orchestrates the warehouse build
+Four standalone Python scripts. None orchestrates the warehouse build
 anymore — that's dbt's job (see [../dbt/AGENTS.md](../dbt/AGENTS.md)).
 
 - **`generate_data.py`** — generates synthetic users, accounts, and financial
@@ -25,9 +25,21 @@ anymore — that's dbt's job (see [../dbt/AGENTS.md](../dbt/AGENTS.md)).
   eyeball-only plots live in a notebook instead, per that module's scope —
   see `notebooks/AGENTS.md`.)
 
-There used to be a third script, `run_pipeline.py` (ran `sql/*.sql` in
-order) and `ledger_validation.py` (hand-written integrity checks). Both were
-retired when the Phase 2 dbt layer was added: `dbt build` replaces
+- **`ingest_freddie_mac_validation_data.py`** — a different kind of script
+  from the other three: it doesn't *generate* anything, it parses **real**
+  external data (Freddie Mac's Single-Family Loan-Level Dataset, manually
+  downloaded to `data/external/freddie_mac/` — see that folder's entry in
+  `data/AGENTS.md`) and maps it into this project's grain, for
+  `notebooks/03_credit_risk_validation_backtest.ipynb`. Read its docstring
+  before touching the column-position constants — they were verified
+  against Freddie Mac's actual current file layout and each raw file's
+  real value distributions, not assumed from a cached memory of the
+  format (which has changed more than once). Never modifies the raw `.txt`
+  files; writes derived `.parquet` alongside them.
+
+Two other scripts used to live here: `run_pipeline.py` (ran `sql/*.sql` in
+order) and `ledger_validation.py` (hand-written integrity checks). Both
+were retired when the Phase 2 dbt layer was added: `dbt build` replaces
 `run_pipeline.py`, and `dbt test` replaces `ledger_validation.py` with the
 same checks expressed as dbt schema tests + two singular tests. Don't
 recreate either — extend the dbt project instead.

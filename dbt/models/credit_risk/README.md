@@ -196,6 +196,140 @@ dependency. One custom singular test,
 `(transition_month, from_bucket)` group in the roll-rate matrix actually
 sums to 1 — a real invariant, not just a schema shape check.
 
+## Validation: backtesting the methodology against real mortgage data
+
+Everything above proves the *mechanics* work — correct SQL, passing
+tests, internally consistent numbers, all on synthetic data hand-tuned to
+look realistic. That's not evidence the **methodology** (vintage curves,
+roll-rate transition matrices) actually forecasts real credit
+performance. `notebooks/03_credit_risk_validation_backtest.ipynb` closes
+that gap: it runs the same techniques against a real, public
+loan-performance panel with a genuine time-based holdout, and reports how
+accurate the forecasts actually were.
+
+### Data source: Freddie Mac Single-Family Loan-Level Dataset
+
+**Mortgage data, not credit cards** — a real, deliberate scope choice.
+The alternative considered was Lending Club's historical accepted-loans
+data (public on Kaggle, no registration beyond a Kaggle account), which
+gives `loan_status` snapshots rather than a full monthly delinquency
+panel — the roll-rate backtest would have been an approximation there
+(no true month-over-month transition to compare), not the real thing.
+Freddie Mac's dataset gives a genuine monthly panel, at the cost of a
+one-time manual registration step (below). Since it's a different product
+type, **loss levels won't match** Synchrony's card portfolio — what's
+being validated is whether the vintage/roll-rate *methodology* forecasts
+accurately on a real monthly loan-performance panel, which is the part
+that transfers.
+
+Specifically: the **2021 vintage sample** (a Freddie Mac-provided random
+sample of 50,000 loans originated in 2021, with performance data through
+March 2026 — about 5 years of history, giving genuine room for a
+time-based holdout).
+
+**How to reproduce this** (manual — Freddie Mac requires registration,
+this can't be scripted):
+
+1. Register for free at Freddie Mac's **Clarity Data Intelligence**
+   portal (the Single-Family Loan-Level Dataset access point).
+2. From the SFLLD Data Download page, download the **2021 sample**
+   (`sample_2021.zip` under the "Sample" dataset — 50,000 loans, one
+   origination file + one monthly performance file).
+3. Unzip and place the two `.txt` files at:
+   `data/external/freddie_mac/sample_orig_2021.txt` and
+   `data/external/freddie_mac/sample_perf_2021.txt` (gitignored — not
+   redistributed in this repo; see `data/AGENTS.md`).
+4. Run `python src/ingest_freddie_mac_validation_data.py` to parse and
+   map them, then open and run
+   `notebooks/03_credit_risk_validation_backtest.ipynb`.
+
+**Column layout was verified, not assumed.** Freddie Mac has revised
+their published file layout multiple times since 2018 (from 27 columns
+up to 32 today). Before writing the ingestion script, the *current*
+(January 2026) General User Guide was fetched directly from
+freddiemac.com and cross-checked against the actual sample files by
+**value distribution**, not just documented position — e.g. the loan
+identifier column was confirmed as such because every value is a unique
+`PYYQnXXXXXX`-shaped string across all 50,000 rows, not because a PDF
+said "column 20." Two real findings fell out of that verification: the
+origination file has one fewer field than the current doc (missing the
+newest field, consistent with predating its addition), and the
+performance file has three *more* fields than documented (undocumented,
+unused, not guessed at). See
+`src/ingest_freddie_mac_validation_data.py`'s docstring for the full
+column-by-column mapping.
+
+### Bucket mapping: a modeling decision, not a mechanical translation
+
+Freddie Mac's delinquency status is a 2-digit MBA-method code (`'00'`
+current, `'01'` = 30-59 days, `'02'` = 60-89, `'03'` = 90-119, higher =
+more months delinquent, `'RA'` = REO acquisition). Mapped onto this
+project's existing 5-bucket scheme:
+
+| Freddie Mac code | This project's bucket |
+|---|---|
+| `'00'` | Current |
+| `'01'` | 30-59 DPD |
+| `'02'` | 60-89 DPD |
+| `'03'` | 90-119 DPD |
+| `'04'`+ or `'RA'` | 120+/Charged-Off |
+
+**Mortgages don't "charge off" the way credit cards do** — there's no
+single event that zeroes the balance the way a card issuer's charge-off
+does. `120+/Charged-Off` here is used as a **serious-delinquency /
+foreclosure-adjacent loss proxy**, explicitly labeled as such throughout
+the notebook — a real, stated difference from the synthetic card module
+this backtest validates against, not glossed over.
+
+### Why a time-based split, not a random one
+
+A random split would let the model see performance from later in a
+loan's life while "training" on data that chronologically includes
+information from after the points it's being tested against — leakage.
+Fit the transition matrix on data through a cutoff month, forecast
+forward, compare against what actually happened after that cutoff: that's
+the only split that honestly answers "if this model had been built on
+what was known as of the cutoff, how well would it have forecast what
+actually happened next?" — the real question a production backtest has
+to answer. The notebook trains through **September 2024** and holds out
+the trailing **18 months** (through March 2026) per cohort.
+
+### Headline results
+
+| Metric | Value |
+|---|---|
+| MAE (cumulative 90+ DPD rate, holdout) | **0.19 percentage points** |
+| MAPE (same, where actual > 0) | 12.5% — noisy at these small base rates (~1-2%), see notebook §6 |
+| Mean bias | **+0.19pp** (the model slightly *over*-predicts) |
+| Comparison points | 90 (5 cohorts × up to 18 holdout months) |
+| This vintage's lifetime ever-90+ DPD rate | 2.01% |
+| FRED credit card delinquency rate, Q1 2026 (DRCCLACBS) | 2.90% |
+| Synchrony disclosed net charge-off rate, Q1 2026 | 5.42% |
+
+**The single most useful finding** is in the roll-rate calibration table
+(notebook §7), not the headline MAE: the transition matrix isn't
+time-stable. Cure rates from early-stage delinquency (30-59 DPD back to
+Current) measurably worsened between the training window (2021-2024) and
+the holdout window (late 2024-2026) — a real macro/rate-environment shift
+a single blended, time-invariant matrix has no way to anticipate. That's
+the concrete, textbook reason production CECL models carry macro
+overlays instead of extrapolating one historical matrix forward
+indefinitely.
+
+**Plain-language read**: the vintage-curve / roll-rate methodology
+transfers reasonably well from synthetic data to a real mortgage
+panel — the cumulative forecast lands within ~0.2 percentage points of
+reality, and the mechanics hold up end to end on a real, messy dataset.
+The real, honest gap is that a static matrix drifts out of calibration
+as conditions change, which the holdout period demonstrates directly
+rather than just asserting. See the notebook's final section for the
+full discussion, including a real bug caught and fixed mid-analysis
+(the first draft's "already reached serious delinquency" base rate used
+each account's *current* bucket at the cutoff snapshot instead of
+whether it had *ever* reached serious delinquency — silently
+undercounting accounts that cured before the snapshot, and producing a
+misleading bias that had nothing to do with the model itself).
+
 ## Running it
 
 Part of the same local dbt + DuckDB + Parquet stack as the rest of the

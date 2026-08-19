@@ -17,6 +17,16 @@ Full explanation of the data, the technique behind each mart, and how it
 maps to real CECL loss forecasting: **[README.md](README.md)** — read that
 first, it's written to double as interview review material.
 
+**This module also has a validation/backtest layer that lives outside dbt
+entirely**: `notebooks/03_credit_risk_validation_backtest.ipynb` backtests
+the vintage-curve/roll-rate *methodology* against real Freddie Mac
+mortgage data (`data/external/freddie_mac/`, manually downloaded — see
+`data/AGENTS.md`), via `src/ingest_freddie_mac_validation_data.py`. It
+does not read from or write to any dbt model or the DuckDB warehouse —
+it's a separate, standalone validation of the technique, not of this
+module's synthetic data. See README.md's "Validation" section for the
+headline numbers and exactly how to reproduce the manual download.
+
 ## Layout
 
 ```
@@ -78,3 +88,6 @@ different schema.
   `notebooks/02_credit_risk_vintage_and_roll_rates.ipynb`.
 - `make generate` / `make build` / `make all` at the repo root already
   cover this module — no separate command exists or is needed.
+- **Not** connected to `notebooks/03_credit_risk_validation_backtest.ipynb`
+  — that notebook validates the same *methodology* independently, against
+  real external data, and never reads these dbt models or their output.

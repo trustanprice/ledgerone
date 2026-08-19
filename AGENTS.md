@@ -66,6 +66,10 @@ src/export_credit_risk_walkthrough_data.py
   (reads main_marts.credit_risk__* / main_staging.credit_risk__stg_*)
        -> apps/walkthrough/public/data/*.json (static, checked in)
             -> apps/walkthrough (React/Vite) -> deployed static site
+
+data/external/freddie_mac/ (real data, manual download, gitignored)
+  -> src/ingest_freddie_mac_validation_data.py
+       -> notebooks/03_credit_risk_validation_backtest.ipynb (standalone — no dbt/DuckDB involved)
 ```
 
 `dbt test` runs schema tests (not_null/unique/relationships/accepted_values)
