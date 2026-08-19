@@ -55,7 +55,7 @@ src/
   tabConfig.ts              — TabId union + nav labels (the tab list itself)
   hooks/
     useJsonData.ts          — fetch(public/data/*.json) at runtime
-    useCreditRiskData.ts     — fetches all 6 datasets; shared by Walkthrough + Forecasting tabs
+    useCreditRiskData.ts     — fetches all 7 datasets; shared by Walkthrough + Forecasting tabs
     useScrollySteps.ts       — IntersectionObserver-driven "active narrative step" (walkthrough only)
     useHashTab.ts            — URL-hash-based tab state, no router library
   components/

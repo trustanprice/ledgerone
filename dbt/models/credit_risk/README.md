@@ -330,6 +330,15 @@ whether it had *ever* reached serious delinquency — silently
 undercounting accounts that cured before the snapshot, and producing a
 misleading bias that had nothing to do with the model itself).
 
+**These numbers are also on the walkthrough site**: the Forecasting &
+Data Science tab's "Backtest / validation against real loan data" section
+renders the same predicted-vs-actual curves, MAE/MAPE, and
+training-vs-holdout calibration table shown here — re-derived (not
+copy-pasted) from the same DuckDB SQL by
+`src/export_credit_risk_walkthrough_data.py`, not read from this
+notebook's output. See
+[apps/walkthrough/README.md](../../../apps/walkthrough/README.md).
+
 ## Running it
 
 Part of the same local dbt + DuckDB + Parquet stack as the rest of the

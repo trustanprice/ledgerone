@@ -21,8 +21,9 @@ described below).
   [../dbt/models/credit_risk/AGENTS.md](../dbt/models/credit_risk/AGENTS.md).
 - **`external/freddie_mac/`** — real (not synthetic) data: Freddie Mac's
   Single-Family Loan-Level Dataset, 2021 vintage sample (50,000 loans),
-  used only by `notebooks/03_credit_risk_validation_backtest.ipynb` to
-  backtest the credit-risk module's methodology. **Not reproducible by a
+  used by `notebooks/03_credit_risk_validation_backtest.ipynb` and
+  `src/export_credit_risk_walkthrough_data.py` to backtest the
+  credit-risk module's methodology. **Not reproducible by a
   script** — Freddie Mac requires manual registration at their Clarity
   Data Intelligence portal before download. Two raw pipe-delimited `.txt`
   files (`sample_orig_2021.txt`, `sample_perf_2021.txt`) plus two derived
@@ -49,6 +50,8 @@ described below).
 - Consumed by `dbt/` (raw) and `src/generate_report.py` + `notebooks/`
   (processed).
 - `external/freddie_mac/` is produced by a manual download (see above) +
-  `src/ingest_freddie_mac_validation_data.py`, and consumed only by
-  `notebooks/03_credit_risk_validation_backtest.ipynb` — it never touches
-  dbt or the rest of the pipeline.
+  `src/ingest_freddie_mac_validation_data.py`, and consumed by
+  `notebooks/03_credit_risk_validation_backtest.ipynb` (the one-time
+  analysis) and `src/export_credit_risk_walkthrough_data.py` (re-derives
+  the same numbers into `apps/walkthrough/public/data/backtest_validation.json`)
+  — it never touches dbt or the rest of the pipeline.

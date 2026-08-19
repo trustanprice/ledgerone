@@ -304,7 +304,9 @@ time-based holdout — MAE of 0.19 percentage points on the cumulative
 serious-delinquency forecast, with one real, explainable gap (the roll-
 rate matrix isn't time-stable — see the README's Validation section for
 the full result and why that's the interesting finding, not the headline
-error number).
+error number). These same numbers, re-derived rather than copy-pasted
+from the notebook, also appear on the walkthrough site's Forecasting tab
+(below).
 
 ### "A day in the life" walkthrough
 

@@ -4,7 +4,7 @@ Fleet: [../AGENTS.md](../AGENTS.md)
 
 ## Purpose
 
-Four standalone Python scripts. None orchestrates the warehouse build
+Five standalone Python scripts. None orchestrates the warehouse build
 anymore — that's dbt's job (see [../dbt/AGENTS.md](../dbt/AGENTS.md)).
 
 - **`generate_data.py`** — generates synthetic users, accounts, and financial
@@ -36,6 +36,17 @@ anymore — that's dbt's job (see [../dbt/AGENTS.md](../dbt/AGENTS.md)).
   real value distributions, not assumed from a cached memory of the
   format (which has changed more than once). Never modifies the raw `.txt`
   files; writes derived `.parquet` alongside them.
+- **`export_credit_risk_walkthrough_data.py`** — read-only, the one
+  bridge between the dbt warehouse and `apps/walkthrough/` (a static site
+  with no DB connection of its own — see
+  [../apps/walkthrough/AGENTS.md](../apps/walkthrough/AGENTS.md)). Writes
+  `apps/walkthrough/public/data/*.json`, one file per chart/table the
+  site needs. Six of its seven outputs query `main_marts.*`/`main_staging.*`
+  in `ledgerone.duckdb`; the seventh, `backtest_validation.json`, instead
+  re-derives the validation notebook's numbers directly from
+  `data/external/freddie_mac/*.parquet` via its own DuckDB connection —
+  skipped with a warning, not a hard failure, if that manually-downloaded
+  data isn't present locally.
 
 Two other scripts used to live here: `run_pipeline.py` (ran `sql/*.sql` in
 order) and `ledger_validation.py` (hand-written integrity checks). Both
@@ -59,3 +70,7 @@ recreate either — extend the dbt project instead.
 - Writes that `dbt/` reads (`data/raw/*.parquet` via the `raw` source, and
   `data/raw/credit_risk/*.parquet` via the separate `credit_risk` source).
 - Reads what `dbt/` writes (`main_marts.*` tables) to produce `reports/`.
+- `export_credit_risk_walkthrough_data.py` also reads `main_marts.*`/
+  `main_staging.*` and `data/external/freddie_mac/*.parquet`, and writes
+  `apps/walkthrough/public/data/*.json` — the only thing in `src/` this
+  app depends on.
