@@ -1,0 +1,1301 @@
+{
+  "data_source": "Freddie Mac Single-Family Loan-Level Dataset, 2021 vintage sample",
+  "train_cutoff": "2024-09-01",
+  "horizon_months": 18,
+  "curve": [
+    {
+      "cohort": "2021-01-01",
+      "months_on_book": 45,
+      "horizon_month": 1,
+      "predicted": 0.010529922178018047,
+      "actual": 0.010458567980691875,
+      "cohort_n": 3729
+    },
+    {
+      "cohort": "2021-01-01",
+      "months_on_book": 46,
+      "horizon_month": 2,
+      "predicted": 0.010768887640652935,
+      "actual": 0.010458567980691875,
+      "cohort_n": 3729
+    },
+    {
+      "cohort": "2021-01-01",
+      "months_on_book": 47,
+      "horizon_month": 3,
+      "predicted": 0.01118005344256301,
+      "actual": 0.010994904800214535,
+      "cohort_n": 3729
+    },
+    {
+      "cohort": "2021-01-01",
+      "months_on_book": 48,
+      "horizon_month": 4,
+      "predicted": 0.0116774416908902,
+      "actual": 0.010994904800214535,
+      "cohort_n": 3729
+    },
+    {
+      "cohort": "2021-01-01",
+      "months_on_book": 49,
+      "horizon_month": 5,
+      "predicted": 0.012212439219056232,
+      "actual": 0.011263073209975865,
+      "cohort_n": 3729
+    },
+    {
+      "cohort": "2021-01-01",
+      "months_on_book": 50,
+      "horizon_month": 6,
+      "predicted": 0.012763061290913952,
+      "actual": 0.011531241619737195,
+      "cohort_n": 3729
+    },
+    {
+      "cohort": "2021-01-01",
+      "months_on_book": 51,
+      "horizon_month": 7,
+      "predicted": 0.013319970051883236,
+      "actual": 0.011799410029498525,
+      "cohort_n": 3729
+    },
+    {
+      "cohort": "2021-01-01",
+      "months_on_book": 52,
+      "horizon_month": 8,
+      "predicted": 0.013879282397514797,
+      "actual": 0.012067578439259855,
+      "cohort_n": 3729
+    },
+    {
+      "cohort": "2021-01-01",
+      "months_on_book": 53,
+      "horizon_month": 9,
+      "predicted": 0.014439395759568804,
+      "actual": 0.012603915258782515,
+      "cohort_n": 3729
+    },
+    {
+      "cohort": "2021-01-01",
+      "months_on_book": 54,
+      "horizon_month": 10,
+      "predicted": 0.014999650629679414,
+      "actual": 0.012603915258782515,
+      "cohort_n": 3729
+    },
+    {
+      "cohort": "2021-01-01",
+      "months_on_book": 55,
+      "horizon_month": 11,
+      "predicted": 0.015559775934666394,
+      "actual": 0.012603915258782515,
+      "cohort_n": 3729
+    },
+    {
+      "cohort": "2021-01-01",
+      "months_on_book": 56,
+      "horizon_month": 12,
+      "predicted": 0.016119660361223243,
+      "actual": 0.012603915258782515,
+      "cohort_n": 3729
+    },
+    {
+      "cohort": "2021-01-01",
+      "months_on_book": 57,
+      "horizon_month": 13,
+      "predicted": 0.016679258268818147,
+      "actual": 0.012603915258782515,
+      "cohort_n": 3729
+    },
+    {
+      "cohort": "2021-01-01",
+      "months_on_book": 58,
+      "horizon_month": 14,
+      "predicted": 0.017238551007824777,
+      "actual": 0.013140252078305176,
+      "cohort_n": 3729
+    },
+    {
+      "cohort": "2021-01-01",
+      "months_on_book": 59,
+      "horizon_month": 15,
+      "predicted": 0.01779753102079634,
+      "actual": 0.013140252078305176,
+      "cohort_n": 3729
+    },
+    {
+      "cohort": "2021-01-01",
+      "months_on_book": 60,
+      "horizon_month": 16,
+      "predicted": 0.018356195308570602,
+      "actual": 0.013408420488066506,
+      "cohort_n": 3729
+    },
+    {
+      "cohort": "2021-01-01",
+      "months_on_book": 61,
+      "horizon_month": 17,
+      "predicted": 0.018914542745139252,
+      "actual": 0.013676588897827836,
+      "cohort_n": 3729
+    },
+    {
+      "cohort": "2021-01-01",
+      "months_on_book": 62,
+      "horizon_month": 18,
+      "predicted": 0.019472572974198157,
+      "actual": 0.013676588897827836,
+      "cohort_n": 3729
+    },
+    {
+      "cohort": "2021-04-01",
+      "months_on_book": 42,
+      "horizon_month": 1,
+      "predicted": 0.010619513466917483,
+      "actual": 0.010216018092490058,
+      "cohort_n": 12823
+    },
+    {
+      "cohort": "2021-04-01",
+      "months_on_book": 43,
+      "horizon_month": 2,
+      "predicted": 0.011039994248424952,
+      "actual": 0.010449972705295173,
+      "cohort_n": 12823
+    },
+    {
+      "cohort": "2021-04-01",
+      "months_on_book": 44,
+      "horizon_month": 3,
+      "predicted": 0.011522758629277294,
+      "actual": 0.010995866801840443,
+      "cohort_n": 12823
+    },
+    {
+      "cohort": "2021-04-01",
+      "months_on_book": 45,
+      "horizon_month": 4,
+      "predicted": 0.01204900594309102,
+      "actual": 0.01115183654371052,
+      "cohort_n": 12823
+    },
+    {
+      "cohort": "2021-04-01",
+      "months_on_book": 46,
+      "horizon_month": 5,
+      "predicted": 0.012595666353520498,
+      "actual": 0.011463776027450674,
+      "cohort_n": 12823
+    },
+    {
+      "cohort": "2021-04-01",
+      "months_on_book": 47,
+      "horizon_month": 6,
+      "predicted": 0.013150940221596793,
+      "actual": 0.011541760898385713,
+      "cohort_n": 12823
+    },
+    {
+      "cohort": "2021-04-01",
+      "months_on_book": 48,
+      "horizon_month": 7,
+      "predicted": 0.013709628075784812,
+      "actual": 0.011853700382125867,
+      "cohort_n": 12823
+    },
+    {
+      "cohort": "2021-04-01",
+      "months_on_book": 49,
+      "horizon_month": 8,
+      "predicted": 0.014269540335032914,
+      "actual": 0.012087654994930983,
+      "cohort_n": 12823
+    },
+    {
+      "cohort": "2021-04-01",
+      "months_on_book": 50,
+      "horizon_month": 9,
+      "predicted": 0.014829769299071344,
+      "actual": 0.012243624736801061,
+      "cohort_n": 12823
+    },
+    {
+      "cohort": "2021-04-01",
+      "months_on_book": 51,
+      "horizon_month": 10,
+      "predicted": 0.015389940849192034,
+      "actual": 0.012399594478671137,
+      "cohort_n": 12823
+    },
+    {
+      "cohort": "2021-04-01",
+      "months_on_book": 52,
+      "horizon_month": 11,
+      "predicted": 0.01594990116700241,
+      "actual": 0.012477579349606176,
+      "cohort_n": 12823
+    },
+    {
+      "cohort": "2021-04-01",
+      "months_on_book": 53,
+      "horizon_month": 12,
+      "predicted": 0.016509587120695498,
+      "actual": 0.012633549091476253,
+      "cohort_n": 12823
+    },
+    {
+      "cohort": "2021-04-01",
+      "months_on_book": 54,
+      "horizon_month": 13,
+      "predicted": 0.017068972869078117,
+      "actual": 0.01286750370428137,
+      "cohort_n": 12823
+    },
+    {
+      "cohort": "2021-04-01",
+      "months_on_book": 55,
+      "horizon_month": 14,
+      "predicted": 0.01762804789883458,
+      "actual": 0.0133354129298916,
+      "cohort_n": 12823
+    },
+    {
+      "cohort": "2021-04-01",
+      "months_on_book": 56,
+      "horizon_month": 15,
+      "predicted": 0.018186807996038636,
+      "actual": 0.01341339780082664,
+      "cohort_n": 12823
+    },
+    {
+      "cohort": "2021-04-01",
+      "months_on_book": 57,
+      "horizon_month": 16,
+      "predicted": 0.018745251535486694,
+      "actual": 0.013569367542696716,
+      "cohort_n": 12823
+    },
+    {
+      "cohort": "2021-04-01",
+      "months_on_book": 58,
+      "horizon_month": 17,
+      "predicted": 0.019303377955749303,
+      "actual": 0.013725337284566794,
+      "cohort_n": 12823
+    },
+    {
+      "cohort": "2021-04-01",
+      "months_on_book": 59,
+      "horizon_month": 18,
+      "predicted": 0.01986118713249091,
+      "actual": 0.014193246510177025,
+      "cohort_n": 12823
+    },
+    {
+      "cohort": "2021-07-01",
+      "months_on_book": 39,
+      "horizon_month": 1,
+      "predicted": 0.015421322216050514,
+      "actual": 0.015225933202357564,
+      "cohort_n": 12216
+    },
+    {
+      "cohort": "2021-07-01",
+      "months_on_book": 40,
+      "horizon_month": 2,
+      "predicted": 0.015936370110696936,
+      "actual": 0.015717092337917484,
+      "cohort_n": 12216
+    },
+    {
+      "cohort": "2021-07-01",
+      "months_on_book": 41,
+      "horizon_month": 3,
+      "predicted": 0.01647316898481231,
+      "actual": 0.016208251473477406,
+      "cohort_n": 12216
+    },
+    {
+      "cohort": "2021-07-01",
+      "months_on_book": 42,
+      "horizon_month": 4,
+      "predicted": 0.0170225182634676,
+      "actual": 0.01678127046496398,
+      "cohort_n": 12216
+    },
+    {
+      "cohort": "2021-07-01",
+      "months_on_book": 43,
+      "horizon_month": 5,
+      "predicted": 0.017577411995288093,
+      "actual": 0.017272429600523904,
+      "cohort_n": 12216
+    },
+    {
+      "cohort": "2021-07-01",
+      "months_on_book": 44,
+      "horizon_month": 6,
+      "predicted": 0.01813448373114102,
+      "actual": 0.017599869024230518,
+      "cohort_n": 12216
+    },
+    {
+      "cohort": "2021-07-01",
+      "months_on_book": 45,
+      "horizon_month": 7,
+      "predicted": 0.018692276464765862,
+      "actual": 0.01784544859201048,
+      "cohort_n": 12216
+    },
+    {
+      "cohort": "2021-07-01",
+      "months_on_book": 46,
+      "horizon_month": 8,
+      "predicted": 0.019250180415007746,
+      "actual": 0.018172888015717092,
+      "cohort_n": 12216
+    },
+    {
+      "cohort": "2021-07-01",
+      "months_on_book": 47,
+      "horizon_month": 9,
+      "predicted": 0.019807943418177355,
+      "actual": 0.018500327439423706,
+      "cohort_n": 12216
+    },
+    {
+      "cohort": "2021-07-01",
+      "months_on_book": 48,
+      "horizon_month": 10,
+      "predicted": 0.0203654617007332,
+      "actual": 0.018909626719056976,
+      "cohort_n": 12216
+    },
+    {
+      "cohort": "2021-07-01",
+      "months_on_book": 49,
+      "horizon_month": 11,
+      "predicted": 0.020922692685272255,
+      "actual": 0.019400785854616895,
+      "cohort_n": 12216
+    },
+    {
+      "cohort": "2021-07-01",
+      "months_on_book": 50,
+      "horizon_month": 12,
+      "predicted": 0.0214796189752266,
+      "actual": 0.019564505566470203,
+      "cohort_n": 12216
+    },
+    {
+      "cohort": "2021-07-01",
+      "months_on_book": 51,
+      "horizon_month": 13,
+      "predicted": 0.02203623352684009,
+      "actual": 0.01972822527832351,
+      "cohort_n": 12216
+    },
+    {
+      "cohort": "2021-07-01",
+      "months_on_book": 52,
+      "horizon_month": 14,
+      "predicted": 0.02259253355147777,
+      "actual": 0.020055664702030126,
+      "cohort_n": 12216
+    },
+    {
+      "cohort": "2021-07-01",
+      "months_on_book": 53,
+      "horizon_month": 15,
+      "predicted": 0.023148518009177617,
+      "actual": 0.02013752455795678,
+      "cohort_n": 12216
+    },
+    {
+      "cohort": "2021-07-01",
+      "months_on_book": 54,
+      "horizon_month": 16,
+      "predicted": 0.023704186578542615,
+      "actual": 0.020464963981663392,
+      "cohort_n": 12216
+    },
+    {
+      "cohort": "2021-07-01",
+      "months_on_book": 55,
+      "horizon_month": 17,
+      "predicted": 0.0242595392334087,
+      "actual": 0.020956123117223315,
+      "cohort_n": 12216
+    },
+    {
+      "cohort": "2021-07-01",
+      "months_on_book": 56,
+      "horizon_month": 18,
+      "predicted": 0.024814576068876434,
+      "actual": 0.021037982973149967,
+      "cohort_n": 12216
+    },
+    {
+      "cohort": "2021-10-01",
+      "months_on_book": 36,
+      "horizon_month": 1,
+      "predicted": 0.015365944066383412,
+      "actual": 0.014913007456503728,
+      "cohort_n": 13277
+    },
+    {
+      "cohort": "2021-10-01",
+      "months_on_book": 37,
+      "horizon_month": 2,
+      "predicted": 0.015980930638321345,
+      "actual": 0.015289598553890185,
+      "cohort_n": 13277
+    },
+    {
+      "cohort": "2021-10-01",
+      "months_on_book": 38,
+      "horizon_month": 3,
+      "predicted": 0.01656415212978908,
+      "actual": 0.01596746252918581,
+      "cohort_n": 13277
+    },
+    {
+      "cohort": "2021-10-01",
+      "months_on_book": 39,
+      "horizon_month": 4,
+      "predicted": 0.017133328903432977,
+      "actual": 0.016645326504481434,
+      "cohort_n": 13277
+    },
+    {
+      "cohort": "2021-10-01",
+      "months_on_book": 40,
+      "horizon_month": 5,
+      "predicted": 0.017696425269460685,
+      "actual": 0.017172554040822473,
+      "cohort_n": 13277
+    },
+    {
+      "cohort": "2021-10-01",
+      "months_on_book": 41,
+      "horizon_month": 6,
+      "predicted": 0.01825681733199834,
+      "actual": 0.017549145138208933,
+      "cohort_n": 13277
+    },
+    {
+      "cohort": "2021-10-01",
+      "months_on_book": 42,
+      "horizon_month": 7,
+      "predicted": 0.01881590817524582,
+      "actual": 0.017699781577163516,
+      "cohort_n": 13277
+    },
+    {
+      "cohort": "2021-10-01",
+      "months_on_book": 43,
+      "horizon_month": 8,
+      "predicted": 0.019374276851709164,
+      "actual": 0.018151690894027264,
+      "cohort_n": 13277
+    },
+    {
+      "cohort": "2021-10-01",
+      "months_on_book": 44,
+      "horizon_month": 9,
+      "predicted": 0.0199321617825364,
+      "actual": 0.01837764555245914,
+      "cohort_n": 13277
+    },
+    {
+      "cohort": "2021-10-01",
+      "months_on_book": 45,
+      "horizon_month": 10,
+      "predicted": 0.020489661105826926,
+      "actual": 0.01890487308880018,
+      "cohort_n": 13277
+    },
+    {
+      "cohort": "2021-10-01",
+      "months_on_book": 46,
+      "horizon_month": 11,
+      "predicted": 0.021046815265323808,
+      "actual": 0.01943210062514122,
+      "cohort_n": 13277
+    },
+    {
+      "cohort": "2021-10-01",
+      "months_on_book": 47,
+      "horizon_month": 12,
+      "predicted": 0.02160364098860033,
+      "actual": 0.019733373503050388,
+      "cohort_n": 13277
+    },
+    {
+      "cohort": "2021-10-01",
+      "months_on_book": 48,
+      "horizon_month": 13,
+      "predicted": 0.022160145256085693,
+      "actual": 0.020260601039391427,
+      "cohort_n": 13277
+    },
+    {
+      "cohort": "2021-10-01",
+      "months_on_book": 49,
+      "horizon_month": 14,
+      "predicted": 0.02271633104245149,
+      "actual": 0.02086314679520976,
+      "cohort_n": 13277
+    },
+    {
+      "cohort": "2021-10-01",
+      "months_on_book": 50,
+      "horizon_month": 15,
+      "predicted": 0.023272199676139325,
+      "actual": 0.02123973789259622,
+      "cohort_n": 13277
+    },
+    {
+      "cohort": "2021-10-01",
+      "months_on_book": 51,
+      "horizon_month": 16,
+      "predicted": 0.023827751809017042,
+      "actual": 0.021842283648414552,
+      "cohort_n": 13277
+    },
+    {
+      "cohort": "2021-10-01",
+      "months_on_book": 52,
+      "horizon_month": 17,
+      "predicted": 0.024382987814857107,
+      "actual": 0.022520147623710175,
+      "cohort_n": 13277
+    },
+    {
+      "cohort": "2021-10-01",
+      "months_on_book": 53,
+      "horizon_month": 18,
+      "predicted": 0.024937907953089786,
+      "actual": 0.02274610228214205,
+      "cohort_n": 13277
+    },
+    {
+      "cohort": "2022-01-01",
+      "months_on_book": 33,
+      "horizon_month": 1,
+      "predicted": 0.0185779022748341,
+      "actual": 0.018371712595948157,
+      "cohort_n": 7947
+    },
+    {
+      "cohort": "2022-01-01",
+      "months_on_book": 34,
+      "horizon_month": 2,
+      "predicted": 0.019233554453975146,
+      "actual": 0.01887504718761797,
+      "cohort_n": 7947
+    },
+    {
+      "cohort": "2022-01-01",
+      "months_on_book": 35,
+      "horizon_month": 3,
+      "predicted": 0.019852419548300474,
+      "actual": 0.019126714483452874,
+      "cohort_n": 7947
+    },
+    {
+      "cohort": "2022-01-01",
+      "months_on_book": 36,
+      "horizon_month": 4,
+      "predicted": 0.020438161700431095,
+      "actual": 0.01975588272304014,
+      "cohort_n": 7947
+    },
+    {
+      "cohort": "2022-01-01",
+      "months_on_book": 37,
+      "horizon_month": 5,
+      "predicted": 0.0210074120555109,
+      "actual": 0.0201333836667925,
+      "cohort_n": 7947
+    },
+    {
+      "cohort": "2022-01-01",
+      "months_on_book": 38,
+      "horizon_month": 6,
+      "predicted": 0.021569291471661697,
+      "actual": 0.020385050962627407,
+      "cohort_n": 7947
+    },
+    {
+      "cohort": "2022-01-01",
+      "months_on_book": 39,
+      "horizon_month": 7,
+      "predicted": 0.022127893807012012,
+      "actual": 0.020888385554297218,
+      "cohort_n": 7947
+    },
+    {
+      "cohort": "2022-01-01",
+      "months_on_book": 40,
+      "horizon_month": 8,
+      "predicted": 0.02268495375440195,
+      "actual": 0.021140052850132124,
+      "cohort_n": 7947
+    },
+    {
+      "cohort": "2022-01-01",
+      "months_on_book": 41,
+      "horizon_month": 9,
+      "predicted": 0.023241192178908205,
+      "actual": 0.021895054737636845,
+      "cohort_n": 7947
+    },
+    {
+      "cohort": "2022-01-01",
+      "months_on_book": 42,
+      "horizon_month": 10,
+      "predicted": 0.023796906615832548,
+      "actual": 0.02214672203347175,
+      "cohort_n": 7947
+    },
+    {
+      "cohort": "2022-01-01",
+      "months_on_book": 43,
+      "horizon_month": 11,
+      "predicted": 0.024352219622097007,
+      "actual": 0.022901723920976468,
+      "cohort_n": 7947
+    },
+    {
+      "cohort": "2022-01-01",
+      "months_on_book": 44,
+      "horizon_month": 12,
+      "predicted": 0.024907181694950306,
+      "actual": 0.023279224864728828,
+      "cohort_n": 7947
+    },
+    {
+      "cohort": "2022-01-01",
+      "months_on_book": 45,
+      "horizon_month": 13,
+      "predicted": 0.025461813695876277,
+      "actual": 0.024160060400151,
+      "cohort_n": 7947
+    },
+    {
+      "cohort": "2022-01-01",
+      "months_on_book": 46,
+      "horizon_month": 14,
+      "predicted": 0.02601612430413235,
+      "actual": 0.02453756134390336,
+      "cohort_n": 7947
+    },
+    {
+      "cohort": "2022-01-01",
+      "months_on_book": 47,
+      "horizon_month": 15,
+      "predicted": 0.02657011719216277,
+      "actual": 0.02504089593557317,
+      "cohort_n": 7947
+    },
+    {
+      "cohort": "2022-01-01",
+      "months_on_book": 48,
+      "horizon_month": 16,
+      "predicted": 0.027123793974747235,
+      "actual": 0.025544230527242986,
+      "cohort_n": 7947
+    },
+    {
+      "cohort": "2022-01-01",
+      "months_on_book": 49,
+      "horizon_month": 17,
+      "predicted": 0.02767715542100647,
+      "actual": 0.02617339876683025,
+      "cohort_n": 7947
+    },
+    {
+      "cohort": "2022-01-01",
+      "months_on_book": 50,
+      "horizon_month": 18,
+      "predicted": 0.028230201952480084,
+      "actual": 0.026299232414747704,
+      "cohort_n": 7947
+    }
+  ],
+  "accuracy": {
+    "mae": 0.00192,
+    "mape": 0.1252,
+    "bias_pp": 0.1918,
+    "n_points": 90
+  },
+  "calibration": [
+    {
+      "from_bucket": "120+/Charged-Off",
+      "to_bucket": "120+/Charged-Off",
+      "train_rate": 0.857,
+      "holdout_rate": 0.913,
+      "rate_diff_pp": 5.600000000000005,
+      "train_n": 2708,
+      "holdout_n": 1973
+    },
+    {
+      "from_bucket": "120+/Charged-Off",
+      "to_bucket": "30-59 DPD",
+      "train_rate": 0.0123,
+      "holdout_rate": 0.0083,
+      "rate_diff_pp": -0.4,
+      "train_n": 39,
+      "holdout_n": 18
+    },
+    {
+      "from_bucket": "120+/Charged-Off",
+      "to_bucket": "60-89 DPD",
+      "train_rate": 0.0073,
+      "holdout_rate": 0.0051,
+      "rate_diff_pp": -0.21999999999999997,
+      "train_n": 23,
+      "holdout_n": 11
+    },
+    {
+      "from_bucket": "120+/Charged-Off",
+      "to_bucket": "90-119 DPD",
+      "train_rate": 0.0057,
+      "holdout_rate": 0.0102,
+      "rate_diff_pp": 0.45000000000000007,
+      "train_n": 18,
+      "holdout_n": 22
+    },
+    {
+      "from_bucket": "120+/Charged-Off",
+      "to_bucket": "Current",
+      "train_rate": 0.1177,
+      "holdout_rate": 0.0634,
+      "rate_diff_pp": -5.43,
+      "train_n": 372,
+      "holdout_n": 137
+    },
+    {
+      "from_bucket": "30-59 DPD",
+      "to_bucket": "120+/Charged-Off",
+      "train_rate": 0.003,
+      "holdout_rate": 0.0018,
+      "rate_diff_pp": -0.12000000000000001,
+      "train_n": 30,
+      "holdout_n": 11
+    },
+    {
+      "from_bucket": "30-59 DPD",
+      "to_bucket": "30-59 DPD",
+      "train_rate": 0.3235,
+      "holdout_rate": 0.4284,
+      "rate_diff_pp": 10.489999999999998,
+      "train_n": 3233,
+      "holdout_n": 2632
+    },
+    {
+      "from_bucket": "30-59 DPD",
+      "to_bucket": "60-89 DPD",
+      "train_rate": 0.138,
+      "holdout_rate": 0.1603,
+      "rate_diff_pp": 2.2299999999999986,
+      "train_n": 1379,
+      "holdout_n": 985
+    },
+    {
+      "from_bucket": "30-59 DPD",
+      "to_bucket": "90-119 DPD",
+      "train_rate": 0.0011,
+      "holdout_rate": 0.001,
+      "rate_diff_pp": -0.010000000000000005,
+      "train_n": 11,
+      "holdout_n": 6
+    },
+    {
+      "from_bucket": "30-59 DPD",
+      "to_bucket": "Current",
+      "train_rate": 0.5344,
+      "holdout_rate": 0.4085,
+      "rate_diff_pp": -12.590000000000002,
+      "train_n": 5341,
+      "holdout_n": 2510
+    },
+    {
+      "from_bucket": "60-89 DPD",
+      "to_bucket": "120+/Charged-Off",
+      "train_rate": 0.0108,
+      "holdout_rate": 0.0071,
+      "rate_diff_pp": -0.37,
+      "train_n": 21,
+      "holdout_n": 11
+    },
+    {
+      "from_bucket": "60-89 DPD",
+      "to_bucket": "30-59 DPD",
+      "train_rate": 0.1131,
+      "holdout_rate": 0.1671,
+      "rate_diff_pp": 5.3999999999999995,
+      "train_n": 219,
+      "holdout_n": 260
+    },
+    {
+      "from_bucket": "60-89 DPD",
+      "to_bucket": "60-89 DPD",
+      "train_rate": 0.2421,
+      "holdout_rate": 0.3046,
+      "rate_diff_pp": 6.249999999999997,
+      "train_n": 469,
+      "holdout_n": 474
+    },
+    {
+      "from_bucket": "60-89 DPD",
+      "to_bucket": "90-119 DPD",
+      "train_rate": 0.4027,
+      "holdout_rate": 0.3522,
+      "rate_diff_pp": -5.049999999999999,
+      "train_n": 780,
+      "holdout_n": 548
+    },
+    {
+      "from_bucket": "60-89 DPD",
+      "to_bucket": "Current",
+      "train_rate": 0.2313,
+      "holdout_rate": 0.169,
+      "rate_diff_pp": -6.2299999999999995,
+      "train_n": 448,
+      "holdout_n": 263
+    },
+    {
+      "from_bucket": "90-119 DPD",
+      "to_bucket": "120+/Charged-Off",
+      "train_rate": 0.5711,
+      "holdout_rate": 0.5127,
+      "rate_diff_pp": -5.840000000000001,
+      "train_n": 546,
+      "holdout_n": 363
+    },
+    {
+      "from_bucket": "90-119 DPD",
+      "to_bucket": "30-59 DPD",
+      "train_rate": 0.0324,
+      "holdout_rate": 0.0523,
+      "rate_diff_pp": 1.9900000000000002,
+      "train_n": 31,
+      "holdout_n": 37
+    },
+    {
+      "from_bucket": "90-119 DPD",
+      "to_bucket": "60-89 DPD",
+      "train_rate": 0.0502,
+      "holdout_rate": 0.0763,
+      "rate_diff_pp": 2.6100000000000003,
+      "train_n": 48,
+      "holdout_n": 54
+    },
+    {
+      "from_bucket": "90-119 DPD",
+      "to_bucket": "90-119 DPD",
+      "train_rate": 0.1444,
+      "holdout_rate": 0.1963,
+      "rate_diff_pp": 5.19,
+      "train_n": 138,
+      "holdout_n": 139
+    },
+    {
+      "from_bucket": "90-119 DPD",
+      "to_bucket": "Current",
+      "train_rate": 0.2019,
+      "holdout_rate": 0.1624,
+      "rate_diff_pp": -3.9500000000000006,
+      "train_n": 193,
+      "holdout_n": 115
+    },
+    {
+      "from_bucket": "Current",
+      "to_bucket": "120+/Charged-Off",
+      "train_rate": 0.0,
+      "holdout_rate": 0.0,
+      "rate_diff_pp": 0.0,
+      "train_n": 67,
+      "holdout_n": 34
+    },
+    {
+      "from_bucket": "Current",
+      "to_bucket": "30-59 DPD",
+      "train_rate": 0.004,
+      "holdout_rate": 0.0046,
+      "rate_diff_pp": 0.059999999999999984,
+      "train_n": 6835,
+      "holdout_n": 3187
+    },
+    {
+      "from_bucket": "Current",
+      "to_bucket": "60-89 DPD",
+      "train_rate": 0.0001,
+      "holdout_rate": 0.0001,
+      "rate_diff_pp": 0.0,
+      "train_n": 87,
+      "holdout_n": 37
+    },
+    {
+      "from_bucket": "Current",
+      "to_bucket": "90-119 DPD",
+      "train_rate": 0.0,
+      "holdout_rate": 0.0,
+      "rate_diff_pp": 0.0,
+      "train_n": 40,
+      "holdout_n": 11
+    },
+    {
+      "from_bucket": "Current",
+      "to_bucket": "Current",
+      "train_rate": 0.9959,
+      "holdout_rate": 0.9953,
+      "rate_diff_pp": -0.060000000000004494,
+      "train_n": 1711731,
+      "holdout_n": 695256
+    }
+  ],
+  "train_matrix": {
+    "from_bucket_order": [
+      "Current",
+      "30-59 DPD",
+      "60-89 DPD",
+      "90-119 DPD",
+      "120+/Charged-Off"
+    ],
+    "to_bucket_order": [
+      "Current",
+      "30-59 DPD",
+      "60-89 DPD",
+      "90-119 DPD",
+      "120+/Charged-Off"
+    ],
+    "cells": [
+      {
+        "from_bucket": "120+/Charged-Off",
+        "to_bucket": "120+/Charged-Off",
+        "account_count": 2708,
+        "pct": 0.857
+      },
+      {
+        "from_bucket": "120+/Charged-Off",
+        "to_bucket": "30-59 DPD",
+        "account_count": 39,
+        "pct": 0.0123
+      },
+      {
+        "from_bucket": "120+/Charged-Off",
+        "to_bucket": "60-89 DPD",
+        "account_count": 23,
+        "pct": 0.0073
+      },
+      {
+        "from_bucket": "120+/Charged-Off",
+        "to_bucket": "90-119 DPD",
+        "account_count": 18,
+        "pct": 0.0057
+      },
+      {
+        "from_bucket": "120+/Charged-Off",
+        "to_bucket": "Current",
+        "account_count": 372,
+        "pct": 0.1177
+      },
+      {
+        "from_bucket": "30-59 DPD",
+        "to_bucket": "120+/Charged-Off",
+        "account_count": 30,
+        "pct": 0.003
+      },
+      {
+        "from_bucket": "30-59 DPD",
+        "to_bucket": "30-59 DPD",
+        "account_count": 3233,
+        "pct": 0.3235
+      },
+      {
+        "from_bucket": "30-59 DPD",
+        "to_bucket": "60-89 DPD",
+        "account_count": 1379,
+        "pct": 0.138
+      },
+      {
+        "from_bucket": "30-59 DPD",
+        "to_bucket": "90-119 DPD",
+        "account_count": 11,
+        "pct": 0.0011
+      },
+      {
+        "from_bucket": "30-59 DPD",
+        "to_bucket": "Current",
+        "account_count": 5341,
+        "pct": 0.5344
+      },
+      {
+        "from_bucket": "60-89 DPD",
+        "to_bucket": "120+/Charged-Off",
+        "account_count": 21,
+        "pct": 0.0108
+      },
+      {
+        "from_bucket": "60-89 DPD",
+        "to_bucket": "30-59 DPD",
+        "account_count": 219,
+        "pct": 0.1131
+      },
+      {
+        "from_bucket": "60-89 DPD",
+        "to_bucket": "60-89 DPD",
+        "account_count": 469,
+        "pct": 0.2421
+      },
+      {
+        "from_bucket": "60-89 DPD",
+        "to_bucket": "90-119 DPD",
+        "account_count": 780,
+        "pct": 0.4027
+      },
+      {
+        "from_bucket": "60-89 DPD",
+        "to_bucket": "Current",
+        "account_count": 448,
+        "pct": 0.2313
+      },
+      {
+        "from_bucket": "90-119 DPD",
+        "to_bucket": "120+/Charged-Off",
+        "account_count": 546,
+        "pct": 0.5711
+      },
+      {
+        "from_bucket": "90-119 DPD",
+        "to_bucket": "30-59 DPD",
+        "account_count": 31,
+        "pct": 0.0324
+      },
+      {
+        "from_bucket": "90-119 DPD",
+        "to_bucket": "60-89 DPD",
+        "account_count": 48,
+        "pct": 0.0502
+      },
+      {
+        "from_bucket": "90-119 DPD",
+        "to_bucket": "90-119 DPD",
+        "account_count": 138,
+        "pct": 0.1444
+      },
+      {
+        "from_bucket": "90-119 DPD",
+        "to_bucket": "Current",
+        "account_count": 193,
+        "pct": 0.2019
+      },
+      {
+        "from_bucket": "Current",
+        "to_bucket": "120+/Charged-Off",
+        "account_count": 67,
+        "pct": 0.0
+      },
+      {
+        "from_bucket": "Current",
+        "to_bucket": "30-59 DPD",
+        "account_count": 6835,
+        "pct": 0.004
+      },
+      {
+        "from_bucket": "Current",
+        "to_bucket": "60-89 DPD",
+        "account_count": 87,
+        "pct": 0.0001
+      },
+      {
+        "from_bucket": "Current",
+        "to_bucket": "90-119 DPD",
+        "account_count": 40,
+        "pct": 0.0
+      },
+      {
+        "from_bucket": "Current",
+        "to_bucket": "Current",
+        "account_count": 1711731,
+        "pct": 0.9959
+      }
+    ]
+  },
+  "holdout_matrix": {
+    "from_bucket_order": [
+      "Current",
+      "30-59 DPD",
+      "60-89 DPD",
+      "90-119 DPD",
+      "120+/Charged-Off"
+    ],
+    "to_bucket_order": [
+      "Current",
+      "30-59 DPD",
+      "60-89 DPD",
+      "90-119 DPD",
+      "120+/Charged-Off"
+    ],
+    "cells": [
+      {
+        "from_bucket": "120+/Charged-Off",
+        "to_bucket": "120+/Charged-Off",
+        "account_count": 1973,
+        "pct": 0.913
+      },
+      {
+        "from_bucket": "120+/Charged-Off",
+        "to_bucket": "30-59 DPD",
+        "account_count": 18,
+        "pct": 0.0083
+      },
+      {
+        "from_bucket": "120+/Charged-Off",
+        "to_bucket": "60-89 DPD",
+        "account_count": 11,
+        "pct": 0.0051
+      },
+      {
+        "from_bucket": "120+/Charged-Off",
+        "to_bucket": "90-119 DPD",
+        "account_count": 22,
+        "pct": 0.0102
+      },
+      {
+        "from_bucket": "120+/Charged-Off",
+        "to_bucket": "Current",
+        "account_count": 137,
+        "pct": 0.0634
+      },
+      {
+        "from_bucket": "30-59 DPD",
+        "to_bucket": "120+/Charged-Off",
+        "account_count": 11,
+        "pct": 0.0018
+      },
+      {
+        "from_bucket": "30-59 DPD",
+        "to_bucket": "30-59 DPD",
+        "account_count": 2632,
+        "pct": 0.4284
+      },
+      {
+        "from_bucket": "30-59 DPD",
+        "to_bucket": "60-89 DPD",
+        "account_count": 985,
+        "pct": 0.1603
+      },
+      {
+        "from_bucket": "30-59 DPD",
+        "to_bucket": "90-119 DPD",
+        "account_count": 6,
+        "pct": 0.001
+      },
+      {
+        "from_bucket": "30-59 DPD",
+        "to_bucket": "Current",
+        "account_count": 2510,
+        "pct": 0.4085
+      },
+      {
+        "from_bucket": "60-89 DPD",
+        "to_bucket": "120+/Charged-Off",
+        "account_count": 11,
+        "pct": 0.0071
+      },
+      {
+        "from_bucket": "60-89 DPD",
+        "to_bucket": "30-59 DPD",
+        "account_count": 260,
+        "pct": 0.1671
+      },
+      {
+        "from_bucket": "60-89 DPD",
+        "to_bucket": "60-89 DPD",
+        "account_count": 474,
+        "pct": 0.3046
+      },
+      {
+        "from_bucket": "60-89 DPD",
+        "to_bucket": "90-119 DPD",
+        "account_count": 548,
+        "pct": 0.3522
+      },
+      {
+        "from_bucket": "60-89 DPD",
+        "to_bucket": "Current",
+        "account_count": 263,
+        "pct": 0.169
+      },
+      {
+        "from_bucket": "90-119 DPD",
+        "to_bucket": "120+/Charged-Off",
+        "account_count": 363,
+        "pct": 0.5127
+      },
+      {
+        "from_bucket": "90-119 DPD",
+        "to_bucket": "30-59 DPD",
+        "account_count": 37,
+        "pct": 0.0523
+      },
+      {
+        "from_bucket": "90-119 DPD",
+        "to_bucket": "60-89 DPD",
+        "account_count": 54,
+        "pct": 0.0763
+      },
+      {
+        "from_bucket": "90-119 DPD",
+        "to_bucket": "90-119 DPD",
+        "account_count": 139,
+        "pct": 0.1963
+      },
+      {
+        "from_bucket": "90-119 DPD",
+        "to_bucket": "Current",
+        "account_count": 115,
+        "pct": 0.1624
+      },
+      {
+        "from_bucket": "Current",
+        "to_bucket": "120+/Charged-Off",
+        "account_count": 34,
+        "pct": 0.0
+      },
+      {
+        "from_bucket": "Current",
+        "to_bucket": "30-59 DPD",
+        "account_count": 3187,
+        "pct": 0.0046
+      },
+      {
+        "from_bucket": "Current",
+        "to_bucket": "60-89 DPD",
+        "account_count": 37,
+        "pct": 0.0001
+      },
+      {
+        "from_bucket": "Current",
+        "to_bucket": "90-119 DPD",
+        "account_count": 11,
+        "pct": 0.0
+      },
+      {
+        "from_bucket": "Current",
+        "to_bucket": "Current",
+        "account_count": 695256,
+        "pct": 0.9953
+      }
+    ]
+  },
+  "sanity_check": {
+    "mortgage_lifetime_ever90plus_rate": 0.0201,
+    "fred_card_delinquency_rate": 0.029,
+    "synchrony_nco_rate": 0.0542
+  }
+}

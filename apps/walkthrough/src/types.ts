@@ -73,3 +73,47 @@ export interface PortfolioSummaryRow {
   lifetime_charge_off_rate: number
   avg_apr: number
 }
+
+export interface BacktestCurvePoint {
+  cohort: string
+  months_on_book: number
+  horizon_month: number
+  predicted: number
+  actual: number
+  cohort_n: number
+}
+
+export interface BacktestAccuracy {
+  mae: number
+  mape: number
+  bias_pp: number
+  n_points: number
+}
+
+export interface BacktestCalibrationRow {
+  from_bucket: DelinquencyBucket
+  to_bucket: DelinquencyBucket
+  train_rate: number
+  holdout_rate: number
+  rate_diff_pp: number
+  train_n: number
+  holdout_n: number
+}
+
+export interface BacktestSanityCheck {
+  mortgage_lifetime_ever90plus_rate: number
+  fred_card_delinquency_rate: number
+  synchrony_nco_rate: number
+}
+
+export interface BacktestValidation {
+  data_source: string
+  train_cutoff: string
+  horizon_months: number
+  curve: BacktestCurvePoint[]
+  accuracy: BacktestAccuracy
+  calibration: BacktestCalibrationRow[]
+  train_matrix: RollRateMatrix
+  holdout_matrix: RollRateMatrix
+  sanity_check: BacktestSanityCheck
+}
