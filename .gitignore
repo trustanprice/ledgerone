@@ -1,6 +1,7 @@
 venv/
 data/raw/
 data/processed/*.duckdb
+data/external/
 __pycache__/
 *.pyc
 .DS_Store
