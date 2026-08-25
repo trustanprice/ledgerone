@@ -117,3 +117,21 @@ export interface BacktestValidation {
   holdout_matrix: RollRateMatrix
   sanity_check: BacktestSanityCheck
 }
+
+export interface FinOpsServiceCost {
+  service: string
+  amount: number
+}
+
+export interface FinOpsDailyCost {
+  date: string
+  amount: number
+}
+
+export interface FinOpsSnapshot {
+  as_of: string
+  window_days: number
+  total_unblended_cost: number
+  by_service: FinOpsServiceCost[]
+  daily_total: FinOpsDailyCost[]
+}
