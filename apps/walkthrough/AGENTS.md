@@ -19,6 +19,14 @@ Built as a portfolio/interview-review artifact, not a dashboard app and
 not part of the numbered roadmap's Phase 3 (BI dashboards) — see the root
 AGENTS.md.
 
+**A sixth tab is planned, not built**: "Emerging Techniques" (working
+title) — regime-switching transition matrices, survival analysis, Monte
+Carlo loss simulation, plus a small isolated SAS exercise, all picked to
+extend evidence this repo already has (the Freddie Mac backtest's
+time-instability finding, specifically) rather than a generic stats
+syllabus. Full plan, including why it's a new tab rather than more Day in
+the Life scenes: README.md's "Planned: a sixth tab" section.
+
 **Important tonal split, don't blur it**: Day in the Life teaches concepts
 to someone new to them (step-by-step narrative). Every other tab is a
 dense reference for someone who already knows the domain (captions and

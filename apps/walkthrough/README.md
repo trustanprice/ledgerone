@@ -316,3 +316,79 @@ that build the same way — don't hardcode a new default.
   zero console errors) rather than just a type check — but there's no
   regression-catching test suite. Proportionate for the scope, a real gap
   if this app keeps growing.
+
+## Planned: a sixth tab — Emerging Techniques (working title)
+
+Not built yet — this is a plan, written down before starting so the scope
+is deliberate rather than discovered mid-build. It exists because of a
+specific, real prompt: ahead of starting a credit-risk/loss-forecasting
+analyst role, the hiring manager's pre-start guidance named two concrete
+gaps to close — statistics and stochastic processes, with an explicit
+nudge to "think beyond traditional time series techniques for
+forecasting," and hands-on fluency in Python, SQL, **and SAS** (this
+project has the first two in depth and zero of the third).
+
+**Why a new tab, not more scenes bolted onto Day in the Life**: Day in
+the Life's whole design constraint is a tight, single narrative — five
+scenes, one story, sticky-chart-plus-scroll. This project's own AGENTS.md
+already flags the risk explicitly: "if a new addition to a reference tab
+starts reading like a tutorial, or the walkthrough starts reading like a
+spec sheet, that's a sign it's in the wrong tab." Survival analysis,
+regime-switching matrices, and Monte Carlo loss simulation are a second
+syllabus, not a sixth beat in the existing one — forcing them into Day in
+the Life would blur exactly the tonal split that tab depends on. A new
+tab keeps it reference-grade like Data Engineering/Forecasting/
+Infrastructure, and — this is the actual integration point — **Day in
+the Life's final "So What" scene gets one new pointer/link out to it**
+("want to see where this goes next — regime-switching, survival models,
+beyond a single static matrix? →"), the same way a real onboarding doc
+would close by pointing at further reading rather than trying to teach
+everything in one sitting.
+
+**Planned content, each piece picked to extend something this repo
+already has real evidence for, not a generic stats syllabus:**
+
+1. **Regime-switching / macro-conditioned transition matrix.** Directly
+   motivated by a real finding already in hand: the Freddie Mac backtest
+   (`dbt/models/credit_risk/README.md`'s Validation section) showed the
+   blended roll-rate matrix isn't time-stable — cure rates measurably
+   worsened between training and holdout. A regime-switching Markov model
+   (matrix conditioned on a macro state, not one static matrix rolled
+   forward forever) is the textbook answer to a gap this project already
+   demonstrated with real data, not a hypothetical one.
+2. **Survival analysis (Kaplan-Meier, Cox proportional hazards).** A
+   genuinely different technique family from the roll-rate/vintage-curve
+   approach — "time to first severe delinquency" as a hazard function
+   instead of a cumulative-rate curve. Same underlying loan-performance
+   panel (synthetic + the real Freddie Mac data already ingested), a
+   different lens on it.
+3. **Monte Carlo simulation for loss-distribution uncertainty.** The
+   existing CECL reserve estimate is a point forecast. Simulating many
+   roll-forward paths (resampling transition draws instead of taking
+   expected value at each step) turns that into a distribution — a
+   confidence band around the reserve number, not just the number itself.
+4. **A SAS exercise, deliberately separate from the rest of the stack.**
+   Re-implement one already-validated analysis — the roll-rate
+   transition matrix is the obvious pick, since its correct answer is
+   already known from the dbt/SQL version — in SAS (`PROC SQL` /
+   `PROC TRANSREG` or a hand-rolled Markov step, whichever maps more
+   naturally). The point isn't to add SAS to this project's stack
+   generally; it's one small, honest "I can read and write basic SAS"
+   artifact, kept isolated rather than pretending this whole project is
+   SAS-based.
+
+**Site mechanics, following the exact pattern every other tab already
+uses** — no new pattern to invent: a new
+`notebooks/04_emerging_techniques.ipynb` (teaching-style, executed for
+real via nbclient like `03_credit_risk_validation_backtest.ipynb`), a new
+standalone export script (`src/export_emerging_techniques_data.py`,
+mirroring `export_credit_risk_walkthrough_data.py`'s style) writing
+`apps/walkthrough/public/data/emerging_techniques.json`, a new entry in
+`tabConfig.ts`, a new `EmergingTechniquesTab.tsx`, and whatever new chart
+component the regime-switching/survival/Monte Carlo visuals actually need
+(likely at least one new component — none of the existing chart types are
+quite the right shape for a hazard curve or a simulated loss
+distribution).
+
+Not scoped with a timeline — logged here so the next work on this repo
+picks it up deliberately instead of it being an unwritten idea.
