@@ -13,15 +13,20 @@ part of the numbered roadmap below and never joins to the ledger domain —
 see [dbt/models/credit_risk/AGENTS.md](dbt/models/credit_risk/AGENTS.md).
 
 A third piece, `apps/walkthrough/`, is a static, multi-tab React site
-covering the credit-risk module from four angles behind one nav: a
+covering the credit-risk module from five angles behind one nav: a
 teaching walkthrough (the original scroll-driven scenes), a data-
 engineering reference (dbt lineage, SQL, data dictionary), a forecasting
-dashboard (the same charts, reference mode), and an infrastructure/
-architecture writeup (static content, no real cloud calls). A portfolio
-artifact, not a dashboard app, and not part of the numbered roadmap
-either. It's a pure read-only consumer of static JSON exported from the
-credit-risk marts; it never queries DuckDB directly and never modifies
-dbt. See [apps/walkthrough/AGENTS.md](apps/walkthrough/AGENTS.md).
+dashboard (the same charts, reference mode), an infrastructure/
+architecture writeup (documents the real AWS/MotherDuck deployment in
+`infra/`, but the page itself makes no live cloud calls), and an
+"Emerging Techniques" tab — currently scaffolding only (structure and
+placeholder cards, no real content), tracking a set of stochastic-process
+methods and a SAS exercise not built yet; see
+`apps/walkthrough/README.md`'s "Planned: a sixth tab" section. A
+portfolio artifact, not a dashboard app, and not part of the numbered
+roadmap either. It's a pure read-only consumer of static JSON exported
+from the credit-risk marts; it never queries DuckDB directly and never
+modifies dbt. See [apps/walkthrough/AGENTS.md](apps/walkthrough/AGENTS.md).
 
 Nothing here touches real money or an orchestrator, and the local,
 single-command `make all` path is still the default and the one every

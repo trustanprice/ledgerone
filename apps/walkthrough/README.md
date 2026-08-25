@@ -18,6 +18,7 @@ agent-facing map of this folder.
 | **Database & Data Engineering** | Reference | How this is actually built: a lineage diagram for both dbt domains (ledger + credit risk, kept visually distinct), the three most interesting model SQL queries verbatim, a data dictionary (grain/keys/tests per model), and an exact test-coverage breakdown (48 tests, by type). |
 | **Forecasting & Data Science** | Reference | The same chart components as the walkthrough, reused in "reference mode" — every cohort visible at once, no scene-by-scene reveal — plus a portfolio-summary table and a real-data backtest/validation section (predicted-vs-actual curves, MAE/MAPE, a training-vs-holdout calibration comparison, see below). |
 | **Infrastructure & Productionization** | Architecture doc | A diagram + writeup of the real AWS/MotherDuck deployment this project now has (`infra/`, `.github/workflows/dbt-build.yml`) — S3, IAM/OIDC, CloudFormation, MotherDuck, plus a real Cost Explorer-backed spend section. Real infrastructure, but this page itself still makes no live AWS calls — it reads a static export, same as every other tab. |
+| **Emerging Techniques** | Scaffolding | Four cards naming planned stochastic-process methods (regime-switching matrices, survival analysis, Monte Carlo loss simulation) and a SAS exercise — no notebook, export, or chart exists for any of them yet. See "Planned: a sixth tab" below for the full reasoning. |
 
 **The Day in the Life tab stays teaching-oriented; every other tab is
 reference-grade** — dense, all-data-visible, captions rather than
@@ -317,10 +318,15 @@ that build the same way — don't hardcode a new default.
   regression-catching test suite. Proportionate for the scope, a real gap
   if this app keeps growing.
 
-## Planned: a sixth tab — Emerging Techniques (working title)
+## Sixth tab: Emerging Techniques — scaffolding built, content planned
 
-Not built yet — this is a plan, written down before starting so the scope
-is deliberate rather than discovered mid-build. It exists because of a
+**Structure exists; the research doesn't yet.** The nav entry, the tab
+(`EmergingTechniquesTab.tsx`), the cross-link from Day in the Life's
+closing scene, and four placeholder cards naming exactly what's coming
+and why (`content/emergingTechniquesContent.ts`) are all real and live.
+No notebook, export script, or chart exists for any of the four planned
+techniques yet — that's the actual next work, tracked here so scope stays
+deliberate rather than discovered mid-build. It exists because of a
 specific, real prompt: ahead of starting a credit-risk/loss-forecasting
 analyst role, the hiring manager's pre-start guidance named two concrete
 gaps to close — statistics and stochastic processes, with an explicit
@@ -338,12 +344,12 @@ regime-switching matrices, and Monte Carlo loss simulation are a second
 syllabus, not a sixth beat in the existing one — forcing them into Day in
 the Life would blur exactly the tonal split that tab depends on. A new
 tab keeps it reference-grade like Data Engineering/Forecasting/
-Infrastructure, and — this is the actual integration point — **Day in
-the Life's final "So What" scene gets one new pointer/link out to it**
-("want to see where this goes next — regime-switching, survival models,
-beyond a single static matrix? →"), the same way a real onboarding doc
-would close by pointing at further reading rather than trying to teach
-everything in one sitting.
+Infrastructure, and — this is the actual integration point, already
+built — **Day in the Life's final "So What" scene links out to it**
+("want to see where this goes next — regime-switching matrices instead
+of one static one, survival analysis, Monte Carlo loss simulation →"),
+the same way a real onboarding doc would close by pointing at further
+reading rather than trying to teach everything in one sitting.
 
 **Planned content, each piece picked to extend something this repo
 already has real evidence for, not a generic stats syllabus:**
@@ -390,5 +396,7 @@ component the regime-switching/survival/Monte Carlo visuals actually need
 quite the right shape for a hazard curve or a simulated loss
 distribution).
 
-Not scoped with a timeline — logged here so the next work on this repo
-picks it up deliberately instead of it being an unwritten idea.
+Not scoped with a timeline. The scaffolding above is real and merged; the
+four techniques themselves are still not started (see each card's status
+on the tab itself) — logged here so the next work on this repo picks
+them up deliberately instead of them being an unwritten idea.

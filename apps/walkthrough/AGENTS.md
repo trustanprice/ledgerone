@@ -5,27 +5,32 @@ Fleet: [../../AGENTS.md](../../AGENTS.md)
 ## Purpose
 
 A static, multi-tab React site covering the credit-risk practice module
-([dbt/models/credit_risk/](../../dbt/models/credit_risk/)) from four
+([dbt/models/credit_risk/](../../dbt/models/credit_risk/)) from five
 angles behind one persistent top nav: **Overview** (landing), **Day in
 the Life** (the original 5-scene scrollytelling walkthrough — teaching-
 oriented), **Database & Data Engineering** (dbt lineage, SQL, data
 dictionary, test coverage — reference-oriented), **Forecasting & Data
 Science** (the same charts as the walkthrough, reused in reference mode —
-all cohorts visible, no scene-by-scene reveal), and **Infrastructure &
+all cohorts visible, no scene-by-scene reveal), **Infrastructure &
 Productionization** (a writeup of the real, deployed AWS/MotherDuck
 infrastructure in [../../infra/](../../infra/) — real, but this tab still
-renders static content and makes no live AWS calls of its own; see below).
+renders static content and makes no live AWS calls of its own; see below),
+and **Emerging Techniques** (scaffolding only — see next paragraph).
 Built as a portfolio/interview-review artifact, not a dashboard app and
 not part of the numbered roadmap's Phase 3 (BI dashboards) — see the root
 AGENTS.md.
 
-**A sixth tab is planned, not built**: "Emerging Techniques" (working
-title) — regime-switching transition matrices, survival analysis, Monte
-Carlo loss simulation, plus a small isolated SAS exercise, all picked to
-extend evidence this repo already has (the Freddie Mac backtest's
-time-instability finding, specifically) rather than a generic stats
-syllabus. Full plan, including why it's a new tab rather than more Day in
-the Life scenes: README.md's "Planned: a sixth tab" section.
+**Emerging Techniques exists as a real tab (nav entry, page, four
+placeholder cards) but has no real content yet.**
+`src/content/emergingTechniquesContent.ts` names what's coming and why —
+regime-switching transition matrices, survival analysis, Monte Carlo loss
+simulation, plus a small isolated SAS exercise, all picked to extend
+evidence this repo already has (the Freddie Mac backtest's time-
+instability finding, specifically) rather than a generic stats syllabus —
+but no notebook, export script, or chart exists for any of them. The Day
+in the Life tab links out to it from its closing scene. Full plan,
+including why this is a separate tab rather than more Day in the Life
+scenes: README.md's "Planned: a sixth tab" section.
 
 **Important tonal split, don't blur it**: Day in the Life teaches concepts
 to someone new to them (step-by-step narrative). Every other tab is a
@@ -88,11 +93,13 @@ src/
   content/
     dataEngineeringContent.ts     — SQL snippets, data dictionary, test-coverage counts (static)
     infrastructureContent.ts      — architecture diagram data + CI/CD writeup copy (static)
+    emergingTechniquesContent.ts  — planned-technique cards (title/status/summary/why); no real
+                                     results yet, this is the placeholder tab's only "data"
   scenes/
     Scene1Morning.tsx ... Scene5SoWhat.tsx   — walkthrough-tab-only, content unchanged
   tabs/
     OverviewTab.tsx, WalkthroughTab.tsx, DataEngineeringTab.tsx,
-    ForecastingTab.tsx, InfrastructureTab.tsx
+    ForecastingTab.tsx, InfrastructureTab.tsx, EmergingTechniquesTab.tsx
   App.tsx                   — shell: <Nav/> + whichever tab is active (useHashTab)
 ```
 

@@ -62,6 +62,16 @@ export function WalkthroughTab() {
         </>
       )}
 
+      {allLoaded && (
+        <div className="scene" style={{ borderTop: 'none', paddingTop: 0 }}>
+          <p style={{ color: 'var(--ink-secondary)', fontSize: '0.95rem' }}>
+            Want to see where this goes next — regime-switching matrices instead of one static one, survival
+            analysis, Monte Carlo loss simulation, beyond what this walkthrough covers? →{' '}
+            <a href="#/emerging-techniques">Emerging Techniques</a>
+          </p>
+        </div>
+      )}
+
       <footer className="site-footer">
         <p>
           Every number here traces back to a tested dbt model in{' '}

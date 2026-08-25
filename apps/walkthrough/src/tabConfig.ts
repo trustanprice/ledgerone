@@ -1,4 +1,10 @@
-export type TabId = 'overview' | 'walkthrough' | 'data-engineering' | 'forecasting' | 'infrastructure'
+export type TabId =
+  | 'overview'
+  | 'walkthrough'
+  | 'data-engineering'
+  | 'forecasting'
+  | 'infrastructure'
+  | 'emerging-techniques'
 
 export interface TabDef {
   id: TabId
@@ -12,6 +18,7 @@ export const TABS: TabDef[] = [
   { id: 'data-engineering', label: 'Database & Data Engineering', navLabel: 'Data Engineering' },
   { id: 'forecasting', label: 'Forecasting & Data Science', navLabel: 'Forecasting' },
   { id: 'infrastructure', label: 'Infrastructure & Productionization', navLabel: 'Infrastructure' },
+  { id: 'emerging-techniques', label: 'Emerging Techniques', navLabel: 'Emerging Techniques' },
 ]
 
 export const DEFAULT_TAB: TabId = 'overview'
