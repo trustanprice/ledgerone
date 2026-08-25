@@ -4,7 +4,7 @@ Fleet: [../AGENTS.md](../AGENTS.md)
 
 ## Purpose
 
-Five standalone Python scripts. None orchestrates the warehouse build
+Six standalone Python scripts. None orchestrates the warehouse build
 anymore — that's dbt's job (see [../dbt/AGENTS.md](../dbt/AGENTS.md)).
 
 - **`generate_data.py`** — generates synthetic users, accounts, and financial
@@ -47,6 +47,17 @@ anymore — that's dbt's job (see [../dbt/AGENTS.md](../dbt/AGENTS.md)).
   `data/external/freddie_mac/*.parquet` via its own DuckDB connection —
   skipped with a warning, not a hard failure, if that manually-downloaded
   data isn't present locally.
+- **`export_finops_data.py`** — a different kind of export from the one
+  above: reads live AWS Cost Explorer (`boto3`, `ce:GetCostAndUsage`) for
+  the account [../infra/](../infra/) is deployed into, not DuckDB at all.
+  Writes `apps/walkthrough/public/data/finops_snapshot.json`. Run by hand
+  occasionally, not part of `make walkthrough-data` or any other target —
+  it's a live billing call against real infrastructure, not something a
+  fresh clone can reproduce without real AWS credentials. Skips (exit 0,
+  no file written) rather than crashing if Cost Explorer isn't enabled
+  yet on that account, or was enabled too recently for AWS to have
+  ingested data (can lag up to 24h) — both real states this project has
+  actually hit, not hypothesized edge cases.
 
 Two other scripts used to live here: `run_pipeline.py` (ran `sql/*.sql` in
 order) and `ledger_validation.py` (hand-written integrity checks). Both
@@ -72,5 +83,8 @@ recreate either — extend the dbt project instead.
 - Reads what `dbt/` writes (`main_marts.*` tables) to produce `reports/`.
 - `export_credit_risk_walkthrough_data.py` also reads `main_marts.*`/
   `main_staging.*` and `data/external/freddie_mac/*.parquet`, and writes
-  `apps/walkthrough/public/data/*.json` — the only thing in `src/` this
-  app depends on.
+  `apps/walkthrough/public/data/*.json`.
+- `export_finops_data.py` reads live AWS Cost Explorer (no DuckDB
+  involved) and writes `apps/walkthrough/public/data/finops_snapshot.json`
+  — the only script in `src/` that talks to AWS, and the only one whose
+  output can legitimately not exist yet.

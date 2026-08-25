@@ -1,42 +1,46 @@
-// Static architecture documentation — not a description of anything
-// actually running. See the disclaimer rendered at the top of
-// InfrastructureTab. No AWS account, credentials, or IaC execution is
-// implied or required to view this content; it's a diagram plus copy.
+// This used to be a hypothetical design writeup ("what productionizing
+// this would look like"). It stopped being hypothetical: infra/ and
+// .github/workflows/{deploy-infra,dbt-build}.yml in this repo are real,
+// deployed, and were tested end to end via actual GitHub Actions runs
+// (see the "What actually happened" section below). This content
+// describes that real deployment, not a plan for one. It's still static
+// content though — this site itself makes no live AWS calls; see
+// AGENTS.md for why.
 
 export const ARCHITECTURE_DIAGRAM = [
   {
     label: 'Ingestion',
     nodes: [
-      { label: 'Source systems', kicker: 'origination / servicing' },
-      { label: 'S3 raw zone', kicker: 'Parquet, partitioned by domain + date', accent: true },
+      { label: 'GitHub Actions runner', kicker: 'generates synthetic data, same scripts as `make generate`' },
+      { label: 'S3 raw zone', kicker: 'ledgerone-raw-{env}, encrypted, 90-day lifecycle expiry', accent: true },
     ],
   },
   {
     label: 'Transform',
     nodes: [
-      { label: 'MotherDuck', kicker: 'cloud-hosted DuckDB', accent: true },
-      { label: 'Same dbt project', kicker: 'staging → marts, unchanged' },
+      { label: 'MotherDuck', kicker: 'cloud-hosted DuckDB — ledgerone (prod), ledgerone_dev (dev)', accent: true },
+      { label: 'Same dbt project', kicker: 'staging → marts, zero model changes for cloud' },
     ],
   },
   {
     label: 'Orchestration',
     nodes: [
-      { label: 'Scheduled GitHub Actions', kicker: 'cron trigger, replaces `make build`' },
-      { label: 'Airflow / Dagster', kicker: 'if SLA needs cross-system dependencies' },
+      { label: 'dbt-build.yml', kicker: 'workflow_dispatch only — no cron yet, deliberately' },
+      { label: 'Scheduled run', kicker: 'next step once dispatch history builds confidence' },
     ],
   },
   {
     label: 'CI/CD & auth',
     nodes: [
-      { label: 'Reusable GH Actions workflow', kicker: 'PR checks: dbt build --select state:modified+' },
-      { label: 'OIDC → IAM role', kicker: 'no long-lived AWS keys', accent: true },
+      { label: 'GitHub OIDC → IAM role', kicker: 'per environment, no long-lived AWS keys', accent: true },
+      { label: 'deploy-infra.yml', kicker: 'exists, dispatch-only, deliberately not wired to run — see below' },
     ],
   },
   {
     label: 'Consumption',
     nodes: [
-      { label: 'Analyst SQL access' },
-      { label: 'BI tool / this site’s data export' },
+      { label: 'MotherDuck SQL access' },
+      { label: 'This site’s static data export' },
     ],
   },
 ]
@@ -49,22 +53,26 @@ export interface InfraSection {
 export const CICD_WRITEUP: InfraSection[] = [
   {
     title: 'Why MotherDuck, not a full warehouse migration',
-    body: 'The whole point of this project is that dbt-duckdb works locally with zero infra. MotherDuck (a cloud-hosted DuckDB) is the smallest real step from "local file" to "shared, always-on warehouse" — same SQL, same dbt project, same DuckDB-specific features (like the recursive CTE the CECL model uses) that a Snowflake/Redshift migration would need to be rewritten for. A bigger warehouse becomes the right call once concurrent writers or dataset size actually demand it, not before.',
+    body: 'The whole point of this project is that dbt-duckdb works locally with zero infra. MotherDuck (a cloud-hosted DuckDB) is the smallest real step from "local file" to "shared, always-on warehouse" — same SQL, same dbt project, same DuckDB-specific features (like the recursive CTE the CECL model uses) that a Snowflake/Redshift migration would need to be rewritten for. dbt/profiles.yml has three targets now: dev (local file, unchanged), ci_dev (MotherDuck, dev database), and prod (MotherDuck, prod database) — deliberately separate MotherDuck databases, not just separate tokens against the same one.',
   },
   {
     title: 'Auth: OIDC over long-lived keys',
-    body: 'Every AWS interaction (writing to the S3 raw zone, reading Secrets Manager for the MotherDuck token) goes through GitHub Actions’ OIDC provider assuming a short-lived, tightly-scoped IAM role per environment (dev/prod) — no AWS access keys stored as repo secrets. The trust policy on each role restricts which repo, branch, and workflow can assume it, so a compromised workflow in one repo can’t pivot into another environment’s role.',
+    body: 'Every AWS interaction from CI (writing to the S3 raw zone) goes through GitHub Actions’ OIDC provider assuming a short-lived, tightly-scoped IAM role per environment (dev/prod) — no AWS access keys ever stored as a repo secret. Each role’s trust policy restricts which repo AND which GitHub Environment can assume it (the `sub` condition matches `repo:<org>/<repo>:environment:<dev|prod>`), so a workflow run against `dev` can’t assume the `prod` role even if it wanted to.',
   },
   {
-    title: 'Reusable workflows, not copy-pasted YAML',
-    body: 'PR checks (lint, dbt build --select state:modified+ against a CI-scoped MotherDuck database, dbt test) live in one reusable workflow called from every environment’s deploy workflow with different inputs — the same pattern this repo’s own GitHub Actions Pages deploy uses, just extended to a scheduled production run instead of a static-site build.',
+    title: 'Provisioning: CloudFormation, bootstrapped by hand',
+    body: 'The S3 bucket (lifecycle policy included) and the per-environment IAM role are defined in infra/ledgerone-stack.yml, one stack per environment. The very first deploy of each stack can’t go through CI — a workflow can’t assume a role that doesn’t exist yet to create that same role — so both were bootstrapped from an authenticated admin CLI session using `--no-execute-changeset`, a human review of the exact diff, then a manual `execute-change-set`. deploy-infra.yml exists to redeploy the stack on future template changes, but the role it would run as currently has zero CloudFormation permissions — letting a CI role rewrite its own IAM trust policy is a real privilege-escalation tradeoff, left as a deliberate, undecided question rather than defaulted into.',
   },
   {
-    title: 'Provisioning: CloudFormation',
-    body: 'The S3 bucket, its lifecycle policy (raw data expires/archives on a schedule), and the per-environment IAM roles would be defined in CloudFormation, versioned in the repo, deployed via the same reusable-workflow pattern above — so standing up a new environment is a stack deploy, not a set of manual console clicks.',
+    title: 'What actually happened, first time through',
+    body: 'Two real bugs, caught from actual failing runs, not review: dbt/profiles.yml’s pre-existing local dev target and the GitHub Environment named "dev" collided under one dbt --target name, silently pointing CI at a local file that doesn’t exist on a fresh runner — fixed with a separate ci_dev target. Second, ci_dev’s MotherDuck database didn’t exist yet (the account had a token but nothing named ledgerone_dev attached) — a one-time manual CREATE DATABASE in MotherDuck’s SQL notebook UI, the same category of "the account exists but the resource inside it doesn’t yet" gap that also blocked Cost Explorer below.',
   },
   {
-    title: 'What actually changes vs. today',
-    body: 'Almost nothing in dbt/ — the models, tests, and docs are identical. `make build` becomes a scheduled GitHub Actions run pointed at a MotherDuck connection string instead of a local file path; the export script gains a step that pushes fresh JSON somewhere the deployed site can read it (or the site’s own deploy is triggered by the same pipeline). The local-dev path (this repo, as-is) keeps working unchanged for development and interview demos.',
+    title: 'What still isn’t done',
+    body: 'No schedule/cron trigger on dbt-build.yml yet — both environments passed a manual dispatch (136/136 dbt tests, both dev and prod, verified from real run logs and a direct S3 bucket listing), but "it worked once, dispatched by hand" and "trust it unattended on a schedule" are different bars. deploy-infra.yml staying non-functional is also deliberate, not an oversight — see above.',
+  },
+  {
+    title: 'Planned: this becomes a live, scheduled deployment',
+    body: 'Manual dispatch is the current state, not the destination — the intent is a `schedule:` cron trigger on dbt-build.yml running unattended against prod. Held back deliberately, not by oversight: a handful of clean manual runs is evidence the mechanics work, not evidence it is safe to run unwatched. Before that trigger gets added: more dispatch history across both environments, alerting on a failed scheduled run (nothing currently notifies anyone if one breaks), and a resolved answer on whether deploy-infra.yml gets CloudFormation permissions — an unattended pipeline that cannot also fix its own infrastructure drift is a narrower kind of "automated" than the goal.',
   },
 ]

@@ -12,10 +12,12 @@ oriented), **Database & Data Engineering** (dbt lineage, SQL, data
 dictionary, test coverage — reference-oriented), **Forecasting & Data
 Science** (the same charts as the walkthrough, reused in reference mode —
 all cohorts visible, no scene-by-scene reveal), and **Infrastructure &
-Productionization** (a static architecture writeup, explicitly not a live
-deployment). Built as a portfolio/interview-review artifact, not a
-dashboard app and not part of the numbered roadmap's Phase 3 (BI
-dashboards) — see the root AGENTS.md.
+Productionization** (a writeup of the real, deployed AWS/MotherDuck
+infrastructure in [../../infra/](../../infra/) — real, but this tab still
+renders static content and makes no live AWS calls of its own; see below).
+Built as a portfolio/interview-review artifact, not a dashboard app and
+not part of the numbered roadmap's Phase 3 (BI dashboards) — see the root
+AGENTS.md.
 
 **Important tonal split, don't blur it**: Day in the Life teaches concepts
 to someone new to them (step-by-step narrative). Every other tab is a
@@ -25,14 +27,19 @@ addition to a reference tab starts reading like a tutorial, or the
 walkthrough starts reading like a spec sheet, that's a sign it's in the
 wrong tab.
 
-**This app has no backend and never queries DuckDB, and nothing on the
-Infrastructure tab talks to AWS or any cloud provider.** It's a pure
+**This app has no backend and never queries DuckDB, and the Infrastructure
+tab makes no live calls to AWS or any cloud provider at runtime** — the
+AWS/MotherDuck deployment it documents is real (see
+[../../infra/AGENTS.md](../../infra/AGENTS.md)), but this site only ever
+reads pre-computed static JSON, same as every other tab. It's a pure
 consumer of static JSON exported once (or whenever the credit-risk marts
-change) by `src/export_credit_risk_walkthrough_data.py` at the repo root;
-the Data Engineering and Infrastructure tabs are static reference content
-with no data dependency at all. It does not modify the dbt project, the
-credit-risk module, or its data — read-only, one direction, source of
-truth stays in `dbt/`.
+change) by `src/export_credit_risk_walkthrough_data.py`, plus — for the
+Infrastructure tab's cost section — `src/export_finops_data.py`, exported
+occasionally from AWS Cost Explorer, not on every build. The Data
+Engineering tab is still pure static reference content with no data
+dependency. It does not modify the dbt project, the credit-risk module,
+its data, or the real AWS infrastructure — read-only, one direction,
+source of truth stays in `dbt/` and `infra/`.
 
 **Overview is a dense bento dashboard, not a card grid.** A row of
 evenly-sized cards (label + title + paragraph) is the single most common
@@ -84,12 +91,20 @@ src/
 ## Conventions
 
 - **Static data only.** If a tab needs a number that isn't in
-  `public/data/*.json`, add it to the export script (mirroring an existing
+  `public/data/*.json`, add it to an export script (mirroring an existing
   mart's query, or a light aggregation over a staging table) — never add a
-  live DB connection or an API route to this app. The Data Engineering and
-  Infrastructure tabs' content (`src/content/*.ts`) is static and hand-
-  written by design — it documents the dbt project and a hypothetical
-  architecture, it doesn't need to be data-driven.
+  live DB connection or an API route to this app itself. The rule is
+  about what this React app does at runtime, not about where an export
+  script's data comes from: `src/export_finops_data.py` calls live AWS
+  Cost Explorer, but only when run by hand, server-side, to produce a
+  static JSON snapshot — the app still only ever `fetch`es that file, the
+  same as every other dataset. The Data Engineering tab's content
+  (`src/content/dataEngineeringContent.ts`) is static and hand-written by
+  design, no data dependency at all. The Infrastructure tab's
+  (`src/content/infrastructureContent.ts`) documents a real, deployed
+  architecture (see [../../infra/AGENTS.md](../../infra/AGENTS.md)) —
+  still hand-written prose, not derived from a query, but no longer
+  describing something hypothetical.
 - **One shared visual system** (`theme.ts` + `.glass-panel` in
   `index.css`): a fixed 12-color categorical palette for vintage cohorts
   (assigned by index, never reassigned), a single-hue sequential ramp for
@@ -196,4 +211,7 @@ deploy trigger and how to redeploy.
   `../../src/export_credit_risk_walkthrough_data.py`, which reads
   `main_marts.credit_risk__*` and `main_staging.credit_risk__stg_*`
   (see [../../dbt/models/credit_risk/AGENTS.md](../../dbt/models/credit_risk/AGENTS.md)).
+- Also reads `public/data/finops_snapshot.json`, written by the separate
+  `../../src/export_finops_data.py` against live AWS Cost Explorer — see
+  [../../infra/AGENTS.md](../../infra/AGENTS.md) for the AWS side.
 - Nothing else in the repo reads from this app — it's a leaf.

@@ -17,7 +17,7 @@ agent-facing map of this folder.
 | **Day in the Life** | Teaching | The original 5-scene scrollytelling walkthrough — sticky chart + scrolling narrative, unchanged in content from before this became a multi-tab site. Explains vintage curves, the roll-rate transition matrix, and the CECL reserve forecast from first principles. |
 | **Database & Data Engineering** | Reference | How this is actually built: a lineage diagram for both dbt domains (ledger + credit risk, kept visually distinct), the three most interesting model SQL queries verbatim, a data dictionary (grain/keys/tests per model), and an exact test-coverage breakdown (48 tests, by type). |
 | **Forecasting & Data Science** | Reference | The same chart components as the walkthrough, reused in "reference mode" — every cohort visible at once, no scene-by-scene reveal — plus a portfolio-summary table and a real-data backtest/validation section (predicted-vs-actual curves, MAE/MAPE, a training-vs-holdout calibration comparison, see below). |
-| **Infrastructure & Productionization** | Architecture doc | A diagram + writeup of what productionizing this pipeline would look like (S3 → MotherDuck → scheduled GitHub Actions → OIDC/IAM → CloudFormation). Explicitly labeled as design documentation, not a live deployment — no AWS account or cloud resources involved anywhere in this repo. |
+| **Infrastructure & Productionization** | Architecture doc | A diagram + writeup of the real AWS/MotherDuck deployment this project now has (`infra/`, `.github/workflows/dbt-build.yml`) — S3, IAM/OIDC, CloudFormation, MotherDuck, plus a real Cost Explorer-backed spend section. Real infrastructure, but this page itself still makes no live AWS calls — it reads a static export, same as every other tab. |
 
 **The Day in the Life tab stays teaching-oriented; every other tab is
 reference-grade** — dense, all-data-visible, captions rather than
@@ -27,12 +27,14 @@ either tab's tone.
 ## What it is (and isn't)
 
 It's a **static site** — no backend, no database connection, no auth, no
-real cloud calls anywhere (including on the Infrastructure tab, which is
-content, not code that talks to AWS). All data comes from pre-computed
-JSON read at runtime via `fetch`. That's a deliberate constraint, not a
-shortcut: it keeps this app consistent with the rest of LedgerOne's
-"no orchestration, no cloud services, no hosted backend" scope, and it
-means hosting is just "put static files somewhere reachable by URL."
+live cloud calls anywhere at runtime (including on the Infrastructure
+tab: it documents a real AWS/MotherDuck deployment in `infra/`, but the
+page itself only reads a pre-computed JSON snapshot, same as every other
+tab — see below). All data comes from pre-computed JSON read at runtime
+via `fetch`. That's a deliberate constraint, not a shortcut: it keeps
+this app consistent with the rest of LedgerOne's "no orchestration, no
+cloud services, no hosted backend" scope, and it means hosting is just
+"put static files somewhere reachable by URL."
 
 It does not modify the dbt project or the credit-risk module it
 visualizes — strictly a read-only consumer of that module's output.
@@ -46,8 +48,13 @@ six against the built warehouse, one against the separate Freddie Mac
 backtest data — and writes the results to `public/data/*.json`. Both the
 Day in the Life and Forecasting tabs read the same seven files (via the
 shared `useCreditRiskData` hook) — no new export step was needed for the
-multi-tab restructuring; the Data Engineering and Infrastructure tabs are
-static reference content with no data dependency at all.
+multi-tab restructuring; the Data Engineering tab is static reference
+content with no data dependency at all. The Infrastructure tab is
+almost the same, except for one section: its FinOps cost breakdown reads
+`finops_snapshot.json`, written by a completely separate script,
+`src/export_finops_data.py` — not part of the seven above, doesn't touch
+DuckDB, and pulls from live AWS Cost Explorer instead of a dbt mart. See
+"FinOps cost data" below.
 
 | File | Source |
 |---|---|
@@ -89,6 +96,27 @@ function prints a warning and skips writing that one file rather than
 failing the whole export, since `backtest_validation.json` is already
 checked into the repo from a prior run and doesn't need regenerating on
 every `dbt build`.
+
+**FinOps cost data**: `src/export_finops_data.py` is a separate,
+standalone script — not part of `export_credit_risk_walkthrough_data.py`,
+not run by `make walkthrough-data`, and not something a fresh clone can
+reproduce without real AWS credentials for the account
+`infra/ledgerone-stack.yml` is deployed into. It calls AWS Cost Explorer
+(`ce:GetCostAndUsage`) directly via `boto3`, not DuckDB, and writes
+`public/data/finops_snapshot.json`. Run it by hand, occasionally, not on
+every build — it's a live billing call against real infrastructure, and
+the numbers are only meaningful as an "as of" snapshot anyway:
+
+```bash
+# from the repo root, with AWS credentials for the target account active
+venv/bin/python src/export_finops_data.py
+```
+
+If Cost Explorer isn't enabled yet on that account, or was enabled too
+recently for AWS to have ingested any usage data (can lag up to 24h), the
+script prints why and exits without writing anything — the Infrastructure
+tab's cost section renders an explicit "not available yet" state for that
+case rather than showing a fabricated number.
 
 Regenerate after any credit-risk mart changes:
 
@@ -250,11 +278,21 @@ that build the same way — don't hardcode a new default.
   `dbt/models/credit_risk/README.md`'s Validation section). The write-up
   states the headline MAE plainly and doesn't round the one real gap
   (the transition matrix isn't time-stable) up to "validated."
-- **The Infrastructure tab's content is illustrative, not a real
-  proposal reviewed by anyone** — reasonable, defensible architecture
-  choices (MotherDuck, OIDC, CloudFormation) explained with real
-  reasoning, but written for this portfolio site, not vetted the way an
-  actual production design doc would be.
+- **The Infrastructure tab's content used to be illustrative — it isn't
+  anymore.** `infra/ledgerone-stack.yml` and `.github/workflows/{deploy-infra,dbt-build}.yml`
+  are real, deployed (`ledgerone-dev`/`ledgerone-prod` CloudFormation
+  stacks, both live), and were exercised end to end via actual passing CI
+  runs (136/136 dbt tests, both environments, against real MotherDuck
+  databases). It's still a small, portfolio-scale deployment, not a
+  reviewed production design doc — but the tab now describes what's
+  actually running, including two real bugs caught from failing runs, not
+  hypothesized ones. See [infra/AGENTS.md](../../infra/AGENTS.md).
+- **The FinOps cost section can legitimately show "not available yet."**
+  `src/export_finops_data.py` pulls real AWS Cost Explorer data, but
+  Cost Explorer has to be manually enabled per-account first and AWS can
+  take up to 24h after enabling before any data exists — the Infrastructure
+  tab renders an explicit empty state for that gap rather than fabricating
+  a number, the same honesty standard the backtest section holds itself to.
 - **The Overview stat strip deliberately has no up/down trend
   indicators**, even though that's a common ticker-row convention. A
   trend arrow implies a comparison against a prior period or a target,
