@@ -1,11 +1,15 @@
 name: Deploy LedgerOne Infra
 
 on:
-  push:
-    branches: [main]
-    paths:
-      - 'infra/ledgerone-stack.yml'
-      - '.github/workflows/deploy-infra.yml'
+  # No push trigger: the deploy role only has S3 permissions (see
+  # infra/ledgerone-stack.yml), not CloudFormation, so it can't actually
+  # redeploy its own stack yet. Whether to grant it that (a self-modifying
+  # CI role that can rewrite its own IAM trust policy) is a deliberate
+  # security tradeoff, not a default to fall into via an auto-trigger.
+  # Until that's decided, infra changes go through the same manual,
+  # human-reviewed changeset flow the initial bootstrap used. This
+  # workflow stays here as the shape a future automated version would
+  # take, dispatch-only, not wired to run yet.
   workflow_dispatch:
     inputs:
       environment:
@@ -20,7 +24,7 @@ permissions:
 
 jobs:
   deploy-dev:
-    if: github.event_name == 'push' || inputs.environment == 'dev'
+    if: inputs.environment == 'dev'
     runs-on: ubuntu-latest
     environment: dev
     steps:

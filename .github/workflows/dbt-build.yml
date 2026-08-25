@@ -13,6 +13,15 @@ name: dbt Build (cloud)
 # workflow_dispatch only, deliberately no schedule trigger yet - add a
 # `schedule:` trigger only after a manual dev run has been confirmed clean
 # end to end (role assumption, S3 write, dbt build all succeed).
+#
+# Note the dbt --target below is NOT just `${{ inputs.environment }}`:
+# dbt/profiles.yml's `dev` target is the pre-existing LOCAL-file target
+# every contributor already uses for `make all` on their own machine -
+# reusing that name for this workflow's cloud dev run would silently
+# point CI at a local .duckdb path that doesn't exist on a fresh runner
+# (this is exactly the bug that first shipped here - see git history).
+# `ci_dev` is a separate MotherDuck-backed target so the two "dev"s never
+# collide on the same profile name.
 
 on:
   workflow_dispatch:
@@ -66,4 +75,4 @@ jobs:
           venv/bin/dbt build \
             --project-dir dbt \
             --profiles-dir dbt \
-            --target ${{ inputs.environment }}
+            --target ${{ inputs.environment == 'dev' && 'ci_dev' || 'prod' }}

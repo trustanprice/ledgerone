@@ -5,6 +5,10 @@ ledgerone:
       type: duckdb
       path: "{{ env_var('LEDGERONE_DB_PATH', '../data/processed/ledgerone.duckdb') }}"
       threads: 4
+    ci_dev:
+      type: duckdb
+      path: "md:ledgerone?motherduck_token={{ env_var('MOTHERDUCK_TOKEN') }}"
+      threads: 4
     prod:
       type: duckdb
       path: "md:ledgerone?motherduck_token={{ env_var('MOTHERDUCK_TOKEN') }}"
