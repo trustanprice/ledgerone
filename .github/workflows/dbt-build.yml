@@ -1,0 +1,69 @@
+name: dbt Build (cloud)
+
+# Runs the same pipeline `make all`'s generate+build steps run locally,
+# but against a cloud target: raw parquet gets synced to this environment's
+# S3 bucket for archival (dbt does NOT read from S3 here - it still reads
+# the local files this same run just generated, same as `make build` does
+# locally; the S3 copy is durability/lifecycle-managed storage, not a dbt
+# source) and `dbt build` points at MotherDuck instead of a local .duckdb
+# file. See infra/ledgerone-stack.yml for the S3 bucket + IAM role this
+# depends on, and dbt/profiles.yml for the `prod` target added alongside
+# the existing local `dev` one.
+#
+# workflow_dispatch only, deliberately no schedule trigger yet - add a
+# `schedule:` trigger only after a manual dev run has been confirmed clean
+# end to end (role assumption, S3 write, dbt build all succeed).
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: Environment to build against
+        type: choice
+        options: [dev, prod]
+        default: dev
+
+permissions:
+  id-token: write   # required to request the OIDC token from GitHub
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.environment }}
+    env:
+      LEDGERONE_DB_PATH: ${{ github.workspace }}/data/processed/ledgerone.duckdb
+      LEDGERONE_RAW_DIR: ${{ github.workspace }}/data/raw
+      MOTHERDUCK_TOKEN: ${{ secrets.MOTHERDUCK_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ vars.AWS_ROLE_ARN }}
+          aws-region: us-east-1
+
+      - name: Install dependencies
+        run: |
+          python -m venv venv
+          venv/bin/pip install -r requirements.txt
+
+      - name: Generate synthetic data
+        run: |
+          venv/bin/python src/generate_data.py
+          venv/bin/python src/generate_credit_risk_data.py
+
+      - name: Sync raw data to S3 (archival)
+        run: |
+          aws s3 sync data/raw/ "s3://ledgerone-raw-${{ inputs.environment }}-387143718798/"
+
+      - name: dbt build
+        run: |
+          venv/bin/dbt build \
+            --project-dir dbt \
+            --profiles-dir dbt \
+            --target ${{ inputs.environment }}

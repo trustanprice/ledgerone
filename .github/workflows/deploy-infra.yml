@@ -1,0 +1,60 @@
+name: Deploy LedgerOne Infra
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'infra/ledgerone-stack.yml'
+      - '.github/workflows/deploy-infra.yml'
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: Environment to deploy
+        type: choice
+        options: [dev, prod]
+        default: dev
+
+permissions:
+  id-token: write   # required to request the OIDC token from GitHub
+  contents: read
+
+jobs:
+  deploy-dev:
+    if: github.event_name == 'push' || inputs.environment == 'dev'
+    runs-on: ubuntu-latest
+    environment: dev
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ vars.AWS_ROLE_ARN }}
+          aws-region: us-east-1
+
+      - name: Deploy stack
+        run: |
+          aws cloudformation deploy \
+            --template-file infra/ledgerone-stack.yml \
+            --stack-name ledgerone-dev \
+            --parameter-overrides Environment=dev GitHubRepo=trustanprice/ledgerone \
+            --capabilities CAPABILITY_NAMED_IAM
+
+  deploy-prod:
+    if: inputs.environment == 'prod'
+    runs-on: ubuntu-latest
+    environment: prod   # attach required-reviewer protection rules to this Environment in repo settings
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ vars.AWS_ROLE_ARN }}
+          aws-region: us-east-1
+
+      - name: Deploy stack
+        run: |
+          aws cloudformation deploy \
+            --template-file infra/ledgerone-stack.yml \
+            --stack-name ledgerone-prod \
+            --parameter-overrides Environment=prod GitHubRepo=trustanprice/ledgerone \
+            --capabilities CAPABILITY_NAMED_IAM

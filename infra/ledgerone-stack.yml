@@ -1,0 +1,93 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: >
+  LedgerOne raw-data bucket + GitHub Actions OIDC deploy role, per environment.
+  Assumes the GitHub OIDC provider (token.actions.githubusercontent.com) already
+  exists in this account (created once, out of band).
+
+Parameters:
+  Environment:
+    Type: String
+    AllowedValues:
+      - dev
+      - prod
+    Description: Deployment environment. Must match a GitHub Environment name in the repo.
+
+  GitHubRepo:
+    Type: String
+    Default: trustanprice/ledgerone
+    Description: GitHub repo in "org/repo" form allowed to assume the deploy role.
+
+  RawDataExpirationDays:
+    Type: Number
+    Default: 90
+    Description: Days after which objects in the raw-data bucket are permanently deleted.
+
+Resources:
+
+  RawDataBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Sub "ledgerone-raw-${Environment}-${AWS::AccountId}"
+      BucketEncryption:
+        ServerSideEncryptionConfiguration:
+          - ServerSideEncryptionByDefault:
+              SSEAlgorithm: AES256
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: true
+        BlockPublicPolicy: true
+        IgnorePublicAcls: true
+        RestrictPublicBuckets: true
+      VersioningConfiguration:
+        Status: Enabled
+      LifecycleConfiguration:
+        Rules:
+          - Id: ExpireRawData
+            Status: Enabled
+            ExpirationInDays: !Ref RawDataExpirationDays
+            NoncurrentVersionExpiration:
+              NoncurrentDays: !Ref RawDataExpirationDays
+
+  GitHubActionsDeployRole:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: !Sub "ledgerone-${Environment}-github-actions"
+      MaxSessionDuration: 3600
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal:
+              Federated: !Sub "arn:aws:iam::${AWS::AccountId}:oidc-provider/token.actions.githubusercontent.com"
+            Action: sts:AssumeRoleWithWebIdentity
+            Condition:
+              StringEquals:
+                token.actions.githubusercontent.com:aud: sts.amazonaws.com
+                token.actions.githubusercontent.com:sub: !Sub "repo:${GitHubRepo}:environment:${Environment}"
+      Policies:
+        - PolicyName: RawDataBucketAccess
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Sid: ListBucket
+                Effect: Allow
+                Action: s3:ListBucket
+                Resource: !GetAtt RawDataBucket.Arn
+              - Sid: ReadWriteObjects
+                Effect: Allow
+                Action:
+                  - s3:GetObject
+                  - s3:PutObject
+                Resource: !Sub "${RawDataBucket.Arn}/*"
+
+Outputs:
+  BucketName:
+    Description: Raw-data bucket name
+    Value: !Ref RawDataBucket
+
+  BucketArn:
+    Description: Raw-data bucket ARN
+    Value: !GetAtt RawDataBucket.Arn
+
+  DeployRoleArn:
+    Description: ARN to use as role-to-assume in the GitHub Actions workflow
+    Value: !GetAtt GitHubActionsDeployRole.Arn
