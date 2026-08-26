@@ -78,6 +78,23 @@ Resources:
                   - s3:GetObject
                   - s3:PutObject
                 Resource: !Sub "${RawDataBucket.Arn}/*"
+        - PolicyName: ChangeSetPreview
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Sid: PreviewStackChanges
+                Effect: Allow
+                Action:
+                  - cloudformation:CreateChangeSet
+                  - cloudformation:DescribeChangeSet
+                  - cloudformation:DescribeStacks
+                  - cloudformation:GetTemplate
+                  - cloudformation:ListChangeSets
+                Resource: !Sub "arn:aws:cloudformation:${AWS::Region}:${AWS::AccountId}:stack/ledgerone-${Environment}/*"
+                # Deliberately narrow: no ExecuteChangeSet, no iam:* of any
+                # kind. This role can show a diff, never apply one — see
+                # infra/AGENTS.md's "Why the deploy role can preview but
+                # not apply changes" for the privilege-escalation reasoning.
 
 Outputs:
   BucketName:

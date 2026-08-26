@@ -33,7 +33,7 @@ export const ARCHITECTURE_DIAGRAM = [
     label: 'CI/CD & auth',
     nodes: [
       { label: 'GitHub OIDC → IAM role', kicker: 'per environment, no long-lived AWS keys', accent: true },
-      { label: 'deploy-infra.yml', kicker: 'exists, dispatch-only, deliberately not wired to run — see below' },
+      { label: 'deploy-infra.yml', kicker: 'preview-only: creates/describes changesets, can’t execute — see below' },
     ],
   },
   {
@@ -61,7 +61,7 @@ export const CICD_WRITEUP: InfraSection[] = [
   },
   {
     title: 'Provisioning: CloudFormation, bootstrapped by hand',
-    body: 'The S3 bucket (lifecycle policy included) and the per-environment IAM role are defined in infra/ledgerone-stack.yml, one stack per environment. The very first deploy of each stack can’t go through CI — a workflow can’t assume a role that doesn’t exist yet to create that same role — so both were bootstrapped from an authenticated admin CLI session using `--no-execute-changeset`, a human review of the exact diff, then a manual `execute-change-set`. deploy-infra.yml exists to redeploy the stack on future template changes, but the role it would run as currently has zero CloudFormation permissions — letting a CI role rewrite its own IAM trust policy is a real privilege-escalation tradeoff, left as a deliberate, undecided question rather than defaulted into.',
+    body: 'The S3 bucket (lifecycle policy included) and the per-environment IAM role are defined in infra/ledgerone-stack.yml, one stack per environment. The very first deploy of each stack can’t go through CI — a workflow can’t assume a role that doesn’t exist yet to create that same role — so both were bootstrapped from an authenticated admin CLI session using `--no-execute-changeset`, a human review of the exact diff, then a manual `execute-change-set`. deploy-infra.yml now runs that same preview step in CI — the deploy role can create and describe a changeset (scoped to just this one stack’s ARN) and the job prints the resource diff to its summary — but it still has no `ExecuteChangeSet` and no `iam:*` action of any kind. Letting a CI role actually apply a change to the stack that defines its own IAM trust policy is a real privilege-escalation tradeoff, left as a deliberate, undecided question rather than defaulted into; preview-only was the narrower first step.',
   },
   {
     title: 'What actually happened, first time through',
@@ -69,10 +69,10 @@ export const CICD_WRITEUP: InfraSection[] = [
   },
   {
     title: 'What still isn’t done',
-    body: 'No schedule/cron trigger on dbt-build.yml yet — both environments passed a manual dispatch (136/136 dbt tests, both dev and prod, verified from real run logs and a direct S3 bucket listing), but "it worked once, dispatched by hand" and "trust it unattended on a schedule" are different bars. deploy-infra.yml staying non-functional is also deliberate, not an oversight — see above.',
+    body: 'No schedule/cron trigger on dbt-build.yml yet — both environments passed a manual dispatch (136/136 dbt tests, both dev and prod, verified from real run logs and a direct S3 bucket listing), but "it worked once, dispatched by hand" and "trust it unattended on a schedule" are different bars. deploy-infra.yml being unable to actually apply a change is also deliberate, not an oversight — see above.',
   },
   {
     title: 'Planned: this becomes a live, scheduled deployment',
-    body: 'Manual dispatch is the current state, not the destination — the intent is a `schedule:` cron trigger on dbt-build.yml running unattended against prod. Held back deliberately, not by oversight: a handful of clean manual runs is evidence the mechanics work, not evidence it is safe to run unwatched. Before that trigger gets added: more dispatch history across both environments, alerting on a failed scheduled run (nothing currently notifies anyone if one breaks), and a resolved answer on whether deploy-infra.yml gets CloudFormation permissions — an unattended pipeline that cannot also fix its own infrastructure drift is a narrower kind of "automated" than the goal.',
+    body: 'Manual dispatch is the current state, not the destination — the intent is a `schedule:` cron trigger on dbt-build.yml running unattended against prod. Held back deliberately, not by oversight: a handful of clean manual runs is evidence the mechanics work, not evidence it is safe to run unwatched. Before that trigger gets added: more dispatch history across both environments, alerting on a failed scheduled run (nothing currently notifies anyone if one breaks), and a resolved answer on whether deploy-infra.yml’s deploy role gets ExecuteChangeSet/iam:* to actually apply what it can now only preview — an unattended pipeline that cannot also fix its own infrastructure drift is a narrower kind of "automated" than the goal.',
   },
 ]

@@ -1,15 +1,18 @@
 name: Deploy LedgerOne Infra
 
 on:
-  # No push trigger: the deploy role only has S3 permissions (see
-  # infra/ledgerone-stack.yml), not CloudFormation, so it can't actually
-  # redeploy its own stack yet. Whether to grant it that (a self-modifying
-  # CI role that can rewrite its own IAM trust policy) is a deliberate
-  # security tradeoff, not a default to fall into via an auto-trigger.
-  # Until that's decided, infra changes go through the same manual,
-  # human-reviewed changeset flow the initial bootstrap used. This
-  # workflow stays here as the shape a future automated version would
-  # take, dispatch-only, not wired to run yet.
+  # No push trigger, still deliberate: the deploy role can now create and
+  # describe changesets (CreateChangeSet/DescribeChangeSet/DescribeStacks/
+  # GetTemplate/ListChangeSets, scoped to this one stack's ARN — see
+  # infra/ledgerone-stack.yml's ChangeSetPreview policy) but explicitly
+  # cannot execute one (no ExecuteChangeSet, no iam:* of any kind) — so it
+  # can show a diff, never apply it. Actually applying still requires a
+  # human, running `execute-change-set` from an authenticated admin
+  # session (the job summary below prints the exact command against the
+  # real changeset it just created) — the same human-in-the-loop shape
+  # the original bootstrap used. Auto-triggering this on every push to
+  # main would just create a changeset nobody asked to review yet;
+  # dispatch-only keeps that deliberate too.
   workflow_dispatch:
     inputs:
       environment:
@@ -35,13 +38,19 @@ jobs:
           role-to-assume: ${{ vars.AWS_ROLE_ARN }}
           aws-region: us-east-1
 
-      - name: Deploy stack
+      - name: Preview stack changes
         run: |
           aws cloudformation deploy \
             --template-file infra/ledgerone-stack.yml \
             --stack-name ledgerone-dev \
             --parameter-overrides Environment=dev GitHubRepo=trustanprice/ledgerone \
-            --capabilities CAPABILITY_NAMED_IAM
+            --capabilities CAPABILITY_NAMED_IAM \
+            --no-execute-changeset \
+            --no-fail-on-empty-changeset
+
+      - name: Surface changeset diff
+        if: always()
+        run: infra/scripts/summarize-changeset.sh ledgerone-dev
 
   deploy-prod:
     if: inputs.environment == 'prod'
@@ -55,10 +64,16 @@ jobs:
           role-to-assume: ${{ vars.AWS_ROLE_ARN }}
           aws-region: us-east-1
 
-      - name: Deploy stack
+      - name: Preview stack changes
         run: |
           aws cloudformation deploy \
             --template-file infra/ledgerone-stack.yml \
             --stack-name ledgerone-prod \
             --parameter-overrides Environment=prod GitHubRepo=trustanprice/ledgerone \
-            --capabilities CAPABILITY_NAMED_IAM
+            --capabilities CAPABILITY_NAMED_IAM \
+            --no-execute-changeset \
+            --no-fail-on-empty-changeset
+
+      - name: Surface changeset diff
+        if: always()
+        run: infra/scripts/summarize-changeset.sh ledgerone-prod
