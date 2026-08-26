@@ -76,3 +76,25 @@ jobs:
             --project-dir dbt \
             --profiles-dir dbt \
             --target ${{ inputs.environment == 'dev' && 'ci_dev' || 'prod' }}
+
+      - name: Report failure
+        # Pull-based visibility, not push-based alerting: this makes a
+        # broken run impossible to miss *if someone opens the Actions
+        # tab*, same as any other step summary. It does not page, email,
+        # or Slack-ping anyone. That distinction doesn't matter much for
+        # a dispatch-only workflow a human just triggered and is already
+        # watching — it matters a lot for the eventual scheduled/cron
+        # version, where by definition no one is watching. Real
+        # push-based alerting (Slack webhook, email via SES, a CloudWatch
+        # alarm) is still worth adding before that cron trigger lands;
+        # this step is the simplest viable improvement over "nothing,"
+        # not a replacement for that.
+        if: failure()
+        run: |
+          {
+            echo "## :x: dbt-build failed — ${{ inputs.environment }}"
+            echo
+            echo "Run: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+            echo
+            echo "Check the failed step above for the actual error."
+          } >> "$GITHUB_STEP_SUMMARY"

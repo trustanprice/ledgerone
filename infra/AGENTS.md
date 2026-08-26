@@ -77,14 +77,23 @@ scheduled deployment (a `schedule:` cron trigger on `dbt-build.yml`,
 running `--target prod` unattended), not to stay a manually-triggered demo
 forever. That's deliberately not built yet: a handful of clean manual
 dispatches is evidence the mechanics work, not evidence it's safe to run
-unattended against `prod` with no one watching. Before adding the cron
-trigger, at minimum: more dispatch history across both environments,
-CloudWatch alarming or a Slack/email notification on run failure (nothing
-currently alerts on a broken scheduled run), and a real decision on
-whether `deploy-infra.yml`'s deploy role gets `ExecuteChangeSet`/`iam:*`
-to actually apply what it can now only preview (see above) — an
-unattended pipeline that also can't fix its own infra when it drifts is a
-narrower kind of "automated" than the eventual goal.
+unattended against `prod` with no one watching. `dbt-build.yml` now
+writes a clear `:x: dbt-build failed` banner (environment, run link) to
+the job's `$GITHUB_STEP_SUMMARY` on failure — but that's pull-based
+visibility, not push-based alerting: it makes a broken run impossible to
+miss *if someone opens the Actions tab*, not something that pages or
+pings anyone. That's a real gap closed for a dispatch-only workflow a
+human just triggered and is already watching; it's a much smaller one
+closed for the eventual unattended/cron version, where by definition no
+one is watching by default. Before adding the cron trigger, at minimum:
+more dispatch history across both environments, real push-based alerting
+(a Slack webhook, email via SES, or a CloudWatch alarm — not yet chosen
+or wired up) for the case where no one is looking at the Actions tab when
+a scheduled run breaks, and a real decision on whether
+`deploy-infra.yml`'s deploy role gets `ExecuteChangeSet`/`iam:*` to
+actually apply what it can now only preview (see above) — an unattended
+pipeline that also can't fix its own infra when it drifts is a narrower
+kind of "automated" than the eventual goal.
 
 ## Connects to
 
