@@ -145,6 +145,7 @@ Opens at `http://localhost:5173/`. Direct-link a tab with a URL hash, e.g.
 ```bash
 npm run build     # production build -> dist/
 npm run preview   # serve that build locally
+npm test          # Vitest: data-shape + per-tab smoke tests, see "Judgment calls" below
 ```
 
 ## Visual system: dark liquid glass
@@ -312,12 +313,24 @@ that build the same way — don't hardcode a new default.
   dedicated `overview_stats.json` would have meant computing the same
   numbers twice, once in the export script and once for anyone
   double-checking them against the source marts.
-- **No automated tests.** Numbers are spot-checked by hand against the
-  dbt marts' own (already-tested) output, and the whole site was verified
-  in an actual headless-Chromium browser (desktop + mobile, all 5 tabs,
-  zero console errors) rather than just a type check — but there's no
-  regression-catching test suite. Proportionate for the scope, a real gap
-  if this app keeps growing.
+- **Automated tests exist now, deliberately minimal, not a full E2E
+  suite.** `npm test` (Vitest + jsdom + `@testing-library/react`) runs
+  two kinds of check: `src/test/dataShapes.test.ts` loads every real,
+  checked-in `public/data/*.json` file and verifies its shape against the
+  TS interface describing it — the interfaces erase at compile time, so
+  this is the only thing that would actually catch
+  `export_credit_risk_walkthrough_data.py` silently dropping or renaming
+  a field; and `src/tabs/tabs.smoke.test.tsx` mounts each of the six tabs
+  against those same real fixtures (via a `fetch` stub in
+  `src/test/fixtures.ts`, not hand-written mock data) and confirms each
+  reaches real content without throwing. It does not cover visual
+  regressions, interaction behavior beyond mounting (the new vintage-chart
+  toggle above isn't unit-tested, only manually verified in a browser), or
+  the Python/dbt side — this is app-level "does it render," not full
+  coverage. Numbers are still spot-checked by hand against the dbt marts'
+  own (already-tested) output, and the whole site was separately verified
+  in an actual headless-Chromium browser (desktop + mobile, all tabs, zero
+  console errors).
 
 ## Sixth tab: Emerging Techniques — scaffolding built, content planned
 
