@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { CartesianGrid, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts'
 import type { VintageCurveRow } from '../../types'
 import { CHART_CHROME, cohortColor } from '../../theme'
@@ -5,6 +6,8 @@ import { CHART_CHROME, cohortColor } from '../../theme'
 interface Props {
   rows: VintageCurveRow[]
   highlightedCohort: string | null
+  // Click-to-hide legend, off by default — see AGENTS.md's tonal-split note.
+  interactive?: boolean
 }
 
 function pivotByMonthsOnBook(rows: VintageCurveRow[], cohorts: string[]) {
@@ -18,9 +21,19 @@ function pivotByMonthsOnBook(rows: VintageCurveRow[], cohorts: string[]) {
   return Array.from(byMonth.values()).sort((a, b) => a.months_on_book - b.months_on_book)
 }
 
-export function VintageCurvesChart({ rows, highlightedCohort }: Props) {
+export function VintageCurvesChart({ rows, highlightedCohort, interactive = false }: Props) {
   const cohorts = Array.from(new Set(rows.map((r) => r.origination_quarter))).sort()
   const data = pivotByMonthsOnBook(rows, cohorts)
+  const [hiddenCohorts, setHiddenCohorts] = useState<Set<string>>(new Set())
+
+  function toggleCohort(cohort: string) {
+    setHiddenCohorts((prev) => {
+      const next = new Set(prev)
+      if (next.has(cohort)) next.delete(cohort)
+      else next.add(cohort)
+      return next
+    })
+  }
 
   return (
     <div style={{ flex: 1, minHeight: 0 }}>
@@ -58,6 +71,7 @@ export function VintageCurvesChart({ rows, highlightedCohort }: Props) {
             }}
           />
           {cohorts.map((cohort, i) => {
+            if (hiddenCohorts.has(cohort)) return null
             const isHighlighted = highlightedCohort === cohort
             const isDimmed = highlightedCohort !== null && !isHighlighted
             return (
@@ -76,12 +90,38 @@ export function VintageCurvesChart({ rows, highlightedCohort }: Props) {
         </LineChart>
       </ResponsiveContainer>
       <div className="chart-legend">
-        {cohorts.map((cohort, i) => (
-          <span className="legend-item" key={cohort} style={{ opacity: highlightedCohort && highlightedCohort !== cohort ? 0.35 : 1 }}>
-            <span className="legend-swatch" style={{ background: cohortColor(i) }} />
-            {cohort.slice(0, 7)}
-          </span>
-        ))}
+        {cohorts.map((cohort, i) => {
+          const isHidden = hiddenCohorts.has(cohort)
+          const dimmed = highlightedCohort !== null && highlightedCohort !== cohort
+          const opacity = isHidden || dimmed ? 0.35 : 1
+          const className = ['legend-item', interactive && 'interactive', isHidden && 'hidden'].filter(Boolean).join(' ')
+          const label = cohort.slice(0, 7)
+          const swatch = <span className="legend-swatch" style={{ background: cohortColor(i) }} />
+
+          if (!interactive) {
+            return (
+              <span className={className} key={cohort} style={{ opacity }}>
+                {swatch}
+                {label}
+              </span>
+            )
+          }
+
+          return (
+            <button
+              type="button"
+              className={className}
+              key={cohort}
+              style={{ opacity }}
+              onClick={() => toggleCohort(cohort)}
+              aria-pressed={!isHidden}
+              title={isHidden ? `Show ${label}` : `Hide ${label}`}
+            >
+              {swatch}
+              {label}
+            </button>
+          )
+        })}
       </div>
     </div>
   )

@@ -86,9 +86,12 @@ export function ForecastingTab() {
 
       <section className="ref-section">
         <h2>Vintage curves — all cohorts</h2>
-        <p className="section-desc">Cumulative charge-off rate by origination cohort × months-on-book, no highlighting.</p>
+        <p className="section-desc">
+          Cumulative charge-off rate by origination cohort × months-on-book. Click a legend entry to hide that
+          cohort — useful once a couple of extreme cohorts are dominating the chart and you want to see the rest.
+        </p>
         <GlassPanel className="ref-panel" style={{ height: 420, display: 'flex', flexDirection: 'column' }}>
-          <VintageCurvesChart rows={vintage!} highlightedCohort={null} />
+          <VintageCurvesChart rows={vintage!} highlightedCohort={null} interactive />
         </GlassPanel>
       </section>
 

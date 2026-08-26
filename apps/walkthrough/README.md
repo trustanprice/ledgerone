@@ -265,12 +265,13 @@ that build the same way — don't hardcode a new default.
   the Current bar. That's the real shape of the data (delinquency really
   is rare), and the narrative leans into it rather than around it — a log
   scale would visually flatter the data at the cost of honesty.
-- **The Forecasting tab's vintage-curve reference view doesn't add
-  click-to-filter cohort toggling.** All cohorts are visible at once
-  (satisfying the actual requirement), but a "click a legend entry to
-  hide that series" interaction — a natural fit for a reference
-  dashboard — wasn't built, to keep scope bounded given everything else
-  in this expansion. Would be a reasonable follow-up.
+- **The Forecasting tab's vintage-curve reference view has click-to-hide
+  cohort toggling.** `VintageCurvesChart` takes a new `interactive` prop
+  (default off) that turns each legend entry into a button toggling that
+  cohort's line — off by default so the Day in the Life scrollytelling
+  scene, which drives `highlightedCohort` itself as the user scrolls,
+  keeps its legend purely decorative. Only the Forecasting tab passes
+  `interactive`.
 - **Backtest/validation metrics are real, not fabricated.** The
   Forecasting tab's backtest section reads `backtest_validation.json`,
   which is re-derived (not copy-pasted) from the same DuckDB SQL as

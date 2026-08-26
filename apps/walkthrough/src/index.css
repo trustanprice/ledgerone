@@ -651,6 +651,26 @@ code,
   gap: 0.35rem;
 }
 
+button.legend-item {
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  color: inherit;
+}
+
+.legend-item.interactive {
+  cursor: pointer;
+}
+
+.legend-item.interactive:hover {
+  color: var(--ink-primary);
+}
+
+.legend-item.hidden {
+  text-decoration: line-through;
+}
+
 .legend-swatch {
   width: 10px;
   height: 10px;
