@@ -4,6 +4,7 @@ import { StatStrip, type StatStripItem } from '../components/StatStrip'
 import { Sparkline } from '../components/Sparkline'
 import { FlowDiagram } from '../components/FlowDiagram'
 import { DATA_DICTIONARY, TEST_COVERAGE_SUMMARY } from '../content/dataEngineeringContent'
+import { PLANNED_TECHNIQUES } from '../content/emergingTechniquesContent'
 import type { TabId } from '../tabConfig'
 
 interface Props {
@@ -199,8 +200,25 @@ export function OverviewTab({ onNavigate }: Props) {
               </div>
             </div>
             <p className="bento-tile-footer">
-              What productionizing this would look like — static content, no AWS account or live cloud resources
-              involved.
+              A real AWS/MotherDuck deployment — S3, IAM/OIDC, CloudFormation, a live Cost Explorer-backed spend
+              section — this page itself still makes no live calls, it reads a static export like every other tab.
+            </p>
+          </GlassPanel>
+
+          <GlassPanel className="bento-tile bento-emerging" onClick={() => onNavigate('emerging-techniques')}>
+            <div className="bento-tile-header">
+              <h3>Emerging Techniques</h3>
+              <span className="pill pill-neutral">Scaffolding</span>
+            </div>
+            <div className="bento-tile-body">
+              <div className="stat-strip-value mono-nums" style={{ fontSize: '1.6rem' }}>
+                {PLANNED_TECHNIQUES.length}
+              </div>
+              <div className="stat-strip-label">techniques planned, 0 started</div>
+            </div>
+            <p className="bento-tile-footer">
+              Regime-switching matrices, survival analysis, Monte Carlo simulation, a SAS exercise — real analyst
+              workflows written up, no results yet by design.
             </p>
           </GlassPanel>
         </div>

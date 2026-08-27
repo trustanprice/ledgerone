@@ -59,11 +59,19 @@ evenly-sized cards (label + title + paragraph) is the single most common
 AI-generated landing-page pattern there is — the fix wasn't a theme
 change, it was an asymmetric grid where each tile previews real content
 (a live sparkline, an actual lineage snippet, real SQL, scene-progress
-dots, a mini diagram) plus a real-number stat strip above it. If you're
-tempted to add a fifth tile or "simplify" this back to uniform cards,
+dots, a mini diagram, a stat count) plus a real-number stat strip above
+it. Five tiles now, one per non-Overview tab (`bento-forecasting`,
+`bento-data-engineering`, `bento-walkthrough`, `bento-infrastructure`,
+`bento-emerging` — the last added when the Emerging Techniques tab was,
+not an arbitrary addition). If you're tempted to add a tile that doesn't
+map 1:1 to a real tab, or to "simplify" this back to uniform cards,
 don't — see README.md's Visual System section for the reasoning, and keep
 new tiles asymmetric (varied `grid-column`/`grid-row` spans) rather than
-uniform.
+uniform. **Every tab gets a tile — check this whenever a tab is added**;
+`bento-infrastructure` and `bento-emerging` are next to each other for a
+reason (5/3 column split, not the original 8-span infrastructure tile) —
+adding a tab without adding its Overview tile is exactly the kind of gap
+this note exists to prevent.
 
 ## Layout
 

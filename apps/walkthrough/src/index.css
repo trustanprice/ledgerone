@@ -376,7 +376,11 @@ code,
 }
 
 .bento-infrastructure {
-  grid-column: span 8;
+  grid-column: span 5;
+}
+
+.bento-emerging {
+  grid-column: span 3;
 }
 
 .bento-tile-header {
@@ -1181,7 +1185,8 @@ table.data-table tr:hover td {
   .bento-forecasting,
   .bento-data-engineering,
   .bento-walkthrough,
-  .bento-infrastructure {
+  .bento-infrastructure,
+  .bento-emerging {
     grid-column: 1 / -1;
     grid-row: auto;
   }
