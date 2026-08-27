@@ -12,7 +12,7 @@ interface JsonDataState<T> {
  * never queries DuckDB directly, see AGENTS.md). Uses import.meta.env.BASE_URL
  * so it resolves correctly regardless of deploy target — root-relative
  * ("/") on Vercel/local dev, or the GitHub Pages subpath
- * ("/ledgerone/walkthrough/") when VITE_BASE_PATH is set at build time.
+ * ("/ledgerone/") when VITE_BASE_PATH is set at build time.
  * See vite.config.ts.
  */
 export function useJsonData<T>(filename: string): JsonDataState<T> {

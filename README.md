@@ -318,7 +318,7 @@ JSON exported once from the dbt marts
 (`src/export_credit_risk_walkthrough_data.py`), and deploys as a plain
 static site — consistent with the rest of the project's no-orchestration,
 no-cloud-services constraint. Live at
-**https://trustanprice.github.io/ledgerone/walkthrough/**; see
+**https://trustanprice.github.io/ledgerone/**; see
 [apps/walkthrough/README.md](apps/walkthrough/README.md) for how to run it
 locally and regenerate its data.
 

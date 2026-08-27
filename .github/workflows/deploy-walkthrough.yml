@@ -2,7 +2,7 @@ name: Deploy walkthrough to GitHub Pages
 
 # Builds apps/walkthrough/ (a static React/Vite site — see its AGENTS.md)
 # and publishes it to GitHub Pages at
-# https://trustanprice.github.io/ledgerone/walkthrough/ whenever it
+# https://trustanprice.github.io/ledgerone/ whenever it
 # changes on main. Nothing else in this repo is deployed by this
 # workflow — the dbt project and Python pipeline stay local-only.
 
@@ -43,7 +43,7 @@ jobs:
         working-directory: apps/walkthrough
         run: npm run build
         env:
-          VITE_BASE_PATH: /ledgerone/walkthrough/
+          VITE_BASE_PATH: /ledgerone/
 
       - uses: actions/upload-pages-artifact@v3
         with:

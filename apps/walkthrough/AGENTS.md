@@ -208,16 +208,20 @@ mart's logic on purpose — see that script's docstring) are in
 Deployed as a static site to two targets: **Vercel** (root directory =
 `apps/walkthrough`, served from its own domain root) and **GitHub Pages**
 (GitHub Actions workflow at `../../.github/workflows/deploy-walkthrough.yml`,
-served under `https://trustanprice.github.io/ledgerone/walkthrough/`). No
-server, no database, no auth — "hosted" means "a static build is deployed
-and reachable by URL," consistent with the rest of the project's
-no-orchestration, no-cloud-services constraint.
+served under `https://trustanprice.github.io/ledgerone/` — this app is
+the entire Pages site, no extra subpath). No server, no database, no
+auth — "hosted" means "a static build is deployed and reachable by URL,"
+consistent with the rest of the project's no-orchestration,
+no-cloud-services constraint.
 
 `vite.config.ts`'s `base` defaults to `"/"` (Vercel/local dev) and is
-overridden to `/ledgerone/walkthrough/` only when the GitHub Actions build
-sets `VITE_BASE_PATH` — get this wrong for whatever host is actually
-serving the build and the page renders blank (every asset/data fetch
-404s). See README.md for the
+overridden to `/ledgerone/` only when the GitHub Actions build sets
+`VITE_BASE_PATH` — get this wrong for whatever host is actually serving
+the build and the page renders blank (every asset/data fetch 404s), which
+is exactly what shipped once (`base` was set to `/ledgerone/walkthrough/`,
+an extra segment nothing in the workflow ever created — a passing CI job
+does not mean the deployed page renders; load the real URL to check). See
+README.md for the
 deploy trigger and how to redeploy.
 
 ## Connects to

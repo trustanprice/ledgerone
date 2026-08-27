@@ -243,7 +243,7 @@ Two live deploy targets, both from the same build:
   (`.github/workflows/deploy-walkthrough.yml` at the repo root) builds
   and publishes `dist/` on every push to `main` that touches
   `apps/walkthrough/**`. Live at
-  **https://trustanprice.github.io/ledgerone/walkthrough/**.
+  **https://trustanprice.github.io/ledgerone/**.
 
 The one thing that has to stay correct across both: **`base` must match
 where the app is actually served from, or the page renders blank** (every
@@ -251,10 +251,17 @@ asset and `public/data/*.json` fetch 404s, with no error beyond failed
 network requests — check the browser Network tab first if this ever
 happens after a deploy). `vite.config.ts` defaults `base` to `"/"`
 (correct for Vercel and local dev); the GitHub Actions workflow overrides
-it to `/ledgerone/walkthrough/` via the `VITE_BASE_PATH` env var at build
-time, since Pages serves this as a subpath project site. If you add a
+it to `/ledgerone/` via the `VITE_BASE_PATH` env var at build time, since
+Pages serves this as a project site under the repo name — this app *is*
+the entire Pages site, nothing else shares it, so there's no extra
+subpath beyond that. (This exact failure mode shipped once: `base` was
+set to `/ledgerone/walkthrough/` — an extra path segment nothing in the
+workflow actually created, since `base` only rewrites how HTML references
+paths, it doesn't restructure the build output — so the deployed page was
+genuinely blank for a period despite the CI job going green. If you add a
 third static host that serves from a subpath, set `VITE_BASE_PATH` for
-that build the same way — don't hardcode a new default.
+that build the same way, and actually load the deployed URL in a browser
+afterward — a passing workflow doesn't mean the page renders.)
 
 ## Judgment calls / known limitations
 
