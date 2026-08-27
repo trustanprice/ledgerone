@@ -95,6 +95,49 @@ actually apply what it can now only preview (see above) — an unattended
 pipeline that also can't fix its own infra when it drifts is a narrower
 kind of "automated" than the eventual goal.
 
+## Cost monitoring: a billing alarm, not IaC-managed
+
+Separate from everything above and **not** defined in `ledgerone-stack.yml`
+— created directly via CLI against the real account, not through
+CloudFormation, because it's account-level billing configuration
+(`AWS/Billing` metrics only exist in `us-east-1` and depend on the
+account's root user enabling "Receive Billing Alerts," a setting IAM
+permissions alone can't grant regardless of role — even
+AdministratorAccess hits this wall):
+
+- A CloudWatch alarm, `ledgerone-billing-80-warning`, fires when
+  `AWS/Billing EstimatedCharges` (currency USD) crosses **$80** — an
+  early warning under the account's $100 credit cap, not at it.
+- An SNS topic, `ledgerone-billing-alerts`, with a confirmed email
+  subscription, is the alarm's notification target (both `ALARM` and
+  `OK` transitions) — an alarm with no action attached only changes color
+  in the console, it doesn't notify anyone, so this part isn't optional.
+- A CloudWatch dashboard, `ledgerone-billing`, plots `EstimatedCharges`
+  over time with reference lines at $80 and $100.
+
+**Don't confuse this with the still-open pipeline-failure alerting gap**
+in the "Planned: scheduled, unattended deployment" section above — that's
+about a broken `dbt-build.yml` run going unnoticed, a completely
+different concern from account spend. That gap is still real and still
+open; this section only covers cost.
+
+**Real, deliberate one-time cost**: setting this up required exactly one
+`ce:GetCostAndUsage`-backed run of `src/export_finops_data.py` (a few
+$0.01 API calls) to populate `finops_snapshot.json` with real data for
+the first time — run once, by hand, not on a schedule, matching the
+script's own design (see `src/AGENTS.md`). Everything else here (the
+alarm, the SNS topic, the dashboard, the `AWS/Billing` metric itself) is
+free — standard-resolution CloudWatch alarms and dashboards are covered
+by AWS's always-free tier at this scale (1 alarm, 1 dashboard).
+
+**A known gap, stated plainly**: this alarm/topic/dashboard exist only in
+the live AWS account, not as CloudFormation in this repo — meaning they
+aren't reproducible by redeploying `ledgerone-stack.yml`, and a fresh
+environment wouldn't get them automatically. Moving them into IaC (a new
+`AWS::CloudWatch::Alarm` + `AWS::SNS::Topic` + `AWS::CloudWatch::Dashboard`
+in the template, parameterized by environment) would be the correct fix,
+not yet done.
+
 ## Connects to
 
 - `.github/workflows/dbt-build.yml` assumes `ledgerone-{env}-github-actions`

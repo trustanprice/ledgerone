@@ -57,7 +57,12 @@ anymore — that's dbt's job (see [../dbt/AGENTS.md](../dbt/AGENTS.md)).
   no file written) rather than crashing if Cost Explorer isn't enabled
   yet on that account, or was enabled too recently for AWS to have
   ingested data (can lag up to 24h) — both real states this project has
-  actually hit, not hypothesized edge cases.
+  actually hit, not hypothesized edge cases. Has now been run
+  successfully once for real; `finops_snapshot.json` is committed with
+  genuine (near-zero) cost data. Needs `botocore[crt]` (a real dependency
+  in `requirements.txt`, not optional) if the local AWS profile uses the
+  newer `aws login` console-credential flow rather than classic
+  `aws configure`/SSO — boto3 can't load those credentials without it.
 
 Two other scripts used to live here: `run_pipeline.py` (ran `sql/*.sql` in
 order) and `ledger_validation.py` (hand-written integrity checks). Both
