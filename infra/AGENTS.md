@@ -109,6 +109,3 @@ kind of "automated" than the eventual goal.
 - Neither workflow has a `schedule:` trigger yet — both are
   `workflow_dispatch`-only until dispatched-by-hand runs build enough
   confidence to trust either unattended.
-- Neither workflow has a `schedule:` trigger yet — both are
-  `workflow_dispatch`-only until dispatched-by-hand runs build enough
-  confidence to trust either unattended.
