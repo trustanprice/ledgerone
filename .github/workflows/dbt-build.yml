@@ -10,11 +10,21 @@ name: dbt Build (cloud)
 # depends on, and dbt/profiles.yml for the `prod` target added alongside
 # the existing local `dev` one.
 #
-# workflow_dispatch only, deliberately no schedule trigger yet - add a
-# `schedule:` trigger only after a manual dev run has been confirmed clean
-# end to end (role assumption, S3 write, dbt build all succeed).
+# Runs daily against prod via the schedule trigger below, plus
+# workflow_dispatch for manual runs against either environment. The
+# schedule trigger only landed after: a handful of clean manual dispatches
+# against both dev and prod (136/136 dbt tests, verified from real run
+# logs and a direct S3 bucket listing), and real push-based alerting on
+# failure (see the "Report failure" step) -- an unattended run needs a
+# way to actually notify someone, not just leave a job-summary banner
+# nobody's looking at.
 #
-# Note the dbt --target below is NOT just `${{ inputs.environment }}`:
+# `inputs.environment` only exists on workflow_dispatch runs -- a
+# `schedule` trigger has no `inputs` context at all, so every reference
+# below uses `inputs.environment || 'prod'`, not `inputs.environment`
+# directly. Scheduled runs always target prod; dev is manual-dispatch-only.
+#
+# Note the dbt --target below is NOT just the environment name:
 # dbt/profiles.yml's `dev` target is the pre-existing LOCAL-file target
 # every contributor already uses for `make all` on their own machine -
 # reusing that name for this workflow's cloud dev run would silently
@@ -24,6 +34,11 @@ name: dbt Build (cloud)
 # collide on the same profile name.
 
 on:
+  schedule:
+    # Daily, 10:00 UTC. Always targets prod -- see the note above on why
+    # `inputs.environment || 'prod'` appears everywhere below instead of
+    # `inputs.environment` alone.
+    - cron: '0 10 * * *'
   workflow_dispatch:
     inputs:
       environment:
@@ -39,7 +54,7 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
-    environment: ${{ inputs.environment }}
+    environment: ${{ inputs.environment || 'prod' }}
     env:
       LEDGERONE_DB_PATH: ${{ github.workspace }}/data/processed/ledgerone.duckdb
       LEDGERONE_RAW_DIR: ${{ github.workspace }}/data/raw
@@ -68,7 +83,7 @@ jobs:
 
       - name: Sync raw data to S3 (archival)
         run: |
-          aws s3 sync data/raw/ "s3://ledgerone-raw-${{ inputs.environment }}-387143718798/"
+          aws s3 sync data/raw/ "s3://ledgerone-raw-${{ inputs.environment || 'prod' }}-387143718798/"
 
       - name: dbt build
         run: |
@@ -78,23 +93,30 @@ jobs:
             --target ${{ inputs.environment == 'dev' && 'ci_dev' || 'prod' }}
 
       - name: Report failure
-        # Pull-based visibility, not push-based alerting: this makes a
-        # broken run impossible to miss *if someone opens the Actions
-        # tab*, same as any other step summary. It does not page, email,
-        # or Slack-ping anyone. That distinction doesn't matter much for
-        # a dispatch-only workflow a human just triggered and is already
-        # watching — it matters a lot for the eventual scheduled/cron
-        # version, where by definition no one is watching. Real
-        # push-based alerting (Slack webhook, email via SES, a CloudWatch
-        # alarm) is still worth adding before that cron trigger lands;
-        # this step is the simplest viable improvement over "nothing,"
-        # not a replacement for that.
+        # Two channels, deliberately: the job summary (pull-based --
+        # visible if someone opens the Actions tab) plus a real SNS
+        # publish (push-based -- reaches an inbox with nobody watching).
+        # Reuses the existing ledgerone-billing-alerts topic/subscription
+        # rather than provisioning a second notification channel just for
+        # pipeline failures -- one already-confirmed email is simpler than
+        # two, and "AWS spend crossed a threshold" and "the pipeline that
+        # runs against that spend broke" are both things the same person
+        # wants to know about. Needs sns:Publish on that topic, granted to
+        # this role in infra/ledgerone-stack.yml's PipelineAlerting policy.
         if: failure()
+        env:
+          RUN_ENV: ${{ inputs.environment || 'prod' }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
         run: |
           {
-            echo "## :x: dbt-build failed — ${{ inputs.environment }}"
+            echo "## :x: dbt-build failed — $RUN_ENV"
             echo
-            echo "Run: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+            echo "Run: $RUN_URL"
             echo
             echo "Check the failed step above for the actual error."
           } >> "$GITHUB_STEP_SUMMARY"
+
+          aws sns publish \
+            --topic-arn arn:aws:sns:us-east-1:387143718798:ledgerone-billing-alerts \
+            --subject "dbt-build failed — $RUN_ENV" \
+            --message "dbt-build.yml failed against $RUN_ENV. Run: $RUN_URL"

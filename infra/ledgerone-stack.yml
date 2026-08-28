@@ -22,6 +22,16 @@ Parameters:
     Default: 90
     Description: Days after which objects in the raw-data bucket are permanently deleted.
 
+  AlertingTopicArn:
+    Type: String
+    Default: arn:aws:sns:us-east-1:387143718798:ledgerone-billing-alerts
+    Description: >
+      SNS topic dbt-build.yml publishes to on failure. Not managed by this
+      stack (created directly via CLI for the billing alarm, documented in
+      infra/AGENTS.md's "Cost monitoring" section, not yet moved into
+      CloudFormation) -- this parameter just lets the deploy role publish
+      to it, it doesn't create or own the topic.
+
 Resources:
 
   RawDataBucket:
@@ -95,6 +105,17 @@ Resources:
                 # kind. This role can show a diff, never apply one — see
                 # infra/AGENTS.md's "Why the deploy role can preview but
                 # not apply changes" for the privilege-escalation reasoning.
+        - PolicyName: PipelineAlerting
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Sid: PublishFailureAlerts
+                Effect: Allow
+                Action: sns:Publish
+                Resource: !Ref AlertingTopicArn
+                # Scoped to exactly this one topic, nothing broader — this
+                # role can notify on its own pipeline's failures, not
+                # publish to arbitrary SNS topics in the account.
 
 Outputs:
   BucketName:
