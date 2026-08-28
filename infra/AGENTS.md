@@ -110,15 +110,18 @@ aws cloudformation execute-change-set --stack-name ledgerone-prod --change-set-n
 `deploy-infra.yml`'s own gap — preview-only, no `ExecuteChangeSet`/`iam:*`
 of any kind — is unrelated and still open; see the section above.
 
-## Cost monitoring: a billing alarm, not IaC-managed
+## Cost monitoring: now defined as CloudFormation, import not yet applied
 
-Separate from everything above and **not** defined in `ledgerone-stack.yml`
-— created directly via CLI against the real account, not through
-CloudFormation, because it's account-level billing configuration
-(`AWS/Billing` metrics only exist in `us-east-1` and depend on the
-account's root user enabling "Receive Billing Alerts," a setting IAM
-permissions alone can't grant regardless of role — even
-AdministratorAccess hits this wall):
+Separate from everything above. Originally created directly via CLI
+against the real account, not through CloudFormation, because it's
+account-level billing configuration (`AWS/Billing` metrics only exist in
+`us-east-1` and depend on the account's root user enabling "Receive
+Billing Alerts," a setting IAM permissions alone can't grant regardless of
+role — even AdministratorAccess hits this wall). All three are now also
+defined in `ledgerone-stack.yml`, `Condition: IsProd` — `AWS/Billing`
+metrics and this account's spend are account-wide, not per-environment,
+so they exist once, in the `ledgerone-prod` stack only, not duplicated
+into `ledgerone-dev`:
 
 - A CloudWatch alarm, `ledgerone-billing-80-warning`, fires when
   `AWS/Billing EstimatedCharges` (currency USD) crosses **$80** — an
@@ -145,13 +148,34 @@ alarm, the SNS topic, the dashboard, the `AWS/Billing` metric itself) is
 free — standard-resolution CloudWatch alarms and dashboards are covered
 by AWS's always-free tier at this scale (1 alarm, 1 dashboard).
 
-**A known gap, stated plainly**: this alarm/topic/dashboard exist only in
-the live AWS account, not as CloudFormation in this repo — meaning they
-aren't reproducible by redeploying `ledgerone-stack.yml`, and a fresh
-environment wouldn't get them automatically. Moving them into IaC (a new
-`AWS::CloudWatch::Alarm` + `AWS::SNS::Topic` + `AWS::CloudWatch::Dashboard`
-in the template, parameterized by environment) would be the correct fix,
-not yet done.
+**Not yet applied**: these three already exist as real resources in the
+account, so bringing them into the stack needs an IMPORT change set, not
+a normal deploy — a plain `aws cloudformation deploy` would try to CREATE
+new resources with names that already exist and fail outright.
+`infra/import-billing-monitoring.json` has the resource-identifier
+mapping (`AlarmName`/`TopicArn`/`DashboardName`) `--resources-to-import`
+needs. Apply it:
+
+```bash
+aws cloudformation create-change-set \
+  --stack-name ledgerone-prod \
+  --change-set-name import-billing-monitoring \
+  --change-set-type IMPORT \
+  --template-body file://infra/ledgerone-stack.yml \
+  --parameters ParameterKey=Environment,ParameterValue=prod ParameterKey=GitHubRepo,ParameterValue=trustanprice/ledgerone \
+  --resources-to-import file://infra/import-billing-monitoring.json \
+  --capabilities CAPABILITY_NAMED_IAM
+
+aws cloudformation describe-change-set --stack-name ledgerone-prod --change-set-name import-billing-monitoring
+# review -- expect exactly three Import actions, nothing else touched, then:
+aws cloudformation execute-change-set --stack-name ledgerone-prod --change-set-name import-billing-monitoring
+```
+
+The import mapping's SNS `TopicArn` uses this account's ID as recorded
+earlier in this project's history (`387143718798`) — not independently
+re-verified against live AWS when this was written (no working AWS
+session at the time), so confirm it matches the real topic's ARN before
+running the import.
 
 ## Connects to
 
@@ -164,6 +188,8 @@ not yet done.
   template via `infra/scripts/summarize-changeset.sh` (changeset only —
   it cannot execute one); actually applying a change still goes through a
   human until the execute-permission question above is resolved.
-- Neither workflow has a `schedule:` trigger yet — both are
-  `workflow_dispatch`-only until dispatched-by-hand runs build enough
-  confidence to trust either unattended.
+- `dbt-build.yml` has a `schedule:` trigger (daily, targets `prod`); see
+  above for the alerting permission it still needs applied.
+  `deploy-infra.yml` stays `workflow_dispatch`-only — it can only preview
+  a change, never apply one, so an auto-trigger would just create
+  changesets no one asked to review yet.

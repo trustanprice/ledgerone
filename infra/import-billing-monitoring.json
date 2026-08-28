@@ -1,0 +1,23 @@
+[
+  {
+    "ResourceType": "AWS::CloudWatch::Alarm",
+    "LogicalResourceId": "BillingAlarm",
+    "ResourceIdentifier": {
+      "AlarmName": "ledgerone-billing-80-warning"
+    }
+  },
+  {
+    "ResourceType": "AWS::SNS::Topic",
+    "LogicalResourceId": "BillingAlertsTopic",
+    "ResourceIdentifier": {
+      "TopicArn": "arn:aws:sns:us-east-1:387143718798:ledgerone-billing-alerts"
+    }
+  },
+  {
+    "ResourceType": "AWS::CloudWatch::Dashboard",
+    "LogicalResourceId": "BillingDashboard",
+    "ResourceIdentifier": {
+      "DashboardName": "ledgerone-billing"
+    }
+  }
+]

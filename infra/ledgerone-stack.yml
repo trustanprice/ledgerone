@@ -32,6 +32,14 @@ Parameters:
       CloudFormation) -- this parameter just lets the deploy role publish
       to it, it doesn't create or own the topic.
 
+Conditions:
+  # AWS/Billing metrics and this account's spend are account-wide, not
+  # per-environment -- deploying this template to BOTH ledgerone-dev and
+  # ledgerone-prod must not try to create/import the same real alarm,
+  # topic, and dashboard twice. Prod-only, arbitrarily but consistently
+  # with dbt-build.yml's schedule trigger also only ever targeting prod.
+  IsProd: !Equals [!Ref Environment, 'prod']
+
 Resources:
 
   RawDataBucket:
@@ -116,6 +124,83 @@ Resources:
                 # Scoped to exactly this one topic, nothing broader — this
                 # role can notify on its own pipeline's failures, not
                 # publish to arbitrary SNS topics in the account.
+
+  # Below: the billing alarm/topic/dashboard infra/AGENTS.md's "Cost
+  # monitoring" section documents as CLI-created, real resources that
+  # already exist in the account. These definitions are for IMPORTING
+  # those existing resources into this stack, not creating new ones --
+  # a plain `aws cloudformation deploy` would try to CREATE an alarm/
+  # topic/dashboard with a name that already exists and fail. See that
+  # AGENTS.md section for the exact `create-change-set --change-set-type
+  # IMPORT` command and infra/import-billing-monitoring.json for the
+  # resource-identifier mapping it needs.
+
+  BillingAlertsTopic:
+    Type: AWS::SNS::Topic
+    Condition: IsProd
+    Properties:
+      TopicName: ledgerone-billing-alerts
+      # Deliberately no `Subscription` property: the real email
+      # subscription was confirmed out of band (a human clicked the
+      # confirmation email) and stays out of CloudFormation on purpose --
+      # declaring it here risks CloudFormation trying to reconcile or
+      # replace an already-confirmed subscription on the next update.
+
+  BillingAlarm:
+    Type: AWS::CloudWatch::Alarm
+    Condition: IsProd
+    Properties:
+      AlarmName: ledgerone-billing-80-warning
+      AlarmDescription: >
+        Early warning under this account's $100 credit cap -- fires at
+        $80, not at the cap itself.
+      Namespace: AWS/Billing
+      MetricName: EstimatedCharges
+      Dimensions:
+        - Name: Currency
+          Value: USD
+      Statistic: Maximum
+      Period: 21600
+      EvaluationPeriods: 1
+      Threshold: 80
+      ComparisonOperator: GreaterThanOrEqualToThreshold
+      TreatMissingData: notBreaching
+      AlarmActions:
+        - !Ref BillingAlertsTopic
+      OKActions:
+        - !Ref BillingAlertsTopic
+
+  BillingDashboard:
+    Type: AWS::CloudWatch::Dashboard
+    Condition: IsProd
+    Properties:
+      DashboardName: ledgerone-billing
+      DashboardBody: !Sub |
+        {
+          "widgets": [
+            {
+              "type": "metric",
+              "x": 0, "y": 0, "width": 24, "height": 8,
+              "properties": {
+                "title": "Estimated Monthly Charges (USD)",
+                "region": "${AWS::Region}",
+                "view": "timeSeries",
+                "stacked": false,
+                "period": 21600,
+                "stat": "Maximum",
+                "metrics": [
+                  ["AWS/Billing", "EstimatedCharges", "Currency", "USD"]
+                ],
+                "annotations": {
+                  "horizontal": [
+                    { "label": "Warning ($80)", "value": 80 },
+                    { "label": "Credit cap ($100)", "value": 100 }
+                  ]
+                }
+              }
+            }
+          ]
+        }
 
 Outputs:
   BucketName:
