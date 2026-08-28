@@ -69,31 +69,46 @@ permission is granted later, the fix belongs here — a narrowly-scoped
 `cloudformation:ExecuteChangeSet` + `iam:*` statement, resource-restricted
 to this one stack's ARN and this one role's ARN, not a blanket grant.
 
-## Planned: scheduled, unattended deployment
+## Now live: scheduled, unattended deployment — with one open gap
 
-Both `dbt-build.yml` and `deploy-infra.yml` are `workflow_dispatch`-only
-today, on purpose — the intent is for this to eventually become a real
-scheduled deployment (a `schedule:` cron trigger on `dbt-build.yml`,
-running `--target prod` unattended), not to stay a manually-triggered demo
-forever. That's deliberately not built yet: a handful of clean manual
-dispatches is evidence the mechanics work, not evidence it's safe to run
-unattended against `prod` with no one watching. `dbt-build.yml` now
-writes a clear `:x: dbt-build failed` banner (environment, run link) to
-the job's `$GITHUB_STEP_SUMMARY` on failure — but that's pull-based
-visibility, not push-based alerting: it makes a broken run impossible to
-miss *if someone opens the Actions tab*, not something that pages or
-pings anyone. That's a real gap closed for a dispatch-only workflow a
-human just triggered and is already watching; it's a much smaller one
-closed for the eventual unattended/cron version, where by definition no
-one is watching by default. Before adding the cron trigger, at minimum:
-more dispatch history across both environments, real push-based alerting
-(a Slack webhook, email via SES, or a CloudWatch alarm — not yet chosen
-or wired up) for the case where no one is looking at the Actions tab when
-a scheduled run breaks, and a real decision on whether
-`deploy-infra.yml`'s deploy role gets `ExecuteChangeSet`/`iam:*` to
-actually apply what it can now only preview (see above) — an unattended
-pipeline that also can't fix its own infra when it drifts is a narrower
-kind of "automated" than the eventual goal.
+`dbt-build.yml` has a `schedule: cron: '0 10 * * *'` trigger (daily,
+10:00 UTC, always targets `prod`) alongside `workflow_dispatch`. This
+landed after both prerequisites this doc used to list as required were
+actually met: a handful of clean manual dispatches across both
+environments (136/136 dbt tests, verified from real run logs), and real
+push-based alerting — its "Report failure" step now publishes to the
+existing `ledgerone-billing-alerts` SNS topic (already has a confirmed
+email subscription, from the billing-alarm work below) in addition to the
+job-summary banner it already wrote, so a broken run reaches an inbox,
+not just a tab nobody's watching.
+
+**Not yet true**: the IAM permission that publish call needs
+(`sns:Publish`, the `PipelineAlerting` policy statement in
+`ledgerone-stack.yml`, scoped to exactly that one topic ARN via the new
+`AlertingTopicArn` parameter) hasn't been applied to the live
+`ledgerone-{env}-github-actions` roles — it goes through the same
+human-executed changeset flow every other IAM change here does, and
+wasn't run before the workflow change landed. Until it is, a scheduled
+run that fails hits `AccessDenied` on the SNS publish itself, on top of
+whatever broke `dbt-build` — the alerting exists in code, not yet in the
+account. Apply it (repeat for `ledgerone-dev` if dev-triggered failures
+should alert too — the schedule trigger itself only ever targets `prod`):
+
+```bash
+aws cloudformation deploy \
+  --template-file infra/ledgerone-stack.yml \
+  --stack-name ledgerone-prod \
+  --parameter-overrides Environment=prod GitHubRepo=trustanprice/ledgerone \
+  --capabilities CAPABILITY_NAMED_IAM \
+  --no-execute-changeset
+
+aws cloudformation describe-change-set --stack-name ledgerone-prod --change-set-name <name from output>
+# review the diff (expect exactly one Add: the PipelineAlerting policy), then:
+aws cloudformation execute-change-set --stack-name ledgerone-prod --change-set-name <same name>
+```
+
+`deploy-infra.yml`'s own gap — preview-only, no `ExecuteChangeSet`/`iam:*`
+of any kind — is unrelated and still open; see the section above.
 
 ## Cost monitoring: a billing alarm, not IaC-managed
 

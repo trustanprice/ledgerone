@@ -25,8 +25,8 @@ export const ARCHITECTURE_DIAGRAM = [
   {
     label: 'Orchestration',
     nodes: [
-      { label: 'dbt-build.yml', kicker: 'workflow_dispatch only — no cron yet, deliberately' },
-      { label: 'Scheduled run', kicker: 'next step once dispatch history builds confidence' },
+      { label: 'dbt-build.yml', kicker: 'daily cron (10:00 UTC) + workflow_dispatch, targets prod' },
+      { label: 'SNS failure alert', kicker: 'wired in code — IAM grant not yet applied, see below', accent: true },
     ],
   },
   {
@@ -69,10 +69,10 @@ export const CICD_WRITEUP: InfraSection[] = [
   },
   {
     title: 'What still isn’t done',
-    body: 'No schedule/cron trigger on dbt-build.yml yet — both environments passed a manual dispatch (136/136 dbt tests, both dev and prod, verified from real run logs and a direct S3 bucket listing), but "it worked once, dispatched by hand" and "trust it unattended on a schedule" are different bars. deploy-infra.yml being unable to actually apply a change is also deliberate, not an oversight — see above.',
+    body: 'dbt-build.yml’s SNS failure-alert publish needs an sns:Publish grant that hasn’t been applied to the live IAM role yet — the policy statement exists in ledgerone-stack.yml, but the changeset applying it hasn’t been executed, so a scheduled run that fails right now would hit AccessDenied on the alert itself. deploy-infra.yml being unable to actually apply a change is separately deliberate, not an oversight — see above.',
   },
   {
-    title: 'Planned: this becomes a live, scheduled deployment',
-    body: 'Manual dispatch is the current state, not the destination — the intent is a `schedule:` cron trigger on dbt-build.yml running unattended against prod. Held back deliberately, not by oversight: a handful of clean manual runs is evidence the mechanics work, not evidence it is safe to run unwatched. dbt-build.yml now writes a clear failure banner to the job summary, but that’s pull-based visibility (someone has to open the Actions tab), not push-based alerting — closing a real gap for a hand-dispatched run, a much smaller one for an unattended cron run where no one’s watching by default. Before that trigger gets added: more dispatch history across both environments, real push-based alerting (Slack/email/CloudWatch — not yet chosen), and a resolved answer on whether deploy-infra.yml’s deploy role gets ExecuteChangeSet/iam:* to actually apply what it can now only preview — an unattended pipeline that cannot also fix its own infrastructure drift is a narrower kind of "automated" than the goal.',
+    title: 'Now live: scheduled, unattended deployment — with one open gap',
+    body: 'dbt-build.yml runs daily against prod on its own now (a schedule: cron trigger, 10:00 UTC), on top of manual workflow_dispatch — added once both prerequisites this page used to list were actually real: a handful of clean manual dispatches across both environments, and real push-based alerting (an SNS publish to the existing ledgerone-billing-alerts topic, alongside the job-summary banner). What’s not yet true: the sns:Publish permission that alert needs hasn’t been applied to the live IAM role — it goes through the same human-executed changeset flow as every other infra change here, and wasn’t run before the workflow change shipped. Until it is, a scheduled run that fails hits AccessDenied on the alert itself, on top of whatever broke the build. Separately, deploy-infra.yml’s deploy role still has no ExecuteChangeSet/iam:* — that gap is unrelated and still open.',
   },
 ]

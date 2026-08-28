@@ -34,12 +34,16 @@ contributor uses day to day. It's no longer the *only* path, though: a
 real (small, portfolio-scale) cloud deployment exists alongside it —
 `infra/` (CloudFormation: an S3 raw-data bucket + a GitHub OIDC deploy
 role, per environment) and `.github/workflows/dbt-build.yml` run the same
-pipeline against MotherDuck instead of a local `.duckdb` file, dispatched
-manually, not on a schedule — **manual dispatch is the current state, not
-the goal**: the intent is an eventual scheduled/unattended run against
-`prod`, held back deliberately until there's alerting on a failed run and
-more dispatch history to trust it unwatched (see
-[infra/AGENTS.md](infra/AGENTS.md)'s "Planned" section). See `infra/`'s
+pipeline against MotherDuck instead of a local `.duckdb` file — daily
+against `prod` via a `schedule:` cron trigger, plus manual
+`workflow_dispatch` runs against either environment. On failure it
+publishes to the `ledgerone-billing-alerts` SNS topic in addition to a
+job-summary banner — real push-based alerting, not just a banner nobody's
+watching. **One open gap**: the IAM permission that publish call needs
+hasn't been applied to the live AWS role yet, so a scheduled failure right
+now would hit `AccessDenied` on the alert itself — see
+[infra/AGENTS.md](infra/AGENTS.md)'s "Planned" section for the exact
+commands to close this. See `infra/`'s
 own docs and `dbt/profiles.yml`'s `ci_dev`/`prod` targets. The other
 exception, as before, is `apps/walkthrough/`, a static site with no
 backend of its own — see "Out of scope" below for what that does and
